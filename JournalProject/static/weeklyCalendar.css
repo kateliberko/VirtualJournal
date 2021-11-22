@@ -1,0 +1,51 @@
+body {
+	font-family: sans-serif;
+}
+
+.day-col {
+	width: calc(100% / 7);
+	float: left;
+}
+
+.day-col .title {
+	text-align: center;
+}
+
+.day-col .content {
+	position: relative;
+	height: 500px;
+	border: 1px solid black;
+	border-right: none;
+}
+
+.day-col:last-child .content {
+	border-right: 1px solid black;
+}
+
+.event-item {
+	position: absolute;
+	width: calc(100% - 2px);
+	padding-left: 2px;
+	font-size: 11px;
+	overflow-x: auto;
+	background: rgba(240, 240, 255, 0.8);
+	cursor: pointer;
+}
+
+#new_event_button {
+	float: right;
+	height: 30px;
+}
+
+#add_event_form {
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 250px);
+	right: calc(50% - 250px);
+	width: 500px;
+	height: auto;
+	padding: 5px;
+	background: white;
+	border: 2px solid #888888;
+	box-shadow: 1px 1px 3px #555555;
+}

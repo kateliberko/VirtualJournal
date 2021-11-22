@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="static\main.css">
+  </head>
+
+  <body>
+        <div class="container">
+            
+            <div class="item day" id="day"> 
+                <div class="day-col">
+                    <div class="title">Sunday</div>
+                    <div class="content"></div>
+                </div>
+            </div>
+
+            <div class="add_event_form" id="add_event_form" style="display:none">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br/>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location"><br/>
+                
+                <label for="dayofweek">Day of Week:</label>
+                <select name="dayofweek" id="dayofweek">
+                    <option value="sunday">Sunday</option>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+                </select><br/>
+        
+                <label for="starttime">Start Time:</label>
+                <select name="starttime" id="starttime">	  
+                </select><br/>
+                
+                <label for="endtime">End Time:</label>
+                <select name="endtime" id="endtime">	
+                </select><br/>
+        
+                <button id="submit" type="button" onclick='addNewEvent(), toggleForm()'> Add Event to Calendar</button>
+            </div>
+            <div class="item nav_bar">
+                <ul id ="nav_bar" class="nav flex-column">
+                    <button id="new_event_button" type="button" onclick='toggleForm()'> + Add New Event</button>
+                    <li class="nav-item">
+                        <!-- <button><img src="/static/images/axe.jpg" style="width: 2%;"></button> -->
+                        <button>Minimal Day</button>
+                    </li>
+                    <li class="nav-item">
+                        <button>Task Bank</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calendar">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/journal">Journal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/habittracker">Habit Tracker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/moodtracker">Mood Tracker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/info">info</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="item journal">
+                <form>
+                    <label for="journal">Today's date</label><br>
+                    <textarea rows="10" cols="100" id="review" placeholder="Journal Here" name="journal"></textarea><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="item habit">
+                <table class="habit">
+                    <thead>
+                        <tr>
+                            <th scope="col">Habit</th>
+                            <th scope="col">Yes</th>
+                            <th scope="col">No</th>
+                        </tr>
+                    </thead><br/>
+                    <tbody>
+                        <tr>
+                            <td scope="row">Floss</td>
+                            <td><input type="radio" name="habit"></td>
+                            <td><input type="radio" name="habit"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Read</td>
+                            <td><input type="radio" name="habit"></td>
+                            <td><input type="radio" name="habit"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Journal</td>
+                            <td><input type="radio" name="habit"></td>
+                            <td><input type="radio" name="habit"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="item mood">
+                <table>
+                    <tbody>
+                        <!-- https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 -->
+                        <tr>
+                            <td><input type="checkbox" id="cb1" >
+                              <label for="cb1"><img src="static\images\sad.png" ></label>
+                            </td>
+                            <td><input type="checkbox" id="cb2" >
+                              <label for="cb2"><img src="static\images\happy.png" ></label>
+                            </td>
+                        </tr> <br/>
+                        <tr>
+                            <td><input type="checkbox" id="cb3" >
+                              <label for="cb3"><img src="static\images\happy.png" ></label>
+                            </td>
+                            <td><input type="checkbox" id="cb4" >
+                              <label for="cb4"><img src="static\images\sad.png" ></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="cb3" >
+                              <label for="cb3"><img src="static\images\happy.png" ></label>
+                            </td>
+                            <td><input type="checkbox" id="cb4" >
+                              <label for="cb4"><img src="static\images\sad.png" ></label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="static\app.js"></script>
+    
+  </body>
+</html>

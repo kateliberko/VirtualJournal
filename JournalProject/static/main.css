@@ -171,16 +171,17 @@ z-index: -1;
 }
 
 
-/* HABIT TRACKER */
+/* HABIT TRACKER */ 
 
 .habit table {
     border-collapse: collapse;
     }
-.habit >tr{
-	padding: 10pc;
+	/* these arent working..? */
+.habit tr{
+	padding: 30px;
 }
-.habit > thead{
-	padding-bottom: 30pc;
+.habit thead{
+	padding-bottom: 60px;
 }
 .habit tr:nth-child(even) {
       background-color: rgb(201, 176, 211);

@@ -186,3 +186,11 @@ z-index: -1;
 .habit tr:nth-child(even) {
       background-color: rgb(201, 176, 211);
     }
+
+
+/* HOMEPAGE */
+.homepage{
+	display: grid;
+	justify-content: center;
+	align-items: center;
+}

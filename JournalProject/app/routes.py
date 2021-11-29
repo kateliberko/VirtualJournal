@@ -42,9 +42,9 @@ def signup():
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
+        flash('Your account has been created! You are now able to log in') #flash message goes to wrong page..?
         return redirect(url_for('login'))
-    return render_template('signup.html', title='Register', form=form)
+    return render_template('signup.html', title='Sign Up', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -56,10 +56,9 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('mainpage'))
+            return redirect(url_for('mainpage'))
         else:
-            flash('Login Unsuccessful. Please check password', 'danger')
+            flash('Login Unsuccessful. Please check username and password') #flash message goes to wrong page..?
     return render_template('login.html', title='Login', form=form)
 
 

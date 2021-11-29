@@ -113,3 +113,55 @@ function addNewEvent() { // get form results and pass them to be formatted and p
     placeEvent(event.day, event.name, event.location, event.startTime, event.endTime, event.findStartValue, event.findEndValue);
 
 }
+
+function dayofWeek(){
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var d = new Date();
+    var dayName = days[d.getDay()];
+    var selectDiv = document.getElementById('dayheader');
+    var todaycal = document.getElementById('day0');
+    
+    if (selectDiv){
+        selectDiv.innerHTML = dayName;
+    }
+    if (todaycal){
+        todaycal.innerHTML= dayName;
+        var num = nextDay(d.getDay());
+        
+        document.getElementById('day1').innerHTML = days[num[0]];
+
+        document.getElementById('day2').innerHTML = days[num[1]];
+
+        document.getElementById('day3').innerHTML = days[num[2]];
+
+        document.getElementById('day4').innerHTML = days[num[3]];
+
+        document.getElementById('day5').innerHTML = days[num[4]];
+
+        document.getElementById('day6').innerHTML = days[num[5]];
+    }
+    
+    
+}
+function nextDay(num){
+    if( num ==0){
+        return[ 1, 2, 3, 4, 5, 6]
+    }
+    if( num ==1){
+        return[  2, 3, 4, 5, 6, 0]
+    }
+    if( num ==2){
+        return[ 3, 4, 5, 6, 1, 2]
+    }
+    if( num ==3){
+        return[ 4, 5, 6, 0, 1, 2]
+    }
+    if( num ==4){
+        return[ 5, 6, 0, 1, 2, 3]
+    }
+    if( num == 5){
+        return[ 6, 0, 1, 2, 3, 4]
+    }
+    // if num == 6
+    return[0, 1, 2, 3, 4, 5]
+}

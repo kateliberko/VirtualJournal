@@ -3,49 +3,48 @@
 <head>
 	<title>Weekly View</title>
 	<link rel="stylesheet" type="text/css" href="static\weeklyCalendar.css">
-    <a class="nav-link" href="/"><img src="static\images\home.png " width="3%"></a>
+    <a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
 </head>
-<body>
+<body onload="dayofWeek();">
 
 	<h1>
 		Weekly View
 		<button id="new_event_button" type="button" onclick='toggleForm()'> + Add New Event</button>
 	</h1>
 
-	<div id="week">
+	<div id="week" >
 		<div class="day-col">
-			<div class="title">Sunday</div>
+			<div class="title" id="day0"> </div>
 			<div class="content"></div>
 		</div>
 		<div class="day-col">
-			<div class="title">Monday</div>
+			<div class="title" id="day1"> </div>
 			<div class="content"></div>
 		</div>
 		<div class="day-col">
-			<div class="title">Tuesday</div>
-			<div class="content">
-			</div>
-		</div>
-		<div class="day-col">
-			<div class="title">Wednesday</div>
+			<div class="title" id="day2">Tuesday</div>
 			<div class="content"></div>
 		</div>
 		<div class="day-col">
-			<div class="title">Thursday</div>
+			<div class="title" id="day3">Wednesday</div>
 			<div class="content"></div>
 		</div>
 		<div class="day-col">
-			<div class="title">Friday</div>
+			<div class="title" id="day4">Thursday</div>
 			<div class="content"></div>
 		</div>
 		<div class="day-col">
-			<div class="title">Saturday</div>
+			<div class="title" id="day5">Friday</div>
+			<div class="content"></div>
+		</div>
+		<div class="day-col">
+			<div class="title" id="day6">Saturday</div>
 			<div class="content"></div>
 		</div>
 	</div>
 
 	<div id="add_event_form" style="display:none">
-		<label for="name">Name:</label>
+		<label for="name">Name of event:</label>
 		<input type="text" id="name" name="name"><br/>
 		<label for="location">Location:</label>
 		<input type="text" id="location" name="location"><br/>
@@ -73,7 +72,6 @@
 
 	</div>
 
-	<script type="text/javascript" src="app.js"></script>
-
 </body>
+<script type="text/javascript" src="static\app.js"> </script>
 </html>

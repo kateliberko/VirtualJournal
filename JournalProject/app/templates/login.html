@@ -13,7 +13,16 @@
         {% else %}
             <title>Virtual Journal</title>
         {% endif %}
+        
+        <div>
+            {%  if get_flashed_messages() %}
+                {% for mesg in get_flashed_messages() %}
+                    <h3>{{ mesg }}</h3>
+                {% endfor %}
+            {% endif %}
+        </div>
 </head>
+<body>
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}

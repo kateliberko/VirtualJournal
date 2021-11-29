@@ -1,6 +1,28 @@
 <!-- Modeled FROM COREYMSCHAFER -->
-{% extends "base.html" %}
-{% block content %}
+<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static\main.css">
+        {% if title %}
+            <title>Virtual Journal - {{ title }}</title>
+        {% else %}
+            <title>Virtual Journal</title>
+        {% endif %}
+
+        <div>
+            {%  if get_flashed_messages() %}
+                {% for mesg in get_flashed_messages() %}
+                    <h3>{{ mesg }}</h3>
+                {% endfor %}
+            {% endif %}
+        </div>
+</head>
+<body>
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
@@ -57,4 +79,5 @@
             Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
         </small>
     </div>
-{% endblock content %}
+</body>
+</html>

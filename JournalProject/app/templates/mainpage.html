@@ -7,20 +7,21 @@
 
     <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="static\main.css">
+     
   </head>
 
-  <body>
+  <body onload="dayofWeek();">
         <div class="container">
             
             <div class="item day" id="day"> 
                 <div class="day-col">
-                    <div class="title">Sunday</div>
+                    <div class="title" id="dayheader"> </div>
                     <div class="content"></div>
                 </div>
             </div>
 
             <div class="add_event_form" id="add_event_form" style="display:none">
-                <label for="name">Name:</label>
+                <label for="name">Name of event:</label>
                 <input type="text" id="name" name="name"><br/>
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location"><br/>
@@ -151,7 +152,8 @@
         </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script type="text/javascript" src="static\app.js"></script>
+   
     
   </body>
+  <script type="text/javascript" src="static\app.js"> </script>
 </html>

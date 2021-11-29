@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 app = Flask(__name__)
-app.config['SECRET_KEY']='9f7615199c57c5ce0b76e926041133b3'
+app.config['SECRET_KEY']='9f7615199c57c5ce0b76e926041133b3' # make this secret!
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///virtualjournal.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

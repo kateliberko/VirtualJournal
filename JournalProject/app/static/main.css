@@ -1,6 +1,16 @@
 body {
-	font-family: sans-serif;
-	background-color: rgb(252, 245, 255);
+	font-family: questrial;
+}
+
+/* https://stackoverflow.com/questions/2460100/remove-the-complete-styling-of-an-html-button-submit */
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 .item {
@@ -8,47 +18,67 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-size: 1.5em;
-	background-color: rgb(236, 223, 241);
   } 
  
 .container {
 	display: grid;
-	
-	column-gap: 1rem;
-	row-gap: 1rem;
   
-	grid-template-columns: repeat(8, 1fr);
+	grid-template-columns: repeat(32, 1fr);
 	grid-template-rows: repeat(8, 1fr);
   }
   
   /* GRID ITEM PLACEMENT */
-  .day {
+.day {
 	grid-column-start: 1;
-	grid-column-end: 2;
+	grid-column-end: 8;
+	grid-row-start: 1;
+	grid-row-end: -1;
+	background-color: burlywood;
+	width: 425px;
+  }
+.nav_bar{
+	grid-column-start: 11;
+	grid-column-end: 13;
 	grid-row-start: 1;
 	grid-row-end: -1;
   }
-  .nav_bar{
-	grid-column-start: 2;
-	grid-column-end: 4;
+
+#nav_container1{
 	grid-row-start: 1;
-	grid-row-end: -1;
+	grid-row-end: 4;
+	background-color: aqua;
   }
-  .journal{
-	grid-column-start: 4;
+
+#nav_container2{
+	grid-row-start: 4;
+	grid-row-end: 7;
+	background-color: aquamarine;	  
+  }
+
+#nav_container3{
+	grid-row-start: 7;
+	grid-row-end: -1;
+	background-color: blueviolet;
+  }
+
+.journal{
+	grid-column-start: 16;
 	grid-column-end: -1;
 	grid-row-start: 1;
 	grid-row-end: 4;
   }
-  .habit{
-	grid-column-start: 6;
+
+.habit{
+	grid-column-start: 24;
 	grid-column-end: -1;
 	grid-row-start: 4;
 	grid-row-end: -1;
+	font-family: prata;
   }
-  .mood{
-	grid-column-start: 4;
-	grid-column-end: 6;
+  
+.mood{
+	grid-column-start: 16;
+	grid-column-end: 24;
 	grid-row-start: 4;
 	grid-row-end: -1;
   }
@@ -56,10 +86,11 @@ body {
 /* CALENDAR */
 .day-col .title {
 	text-align: center;
+	background-color: darkblue;
 }
 
 .day-col{
-	width: 380px;
+	width: inherit;
 }
 .day-col .content {
 	position: relative;
@@ -84,8 +115,10 @@ body {
 }
 
 #new_event_button {
-	float: left;
-	height: 30px;
+	padding-right: 5%;
+	padding-left: 5%;
+	background-color: palevioletred;
+	color: white;
 }
 
 #add_event_form {
@@ -101,11 +134,20 @@ body {
 	box-shadow: 1px 1px 3px #555555;
 }
 /* NAV BAR */
-li {
-    display: inline-block;
+ul{
+	list-style: none;
 }
+
+li {
+    align-self: center;
+}
+
 #nav_bar{
 	align-self: flex-start;
+}
+
+#settings{
+	font-size: 50%;
 }
 
 input[type="checkbox"][id^="cb"] {

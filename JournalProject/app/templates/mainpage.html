@@ -49,43 +49,48 @@
             </div>
             <div class="item nav_bar">
                 <ul id ="nav_bar" class="nav flex-column">
-                    <button id="new_event_button" type="button" onclick='toggleForm()'> + Add New Event</button>
-                    <li class="nav-item">
-                        <!-- <button><img src="/static/images/axe.jpg" style="width: 2%;"></button> -->
-                        <button>Minimal Day</button>
-                    </li>
-                    <li class="nav-item">
-                        <button>Task Bank</button>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/calendar">Calendar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/journal">Journal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/habittracker">Habit Tracker</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/moodtracker">Mood Tracker</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/info"><img src="static\images\info.png" width="160%" ></a>
-                    </li>
-                    <li>
-                        <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a> 
-                        <!-- possibly have editing in this page, or delete this all together.. -->
-                    </li>
-                    <li>
-                        <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-                    </li>
+                    <button id="new_event_button" type="button" onclick='toggleForm()'> + </button>
+                    <div id="nav_container1">
+                        <li class="nav-item">
+                            <input type="image" src="static\images\minimalday_icon.png" width="100%">
+                        </li>
+                        <li class="nav-item">
+                            <input type="image" src="static\images\box_icon.png" width="100%">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png" width="100%"></a>
+                        </li>
+                    </div>
+                    <div id="nav_container2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png" width="100%"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png" width="100%"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png" width="100%"></a>
+                        </li>
+                    </div>
+                    <div id="nav_container3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/info"><img src="static\images\information_icon.png" width="100%"></a>
+                        </li>
+                        <li id="settings">
+                            <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a> 
+                            <!-- possibly have editing in this page, or delete this all together.. -->
+                        </li>
+                        <li id="settings">
+                            <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    </div>
                 </ul>
             </div>
             
             <div class="item journal">
                 <form>
                     <label for="journal">Today's date</label><br>
-                    <textarea rows="10" cols="100" id="review" placeholder="Journal Here" name="journal"></textarea><br>
+                    <textarea rows="10" cols="60" id="review" placeholder="Journal Here" name="journal"></textarea><br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
@@ -124,27 +129,47 @@
                         <!-- https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 -->
                         <tr>
                             <td><input type="checkbox" id="cb1" >
-                              <label for="cb1"><img src="static\images\sad.png" ></label>
+                                <label for="cb1"><a>😅</a></label>
                             </td>
                             <td><input type="checkbox" id="cb2" >
-                              <label for="cb2"><img src="static\images\happy.png" ></label>
+                                <label for="cb2"><a>😆</a></label>
                             </td>
+                            <td><input type="checkbox" id="cb3" >
+                                <label for="cb3"><a>😄</a></label>
+                              </td>
+                            <td><input type="checkbox" id="cb4" >
+                                <label for="cb4"><a>😁</a></label>
+                            </td>
+                            <td><input type="checkbox" id="cb5" >
+                                <label for="cb5"><a>🙂</a></label>
+                              </td>
+                              <td><input type="checkbox" id="cb6" >
+                                <label for="cb6"><a>🙃</a></label>
+                            </td>
+                            <td><input type="checkbox" id="cb7" >
+                                <label for="cb7"><a>😅</a></label>
+                              </td>
+                              <td><input type="checkbox" id="cb8" >
+                                <label for="cb8"><a>😆</a></label>
+                              </td>
+                              <td><input type="checkbox" id="cb9" >
+                                  <label for="cb9"><a>😄</a></label>
+                                </td>
+                              <td><input type="checkbox" id="cb10" >
+                              <label for="cb10"><a>😁</a></label>
+                              </td>
+                              <td><input type="checkbox" id="cb11" >
+                                  <label for="cb11"><a>🙂</a></label>
+                                </td>
+                                <td><input type="checkbox" id="cb12" >
+                                  <label for="cb6"><a>🙃</a></label>
+                              </td>
                         </tr> <br/>
                         <tr>
-                            <td><input type="checkbox" id="cb3" >
-                              <label for="cb3"><img src="static\images\happy.png" ></label>
-                            </td>
-                            <td><input type="checkbox" id="cb4" >
-                              <label for="cb4"><img src="static\images\sad.png" ></label>
-                            </td>
+
                         </tr>
                         <tr>
-                            <td><input type="checkbox" id="cb3" >
-                              <label for="cb3"><img src="static\images\happy.png" ></label>
-                            </td>
-                            <td><input type="checkbox" id="cb4" >
-                              <label for="cb4"><img src="static\images\sad.png" ></label>
-                            </td>
+         
                         </tr>
                     </tbody>
                 </table>

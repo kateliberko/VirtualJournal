@@ -2,5 +2,13 @@
 {% block content %}
 
     <div>Journal Entries </div>
+    {% for journal in alljournals %}
+        <article >
+          <div >
+            <h3> {{ journal.date_posted }}</h3> <br/>
+            <p >{{ journal.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
 
 {% endblock content %}

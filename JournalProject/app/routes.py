@@ -18,7 +18,8 @@ def calendar():
 
 @app.route("/journal") 
 def journal():
-    return render_template("journal.html")
+    alljournals = Journal.query.filter_by(user_id=current_user.id) # only display logged in users info
+    return render_template("journal.html", alljournals=alljournals)
 
 @app.route("/habittracker") 
 def habittracker():
@@ -42,7 +43,6 @@ def signup():
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in') #flash message goes to wrong page..?
         return redirect(url_for('login'))
     return render_template('signup.html', title='Sign Up', form=form)
 
@@ -58,7 +58,7 @@ def login():
             login_user(user)
             return redirect(url_for('mainpage'))
         else:
-            flash('Login Unsuccessful. Please check username and password') #flash message goes to wrong page..?
+            flash('Login Unsuccessful. Please check username and password') 
     return render_template('login.html', title='Login', form=form)
 
 
@@ -72,3 +72,15 @@ def logout():
 @login_required
 def account():
     return render_template('mainpage.html', title='Account')
+
+
+@app.route("/journal/new", methods=['GET', 'POST'])
+@login_required
+def new_journal():
+    journal = request.form.get("journal")
+    if journal: # ensures no empty journal entries
+        journalLog = Journal(content=journal, user_id=current_user.id)
+        db.session.add(journalLog)
+        db.session.commit()
+        return redirect(url_for('mainpage'))
+    return render_template('mainpage.html')

@@ -19,10 +19,9 @@ class User(db.Model, UserMixin):
 
 class Journal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Journal('{self.date_posted}')"
-        # return f"Journal('{self.date_posted}', '{self.content[0:20]}' + '. . .')"
+        return f"Journal('{self.date_posted}', '{self.content}')"

@@ -97,6 +97,15 @@ textarea{
 	padding-top: 0px;
   }
 
+/* this is for mood selection */
+:checked+label a{
+	transform: scale(0.9);
+	/* text-shadow: rgb(0, 140, 255) 1px 0 ; */
+	/* -webkit-text-stroke: 40px rgb(0, 247, 255); */
+	text-shadow: -4px 0 rgb(0, 247, 255), 0 4px rgb(0, 247, 255), 4px 0 rgb(0, 247, 255), 0 -4px rgb(0, 247, 255);
+	z-index: -1;
+}
+
 table{
 	align-items: stretch;
 }

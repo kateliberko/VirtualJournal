@@ -77,9 +77,9 @@ textarea{
 	grid-row-end: 4;
 	/* background-color: tomato; */
 	padding: 0px;
-	background: url("images/journalbg.png") no-repeat;
-	background-size: 90%;
-	margin-top: 20px;
+	background: url("images/journal_page_cropped.png") no-repeat;
+	background-size: 85%;
+	margin-top: 10px;
 	margin-left: 20px;
   }
   #journal{

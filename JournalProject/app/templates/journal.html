@@ -1,14 +1,51 @@
-{% extends "base.html" %}
-{% block content %}
+<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <div>Journal Entries </div>
-    {% for journal in alljournals %}
-        <article >
-          <div >
-            <h3> {{ journal.date_posted }}</h3> <br/>
-            <p >{{ journal.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static\main.css">
+        <a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
+        <nav class="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              </div>
+        </nav>
 
-{% endblock content %}
+        {% if title %}
+            <title>Virtual Journal - {{ title }}</title>
+        {% else %}
+            <title>Virtual Journal</title>
+        {% endif %}
+    </head>
+
+    <body>
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <h1>Journal Entries </h1>
+            <div id="page1">
+                <ul>
+                    {% for journal in alljournals %}
+                        <li>
+                            <h3> {{ journal.date_posted }}</h3> <br/>
+                            <p>{{ journal.content }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <img src>
+            </div>
+        </div>
+
+    </body>
+</html>

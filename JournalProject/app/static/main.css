@@ -88,7 +88,7 @@ textarea{
 
 .habit{
 	grid-column-start: 22;
-	grid-column-end: -1;
+	grid-column-end: 31;
 	grid-row-start: 4;
 	grid-row-end: -1;
   }
@@ -102,7 +102,7 @@ textarea{
 	padding-top: 0px;
   }
   .edge{
-	grid-column-start: 32;
+	grid-column-start: 31;
 	grid-column-end: -1;
 	grid-row-start: 1;
 	grid-row-end: -1;

@@ -77,8 +77,13 @@ textarea{
 	grid-row-end: 4;
 	/* background-color: tomato; */
 	padding: 0px;
-	background: image-url("journal_bg.png");
-
+	background: url("images/journalbg.png") no-repeat;
+	background-size: 90%;
+	margin-top: 20px;
+	margin-left: 20px;
+  }
+  #journal{
+	  margin-top: 10px;
   }
 
 .habit{
@@ -95,6 +100,12 @@ textarea{
 	grid-row-start: 4;
 	grid-row-end: -1;
 	padding-top: 0px;
+  }
+  .edge{
+	grid-column-start: 32;
+	grid-column-end: -1;
+	grid-row-start: 1;
+	grid-row-end: -1;
   }
 
 /* this is for mood selection */

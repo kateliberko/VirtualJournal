@@ -32,11 +32,15 @@ h1 {
     grid-column-end: 8;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: #FC288E;
+    background-color: #ff51a5;
 	color: #FFF3F2;
 	font-size: x-large;
     padding: 0px;
     margin: 0px;
+}
+
+#habit_button:hover {
+    background-color: #FC288E;
 }
 
 #month {

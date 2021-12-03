@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="static\main.css">
+        <link rel="stylesheet" href="static\journal.css">
         <a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
-        <nav class="navbar">
+        <!-- <nav class="navbar">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-              </div>
-        </nav>
+            </div>
+        </nav> -->
 
         {% if title %}
             <title>Virtual Journal - {{ title }}</title>
@@ -33,19 +33,35 @@
                 {% endfor %}
                 {% endif %}
             {% endwith %}
+            <!-- need to figure out how to get this to show up correctly -->
             <h1>Journal Entries </h1>
             <div id="page1">
                 <ul>
+                    <br/>
+                    <br/>
                     {% for journal in alljournals %}
                         <li>
-                            <h3> {{ journal.date_posted }}</h3> <br/>
+                            <h3> {{ journal.date_posted }}</h3>
                             <p>{{ journal.content }}</p>
-                        </li>
+                        </li><br/>
+                    {% endfor %}
+                </ul>
+                <img src>
+            </div>
+            <img id="center" src="static\images\journal_center.png">
+            <div id="page2">
+                <ul>
+                    <br/>
+                    <br/>
+                    {% for journal in alljournals %}
+                        <li>
+                            <h3> {{ journal.date_posted }}</h3>
+                            <p>{{ journal.content }}</p>
+                        </li><br/>
                     {% endfor %}
                 </ul>
                 <img src>
             </div>
         </div>
-
     </body>
 </html>

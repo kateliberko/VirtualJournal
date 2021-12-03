@@ -16,7 +16,7 @@ button {
     display: grid;
   
 	grid-template-columns: repeat(32, 1fr);
-	grid-template-rows: repeat(12, 1fr);
+	grid-template-rows: repeat(3, 1fr);
 }
 
 h1 {
@@ -27,10 +27,29 @@ h1 {
     padding-right: 3%;
 }
 
-#page1 {
-    background: url("images/journal_page.png");
-    grid-column-start: 1;
-    grid-column-end: 14;
+#center {
+    grid-column-start: 16;
+    grid-column-end: 17;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: -1;
+}
+
+#page1 {
+    background: url("images/journal_page_cropped.png");
+    grid-column-start: 1;
+    grid-column-end: 16;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+#page2 {
+    background: url("images/journal_page_cropped.png");
+    grid-column-start: 17;
+    grid-column-end: 32;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+ul {
+    list-style: none;
 }

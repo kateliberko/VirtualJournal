@@ -1,0 +1,87 @@
+body {
+	font-family: questrial;
+}
+
+.container{
+    display: grid;
+  
+	grid-template-columns: repeat(32, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+}
+
+h1 {
+    grid-column-start: 26;
+    grid-column-end: 32;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding-right: 3%;
+}
+
+#month {
+    grid-column-start: 4;
+    grid-column-end: 8;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 4%;
+}
+
+#year {
+    grid-column-start: 8;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 4%;
+}
+
+#submit_form {
+    grid-column-start: 12;
+    grid-column-end: 16;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#month, #year, #submit_form {
+    color: #FC288E;
+}
+
+#week1 {
+    grid-column-start: 4;
+    grid-column-end: 14;
+    grid-row-start: 3;
+    grid-row-end: 7;
+}
+
+#week2 {
+    grid-column-start: 20;
+    grid-column-end: 30;
+    grid-row-start: 3;
+    grid-row-end: 7;
+}
+
+#week3 {
+    grid-column-start: 4;
+    grid-column-end: 14;
+    grid-row-start: 7;
+    grid-row-end: 11;
+}
+
+#week4 {
+    grid-column-start: 20;
+    grid-column-end: 30;
+    grid-row-start: 7;
+    grid-row-end: 11;
+}
+
+#week1 h2, #week2 h2, #week3 h2, #week4 h2 {
+    color: #FC288E;
+}
+
+td, th { 
+    padding: 10px;
+}
+
+table {
+    letter-spacing: 1px;
+    border-collapse: collapse;
+}
+

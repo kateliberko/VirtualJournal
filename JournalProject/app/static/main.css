@@ -15,10 +15,10 @@ button {
 
 textarea{
 	/* doesn't work for some reason! */
-	/* background-image: url("static\images\journal_bg.png"); */
 	color: inherit;
 	border: none;
 	font: inherit;
+	background-color: #f085b900;
 }
 
 .item {
@@ -49,26 +49,26 @@ textarea{
 	grid-row-start: 1;
 	grid-row-end: -1;
 	/* background-color: yellow; */
-	align-items: center;
+	/* align-items: center; */
   }
 
-/* #nav_container1{
+/* .nav_container1{
 	grid-row-start: 1;
-	grid-row-end: 4;
+	grid-row-end: 3;
 	background-color: aqua;
   }
 
-#nav_container2{
+.nav_container2{
 	grid-row-start: 4;
 	grid-row-end: 7;
 	background-color: aquamarine;	  
   }
 
-#nav_container3{
-	grid-row-start: 7;
+.nav_container3{
+	grid-row-start: 8;
 	grid-row-end: -1;
 	background-color: blueviolet;
-  } */
+} */
 
 .journal{
 	grid-column-start: 13;
@@ -77,6 +77,8 @@ textarea{
 	grid-row-end: 4;
 	/* background-color: tomato; */
 	padding: 0px;
+	background: image-url("journal_bg.png");
+
   }
 
 .habit{
@@ -106,7 +108,9 @@ table{
 
 .day-col{
 	width: inherit;
+	font-size: 45px;
 }
+
 .day-col .content {
 	position: relative;
 	height: 560px;
@@ -223,26 +227,28 @@ label[for^="cb"] a{
 	font-size: 35px;
 }
 
-:checked+label a{
-	transform: scale(0.9);
-	/* text-shadow: rgb(0, 140, 255) 1px 0 ; */
-	/* -webkit-text-stroke: 40px rgb(0, 247, 255); */
-	text-shadow: -4px 0 rgb(0, 247, 255), 0 4px rgb(0, 247, 255), 4px 0 rgb(0, 247, 255), 0 -4px rgb(0, 247, 255);
-	z-index: -1;
-}
-
 /* HABIT TRACKER */ 
 
 .habit table {
     border-collapse: collapse;
 }
-	/* these arent working..? */
-.habit tr{
-	padding: 30px;
+
+td{
+	padding:0%;
 }
+#habitheader {
+	text-align: left;
+  }
+
 .habit thead{
-	padding-bottom: 60px;
+	border-bottom: 1.5px solid #A2A2A2;
+	color: #C31B6B;
 }
+
+#habitname{
+	padding-right: 15px;
+}
+
 
 /* https://codepen.io/ig_design/pen/dLNKgM */
 [type="checkbox"]:checked,
@@ -262,40 +268,52 @@ label[for^="cb"] a{
 	display: inline-block;
 	padding: 20px;
 	width: 110px;
-	font-size: 14px;
-	line-height: 20px;
-	letter-spacing: 1px;
 	margin: 0 auto;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 10px;
-	text-align: center;
-	border-radius: 4px;
+	margin-bottom: -6px;
 	overflow: hidden;
 	cursor: pointer;
-	text-transform: uppercase;
 	color: var(white);
-	-webkit-transition: all 300ms linear;
-	transition: all 300ms linear; 
+	-webkit-transition: all 350ms linear;
+	transition: all 350ms linear; 
 }
-.checkbox-tools:not(:checked) + label{
-	background-color: var(pink);
+.checkbox-tools:not(:checked) + label#tool-2 {
+	background-color: var(rgb(255, 192, 227));
 }
-.checkbox-tools:checked + label{
-	background-color: palevioletred;
+.checkbox-tools:checked + label#tool-2{
+	background-color: #F7BED9;
 }
-.checkbox-tools:checked + label::before,
-.checkbox-tools:not(:checked) + label::before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border-radius: 4px;
-	background-image: linear-gradient(298deg, var(red), var(yellow));
-	z-index: -1;
+.checkbox-tools:not(:checked) + label#tool-1{
+	background-color: var(rgb(217, 255, 240));
 }
+.checkbox-tools:checked + label#tool-1{
+	background-color: #C4FFE1;
+}
+.checkbox-tools:not(:checked) + label#tool-4 {
+	background-color: var(rgb(255, 192, 227));
+}
+.checkbox-tools:checked + label#tool-4{
+	background-color: #F7BED9;
+}
+.checkbox-tools:not(:checked) + label#tool-3{
+	background-color: var(rgb(217, 255, 240));
+}
+.checkbox-tools:checked + label#tool-3{
+	background-color: #C4FFE1;
+}
+
+.checkbox-tools:not(:checked) + label#tool-6 {
+	background-color: var(rgb(255, 192, 227));
+}
+.checkbox-tools:checked + label#tool-6{
+	background-color: #F7BED9;
+}
+.checkbox-tools:not(:checked) + label#tool-5{
+	background-color: var(rgb(217, 255, 240));
+}
+.checkbox-tools:checked + label#tool-5{
+	background-color: #C4FFE1;
+}
+
 .checkbox-tools:checked + label .uil,
 .checkbox-tools:not(:checked) + label .uil{
 	font-size: 24px;

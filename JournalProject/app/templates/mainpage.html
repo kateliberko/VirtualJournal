@@ -21,7 +21,7 @@
             </div>
 
             <div class="add_event_form" id="add_event_form" style="display:none; z-index: 2;">
-                <label for="name">Event Name</label>
+                <label id="eventname" for="name">Event Name</label>
                 <input type="text" id="name" name="name"><br/>
                 <!-- need to update the date field -->
                 <label for="date">Date</label>
@@ -69,7 +69,7 @@
             <div class="item nav_bar">
                 <ul id ="nav_bar" class="nav flex-column">
                     <button id="new_event_button" type="button" onclick='toggleForm()'> + </button>
-                    <div id="nav_container1">
+                    <div class="item nav_container1">
                         <li class="nav-item">
                             <!-- need to figure out how to submit -->
                             <input type="image" src="static\images\minimalday_icon.png" width="100%">
@@ -82,7 +82,7 @@
                             <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png" width="100%"></a>
                         </li>
                     </div>
-                    <div id="nav_container2">
+                    <div class=" item nav_container2">
                         <li class="nav-item">
                             <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png" width="100%"></a>
                         </li>
@@ -93,7 +93,7 @@
                             <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png" width="100%"></a>
                         </li>
                     </div>
-                    <div id="nav_container3">
+                    <div class="item nav_container3">
                         <li class="nav-item">
                             <a class="nav-link" href="/info"><img src="static\images\information_icon.png" width="100%"></a>
                         </li>
@@ -109,43 +109,43 @@
             </div>
             
             <div class="item journal">
-                <form>
+                <form action="/journal/new" method="POST">
                     <label for="journal">Today's date</label><br>
                     <textarea rows="3" cols="50" id="review" placeholder="Journal Here" name="journal"></textarea><br>
-                    <!-- we need to figure out how to submit -->
-                    <input type="image" src="static\images\pen_icon.png" width="8%" style="float: right; padding-right: 5%;">
+                    <!-- <input type="submit" value="Submit"> -->
+                    <input type="image" src="static\images\pen_icon.png" width="8%" style="float: right; padding-right: 5%;" alt="Submit">
                 </form>
             </div>
             <div class="item habit">
                 <table class="habit">
                     <thead>
                         <tr>
-                            <th scope="col">Habit</th>
-                            <th scope="col">Yes</th>
-                            <th scope="col">No</th>
+                            <th scope="col" id="habitheader">Habit</th>
+                            <th scope="col">Yes!</th>
+                            <th scope="col">No :(</th>
                         </tr>
                     </thead><br/>
                     <tbody>
                         <tr>
-                            <td scope="row">Floss</td>
+                            <td scope="row" id="habitname">Floss</td>
                             <td><input class="checkbox-tools" type="radio" name="tools1" id="tool-1" checked>
-                                <label class="for-checkbox-tools" for="tool-1"></td>
+                                <label class="for-checkbox-tools" for="tool-1" id="tool-1" ></td>
                             <td><input class="checkbox-tools" type="radio" name="tools1" id="tool-2" checked>
-                                <label class="for-checkbox-tools" for="tool-2"></td>
+                                <label class="for-checkbox-tools" for="tool-2" id="tool-2"></td>
                         </tr>
                         <tr>
-                            <td scope="row">Read</td>
+                            <td scope="row" id="habitname">Read</td>
                             <td><input class="checkbox-tools" type="radio" name="tools2" id="tool-3" checked>
-                                <label class="for-checkbox-tools" for="tool-3"></td>
+                                <label class="for-checkbox-tools" for="tool-3" id="tool-3"></td>
                             <td><input class="checkbox-tools" type="radio" name="tools2" id="tool-4" checked>
-                                <label class="for-checkbox-tools" for="tool-4"></td>
+                                <label class="for-checkbox-tools" for="tool-4" id="tool-4"></td>
                         </tr>
                         <tr>
-                            <td scope="row">Journal</td>
+                            <td scope="row" id="habitname">Journal</td>
                             <td><input class="checkbox-tools" type="radio" name="tools3" id="tool-5" checked>
-                                <label class="for-checkbox-tools" for="tool-5"></td>
+                                <label class="for-checkbox-tools" for="tool-5" id="tool-5"></td>
                             <td><input class="checkbox-tools" type="radio" name="tools3" id="tool-6" checked>
-                                <label class="for-checkbox-tools" for="tool-6"></td>
+                                <label class="for-checkbox-tools" for="tool-6" id="tool-6"></td>
                         </tr>
                     </tbody>
                 </table>

@@ -115,7 +115,7 @@ function addNewEvent() { // get form results and pass them to be formatted and p
 }
 
 function dayofWeek(){
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
     var d = new Date();
     var dayName = days[d.getDay()];
     var selectDiv = document.getElementById('dayheader');

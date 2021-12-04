@@ -47,6 +47,7 @@ class Habit(db.Model):
     habit_name = db.Column(db.String(50), unique=True, nullable=False)
     habit_done = db.Column(db.Boolean, default=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
 
     
     def __repr__(self):

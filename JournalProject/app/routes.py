@@ -1,16 +1,20 @@
 from flask import render_template, url_for, flash, redirect, request
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
-from app.models import User, Journal
+from app.models import User, Journal, Event, Habit
+from datetime import datetime
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/") 
 def home():
+  
     return render_template("home.html")
 
 @app.route("/mainpage") 
 def mainpage():
-    return render_template("mainpage.html")
+    todays_date= datetime.now().date()
+    event= Event.query.filter_by(user_id=current_user.id)
+    return render_template("mainpage.html", todays_date=todays_date, event=event)
 
 @app.route("/calendar") 
 def calendar():
@@ -69,9 +73,8 @@ def logout():
 
 
 @app.route("/account")
-@login_required
 def account():
-    return render_template('mainpage.html', title='Account')
+    return render_template('mainpage.html')
 
 
 @app.route("/journal/new", methods=['GET', 'POST'])
@@ -81,6 +84,23 @@ def new_journal():
     if journal: # ensures no empty journal entries
         journalLog = Journal(content=journal, user_id=current_user.id)
         db.session.add(journalLog)
+        db.session.commit()
+        return redirect(url_for('mainpage'))
+    return render_template('mainpage.html')
+
+@app.route("/event/new", methods=['GET', 'POST'])
+@login_required
+def new_event():
+    event = request.form.get("name")
+    date = request.form.get("date")
+    starttime = request.form.get("starttime")
+    endtime = request.form.get("endtime")
+    category = request.form.get("category")
+    type = request.form.get("type")
+    location = request.form.get("location")
+    if event: # ensures no empty events
+        newEvent = Event(event_name=event, date=date, start_time=starttime, end_time=endtime, category=category, event_type=type, location=location, user_id=current_user.id)
+        db.session.add(newEvent)
         db.session.commit()
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')

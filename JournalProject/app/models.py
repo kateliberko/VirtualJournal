@@ -25,3 +25,29 @@ class Journal(db.Model):
 
     def __repr__(self):
         return f"Journal('{self.date_posted}', '{self.content}')"
+
+
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_name = db.Column(db.String(50), unique=True, nullable=False)
+    date = db.Column(db.String(20), nullable=False)
+    start_time = db.Column(db.String(20), nullable=False)
+    end_time = db.Column(db.String(20), nullable=False)
+    category = db.Column(db.String(20), unique=True, nullable=False)
+    event_type = db.Column(db.String(20), unique=True, nullable=False)
+    location = db.Column(db.String(50), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    
+    def __repr__(self):
+        return f"Event('{self.id}'')"
+
+class Habit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    habit_name = db.Column(db.String(50), unique=True, nullable=False)
+    habit_done = db.Column(db.Boolean, default=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    
+    def __repr__(self):
+        return f"Habit('{self.id}'')"

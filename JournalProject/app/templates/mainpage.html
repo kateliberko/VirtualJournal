@@ -17,55 +17,52 @@
                 <div class="day-col">
                     <div class="title" id="dayheader"> </div>
                     <div id="vline"></div>
-                    <div class="content"></div>
+                    <div class="content">  
+                        <!-- {% for ev in event %} 
+                            {{ event.event_name }}
+                        {% endfor %} -->
+                    </div>
                 </div>
             </div>
 
             <div class="add_event_form" id="add_event_form" style="display:none; z-index: 2;">
-                <label id="eventname" for="name">Event Name</label>
-                <input type="text" id="name" name="name"><br/>
-                <!-- need to update the date field -->
-                <label for="date">Date</label>
-                <input type="text" id="date" name="date"><br/>
-                
-                <label for="dayofweek">Day of Week</label>
-                <select name="dayofweek" id="dayofweek">
-                    <option value="sunday">Sunday</option>
-                    <option value="monday">Monday</option>
-                    <option value="tuesday">Tuesday</option>
-                    <option value="wednesday">Wednesday</option>
-                    <option value="thursday">Thursday</option>
-                    <option value="friday">Friday</option>
-                    <option value="saturday">Saturday</option>
-                </select><br/>
-        
-                <label for="starttime">Start Time</label>
-                <select name="starttime" id="starttime">	  
-                </select>
-                <label for="endtime">End Time</label>
-                <select name="endtime" id="endtime">	
-                </select><br/><br/>
+                <form action='/event/new' method="POST">
+                    <label id="eventname" for="name">Event Name</label>
+                    <input type="text" id="name" name="name"><br/>
+                    <!-- need to update the date field -->
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date"
+                        value="2021-12-04"
+                        min="2021-01-01" max="2023-12-31">
+                    
+                    <label for="starttime">Start Time</label>
+                    <select name="starttime" id="starttime">	  
+                    </select>
+                    <label for="endtime">End Time</label>
+                    <select name="endtime" id="endtime">	
+                    </select><br/><br/>
 
-                <label for="category">Event Category</label>
-                <select name="category" id="category">
-                    <option value="meeting">Meeting</option>
-                    <option value="study_hw">Study / HW</option>
-                    <option value="social_time">Social Time</option>
-                    <option value="self_maintainance">self maintainance</option>
-                    <option value="classes_work">Classes / Work</option>
-                    <option value="exercise">Exercise</option>
-                </select><br/>
+                    <label for="category">Event Category</label>
+                    <select name="category" id="category">
+                        <option value="meeting">Meeting</option>
+                        <option value="study_hw">Study / HW</option>
+                        <option value="social_time">Social Time</option>
+                        <option value="self_maintainance">Self Maintainance</option>
+                        <option value="classes_work">Classes / Work</option>
+                        <option value="exercise">Exercise</option>
+                    </select><br/>
 
-                <label for="type">Event Type</label>
-                <select name="type" id="type">
-                    <option value="rigid">Rigid</option>
-                    <option value="flexible">Flexible</option>
-                </select><br/>
+                    <label for="type">Event Type</label>
+                    <select name="type" id="type">
+                        <option value="rigid">Rigid</option>
+                        <option value="flexible">Flexible</option>
+                    </select><br/>
 
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location"><br/>
-        
-                <button id="submit_form" type="button" onclick='addNewEvent(), toggleForm()'> Add Event</button>
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location"><br/>
+            
+                    <input id="submit_form" type="Submit" onclick='addNewEvent(), toggleForm()' value="Add Event">
+                </form>
             </div>
             <div class="item nav_bar">
                 <ul id ="nav_bar" class="nav flex-column">
@@ -111,7 +108,7 @@
             
             <div class="item journal">
                 <form action="/journal/new" method="POST">
-                    <label for="journal">Today's date</label><br>
+                    <label for="journal">{{ todays_date }}</label><br>
                     <textarea rows="3" cols="50" id="journal" placeholder="Journal Here" name="journal"></textarea><br>
                     <!-- <input type="submit" value="Submit"> -->
                     <input type="image" src="static\images\pen_icon.png" width="8%" style="float: right; padding-right: 5%;" alt="Submit">

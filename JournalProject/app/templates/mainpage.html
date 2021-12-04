@@ -16,6 +16,7 @@
             <div class="item day" id="day"> 
                 <div class="day-col">
                     <div class="title" id="dayheader"> </div>
+                    <div id="vline"></div>
                     <div class="content"></div>
                 </div>
             </div>
@@ -72,37 +73,37 @@
                     <div class="item nav_container1">
                         <li class="nav-item">
                             <!-- need to figure out how to submit -->
-                            <input type="image" src="static\images\minimalday_icon.png" width="100%">
+                            <input type="image" src="static\images\minimalday_icon.png" width="370%">
                         </li>
                         <li class="nav-item">
                             <!-- need to figure out how to submit -->
-                            <input type="image" src="static\images\box_icon.png" width="100%">
+                            <input type="image" src="static\images\box_icon.png" width="370%">
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png" width="100%"></a>
+                            <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png" width="370%"></a>
                         </li>
                     </div>
                     <div class=" item nav_container2">
                         <li class="nav-item">
-                            <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png" width="100%"></a>
+                            <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png" width="370%"></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png" width="100%"></a>
+                            <a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png" width="370%"></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png" width="100%"></a>
+                            <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png" width="370%"></a>
                         </li>
                     </div>
                     <div class="item nav_container3">
                         <li class="nav-item">
-                            <a class="nav-link" href="/info"><img src="static\images\information_icon.png" width="100%"></a>
+                            <a class="nav-link" href="/info"><img src="static\images\information_icon.png" width="370%"></a>
                         </li>
                         <li id="settings">
-                            <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a> 
+                            <a class="nav-item nav-link" href="{{ url_for('account') }}"><img src="static\images\account_icon.png" width="370%"></a> 
                             <!-- possibly have editing in this page, or delete this all together.. -->
                         </li>
                         <li id="settings">
-                            <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                            <a class="nav-item nav-link" href="{{ url_for('logout') }}"><img src="static\images\logout_icon.png" width="300%"></a>
                         </li>
                     </div>
                 </ul>

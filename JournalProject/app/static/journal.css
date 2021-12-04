@@ -21,10 +21,11 @@ button {
 
 h1 {
     grid-column-start: 26;
-    grid-column-end: 32;
+    grid-column-end: -1;
     grid-row-start: 1;
     grid-row-end: 2;
     padding-right: 3%;
+    z-index: 2;
 }
 
 #center {

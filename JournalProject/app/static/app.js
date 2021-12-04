@@ -165,3 +165,11 @@ function nextDay(num){
     // if num == 6
     return[0, 1, 2, 3, 4, 5]
 }
+
+// https://stackoverflow.com/questions/49387685/create-a-vertical-line-that-overlays-all-html-content-and-moves-across-the-page/49387816
+
+var vline=$('#vline');
+setInterval(function(){
+  vline.css('bottom', parseInt(vline.css('bottom')) + 1);
+}, 50);
+

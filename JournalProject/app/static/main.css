@@ -124,6 +124,7 @@ table{
 /* CALENDAR */
 .day-col .title {
 	text-align: center;
+	font-family: serif;
 }
 
 .day-col{
@@ -149,10 +150,10 @@ table{
 }
 
 #new_event_button {
-	padding-right: 25%;
-	padding-left: 25%;
-	padding-bottom: 8%;
-	padding-top: 8%;
+	padding-right: 75%;
+	padding-left: 75%;
+	padding-bottom: 16%;
+	padding-top: 16%;
 	background-color: palevioletred;
 	color: white;
 	margin-bottom: 10%;
@@ -348,4 +349,13 @@ td{
 	display: grid;
 	justify-content: center;
 	align-items: center;
+}
+
+/* https://stackoverflow.com/questions/49387685/create-a-vertical-line-that-overlays-all-html-content-and-moves-across-the-page/49387816 */
+
+#vline{
+	width: 100%;
+	border: 1.5px solid red;
+	bottom: 0px;
+	z-index: 1000000
 }

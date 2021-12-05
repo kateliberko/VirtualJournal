@@ -173,3 +173,13 @@ setInterval(function(){
   vline.css('bottom', parseInt(vline.css('bottom')) + 1);
 }, 50);
 
+// var radios = document.getElementById["habitname"].elements["name of elements..?"];
+//   for(radio in radios) {
+//     radio.onclick = function() {
+//         // habit function: should update Habit.habit_done with prooper boolean based on click
+//     }
+// }
+// add function for onload:
+// should check habits for habits with todays date (do they exist aleady?)
+// if they exist, grab them and display their booleans correctly in habittracker table
+// if they don't exist we need to grab current_user.habits and create habit for each (so they exist for todays date)

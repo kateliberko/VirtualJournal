@@ -1,21 +1,45 @@
 body {
-    font-family: questrial;
     display: grid;
   
-	grid-template-columns: repeat(8, 1fr);
-    background: #804857;
+	grid-template-columns: repeat(10, 1fr);
+    background: rgb(255, 221, 226);
 }
 
 .homepage {
-    grid-column-start: 2;
-	grid-column-end: -1;
-    height: 600px;
+    grid-column-start: 4;
+	grid-column-end: 8;
+    height: 200px;
     text-align: center;
-    background: url("images/journal_icon_home.png") no-repeat;
+    background: url("images/journal_cover.png") no-repeat;
     background-size: 80%;
+    /* background:coral; */
     padding: 160px 0px;
+    margin-left: 10%;
 }
 
 a {
     text-decoration: none;
+    color: rgb(202, 96, 112);
+}
+
+a:hover {
+    color: white;
+}
+
+h1 {
+    width: inherit;
+    text-align: left;
+    padding-left: 33%;
+}
+
+p {
+    grid-column-start: 4;
+	grid-column-end: 8;
+    width: inherit;
+    text-align: center; 
+    font-size: medium;
+    font-family: questrial;
+    color: rgb(173, 65, 82);
+    padding-left: 10%;
+    padding-right: 15%;
 }

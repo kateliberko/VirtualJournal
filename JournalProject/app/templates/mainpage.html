@@ -124,27 +124,17 @@
                         </tr>
                     </thead><br/>
                     <tbody>
-                        <tr>
-                            <td scope="row" id="habitname">Floss</td>
-                            <td><input class="checkbox-tools" type="radio" name="tools1" id="tool-1" checked>
-                                <label class="for-checkbox-tools" for="tool-1" id="tool-1" ></td>
-                            <td><input class="checkbox-tools" type="radio" name="tools1" id="tool-2" checked>
-                                <label class="for-checkbox-tools" for="tool-2" id="tool-2"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row" id="habitname">Read</td>
-                            <td><input class="checkbox-tools" type="radio" name="tools2" id="tool-3" checked>
-                                <label class="for-checkbox-tools" for="tool-3" id="tool-3"></td>
-                            <td><input class="checkbox-tools" type="radio" name="tools2" id="tool-4" checked>
-                                <label class="for-checkbox-tools" for="tool-4" id="tool-4"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row" id="habitname">Journal</td>
-                            <td><input class="checkbox-tools" type="radio" name="tools3" id="tool-5" checked>
-                                <label class="for-checkbox-tools" for="tool-5" id="tool-5"></td>
-                            <td><input class="checkbox-tools" type="radio" name="tools3" id="tool-6" checked>
-                                <label class="for-checkbox-tools" for="tool-6" id="tool-6"></td>
-                        </tr>
+                        {% for habit in habits %}
+                            <tr>
+                                <td scope="row" id="habitname">{{ habit }}</td>
+                                <td><input class="checkbox-tools" type="radio" name="tools{{count.count1}}" id="tool-{{count.count2}}" checked>
+                                    <label class="for-checkbox-tools" for="tool-{{count.count2}}" id="tool-{{count.count2}}" ></td> {{ count.increment2(count) }}
+                                <td><input class="checkbox-tools" type="radio" name="tools{{count.count1}}" id="tool-{{count.count2}}" checked>
+                                    <label class="for-checkbox-tools" for="tool-{{count.count2}}" id="tool-{{count.count2}}"></td>
+                            </tr>
+                            <br/> {{ count.increment1(count) }}{{  count.increment2(count) }}
+                        {% endfor %}
+<!-- this only works on inital page load for some reason.. maybe css error?? -->
                     </tbody>
                 </table>
             </div>

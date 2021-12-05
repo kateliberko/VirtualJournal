@@ -68,6 +68,10 @@
                         {{ form.confirm_password(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <div class="form-group">
+                    <label for="habitlist">Enter habits (seperated by commas)</label>
+                    <input type="text" id="habitlist" name="habitlist"><br/>
+                </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}

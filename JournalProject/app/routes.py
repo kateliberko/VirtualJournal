@@ -4,6 +4,7 @@ from app.forms import SignUpForm, LoginForm
 from app.models import User, Journal, Event, Habit
 from datetime import datetime
 from flask_login import login_user, current_user, logout_user, login_required
+from app.counter import Counter
 
 @app.route("/") 
 def home():
@@ -14,7 +15,10 @@ def home():
 def mainpage():
     todays_date= datetime.now().date()
     event= Event.query.filter_by(user_id=current_user.id)
-    return render_template("mainpage.html", todays_date=todays_date, event=event)
+    habits = current_user.habits
+    habitlist = habits.split(",")
+    count= Counter
+    return render_template("mainpage.html", todays_date=todays_date, event=event, habits=habitlist, count=count)
 
 @app.route("/calendar") 
 def calendar():
@@ -44,7 +48,7 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, password=hashed_password)
+        user = User(username=form.username.data, password=hashed_password, habits= request.form.get("habitlist"))
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))

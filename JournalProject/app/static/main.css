@@ -14,7 +14,7 @@ html {
 }
 
 body {
-	font-family: questrial;
+	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 /* https://stackoverflow.com/questions/2460100/remove-the-complete-styling-of-an-html-button-submit */
@@ -61,29 +61,11 @@ textarea{
 .nav_bar{
 	grid-column-start: 11;
 	grid-column-end: 12;
-	grid-row-start: 1;
+	grid-row-start: 2;
 	grid-row-end: -1;
 	/* background-color: yellow; */
 	/* align-items: center; */
   }
-
-/* .nav_container1{
-	grid-row-start: 1;
-	grid-row-end: 3;
-	background-color: aqua;
-  }
-
-.nav_container2{
-	grid-row-start: 4;
-	grid-row-end: 7;
-	background-color: aquamarine;	  
-  }
-
-.nav_container3{
-	grid-row-start: 8;
-	grid-row-end: -1;
-	background-color: blueviolet;
-} */
 
 .journal{
 	grid-column-start: 13;

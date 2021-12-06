@@ -22,7 +22,7 @@ def mainpage():
 
 @app.route("/calendar") 
 def calendar():
-    return render_template("calendar.html")
+    return render_template("index.html")
 
 @app.route("/journal") 
 def journal():

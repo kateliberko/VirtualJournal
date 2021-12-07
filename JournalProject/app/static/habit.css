@@ -1,17 +1,6 @@
 body {
 	font-family: questrial;
 }
-
-button {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-}
-
 .container{
     display: grid;
   
@@ -104,6 +93,9 @@ h1 {
 
 td, th { 
     padding: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px;
+    width: 70px; */
 }
 
 table {
@@ -111,3 +103,14 @@ table {
     border-collapse: collapse;
 }
 
+.habit-box {
+    width: 40px;
+    padding-top: 12px;
+    height: 40px;
+    box-sizing: border-box;
+    background-color:rgb(255, 192, 227);
+    /* margin: 2px; */
+    box-shadow: 0px 0px 3px #CBD4C2;
+    justify-content: space-between;
+    text-align: center;
+}

@@ -32,7 +32,7 @@ button {
 #weekdays {
   width: 100%;
   display: flex;
-  color: #247BA0;
+  color: #595959;
 }
 #weekdays div {
   width: 100px;
@@ -58,11 +58,11 @@ button {
   justify-content: space-between;
 }
 .day:hover {
-  background-color: #e8faed;
+  background-color: #ffc4e1;
 }
 
 .day + #currentDay {
-  background-color:#e8f4fa;
+  background-color:#ffe9f4;
 }
 .event {
   font-size: 10px;

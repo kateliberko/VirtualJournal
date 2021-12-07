@@ -16,10 +16,13 @@
             <div class="item day" id="day"> 
                 <div class="day-col">
                     <div class="title" id="dayheader"> </div>
-                    <!-- <div id="vline"></div> -->
-                    <div class="content">   
-                        <!-- {% for ev in event %} 
-                            {{ event.event_name }}
+                    <div class="content" style="font-size: small;">  
+                        <form action="/todo/new" method="POST">
+                            <input type="text" id="todolist" onKeyPress="return checkSubmit(event)" placeholder="write your to-do's here!" name="todolist"><br>
+                        </form>
+                        <!-- use when todo database is working -->
+                        <!-- {% for todo in todos %}
+                            <div> {{ todo.content }} </div>
                         {% endfor %} -->
                     </div> 
                 </div>
@@ -66,41 +69,13 @@
             </div>
             <div class="item nav_bar">
                 <ul id ="nav_bar">
-                    <!-- <button id="new_event_button" type="button" onclick='toggleForm()'> + </button> -->
-                    <div class="item nav_container1">
-                        <!-- <li class="nav-item">
-                            <input type="image" src="static\images\minimalday_icon.png" width="200%">
-                        </li>
-                        <li class="nav-item">
-                            <input type="image" src="static\images\box_icon.png" width="200%">
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png" width="200%"></a>
-                        </li>
-                    </div>
-                    <div class=" item nav_container2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png" width="200%"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png" width="200%"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png" width="200%"></a>
-                        </li>
-                    </div>
-                    <div class="item nav_container3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/info"><img src="static\images\information_icon.png" width="200%"></a>
-                        </li>
-                        <li id="settings">
-                            <a class="nav-item nav-link" href="{{ url_for('account') }}"><img src="static\images\account_icon.png" width="200%"></a> 
-                            <!-- possibly have editing in this page, or delete this all together.. -->
-                        </li>
-                        <li id="settings">
-                            <a class="nav-item nav-link" href="{{ url_for('logout') }}"><img src="static\images\logout_icon.png" width="200%"></a>
-                        </li>
-                    </div>
+                    <li class="nav-item"><a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png" width="200%"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/journal"><img src="static\images\journal_icon.png" width="200%"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png" width="200%"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png" width="200%"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/info"><img src="static\images\information_icon.png" width="200%"></a></li>
+                    <li id="settings"><a class="nav-item nav-link" href="{{ url_for('account') }}"><img src="static\images\account_icon.png" width="200%"></a> </li>
+                    <li id="settings"><a class="nav-item nav-link" href="{{ url_for('logout') }}"><img src="static\images\logout_icon.png" width="200%"></a></li>
                 </ul>
             </div>
             
@@ -108,7 +83,6 @@
                 <form action="/journal/new" method="POST">
                     <label for="journal">{{ todays_date }}</label><br>
                     <textarea rows="3" cols="50" id="journal" placeholder="Journal Here" name="journal"></textarea><br>
-                    <!-- <input type="submit" value="Submit"> -->
                     <input type="image" src="static\images\pen_icon.png" width="8%" style="float: right; padding-right: 5%;" alt="Submit">
                 </form>
             </div>

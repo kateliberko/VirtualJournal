@@ -11,6 +11,8 @@ class EventItem { // Event Creation
     }
 }
 
+let nav = 0;
+
 function createEvent(name, location, start, end, startHeight, endHeight) { // create a div element with a class name "event-item" that contains the event's info from form
     newEvent = document.createElement('div');
     newEvent.setAttribute("class", "event-item");
@@ -166,12 +168,51 @@ function nextDay(num){
     return[0, 1, 2, 3, 4, 5]
 }
 
-// https://stackoverflow.com/questions/49387685/create-a-vertical-line-that-overlays-all-html-content-and-moves-across-the-page/49387816
+// https://stackoverflow.com/questions/29943/how-to-submit-a-form-when-the-return-key-is-pressed
+function checkSubmit(e) {
+    if(e && e.keyCode == 13) {
+       document.forms[0].submit();
+    }
+ }
 
-var vline=$('#vline');
-setInterval(function(){
-  vline.css('bottom', parseInt(vline.css('bottom')) + 1);
-}, 50);
+// function load() {
+//     const dt = new Date();
+
+//     if (nav !== 0) {
+//         dt.setMonth(new Date().getMonth() + nav);
+//     }
+
+//     const lastSunday = dt.setDate(dt.getDate() - dt.getDay())
+//     const day = dt.getDate();
+//     const month = dt.getMonth();
+//     const year = dt.getFullYear();
+
+//     const firstDayOfMonth = new Date(year, month, 1);
+//     const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+//     const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+//         weekday: 'long',
+//         year: 'numeric',
+//         month: 'numeric',
+//         day: 'numeric',
+//     }
+// );
+
+// function initButtons() {
+//     document.getElementById('nextButton').addEventListener('click', () => {
+//       nav++;
+//       load();
+//     });
+  
+//     document.getElementById('backButton').addEventListener('click', () => {
+//       nav--;
+//       load();
+//     });
+
+// }
+
+// initButtons()
+// load()
 
 // var radios = document.getElementById["habitname"].elements["name of elements..?"];
 //   for(radio in radios) {

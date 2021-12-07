@@ -14,11 +14,10 @@ def home():
 @app.route("/mainpage") 
 def mainpage():
     todays_date= datetime.now().date()
-    todos= Todo.query.filter_by(user_id=current_user.id)
     habits = current_user.habits
     habitlist = habits.split(",")
     count= Counter
-    return render_template("mainpage.html", todays_date=todays_date, todos=todos, habits=habitlist, count=count)
+    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count)
 
 @app.route("/calendar") 
 def calendar():
@@ -109,17 +108,5 @@ def new_event():
         newEvent = Event(event_name=event, date=date, start_time=starttime, end_time=endtime, category=category, event_type=type, location=location, user_id=current_user.id)
         db.session.add(newEvent)
         db.session.commit()
-        return redirect(url_for('mainpage'))
-    return render_template('mainpage.html')
-
-@app.route("/todo/new", methods=['GET', 'POST'])
-@login_required
-def new_todo():
-    todo = request.form.get("todolist")
-    if todo: # ensures no empty todo entries
-        todoEntry = Todo(content=todo, user_id=current_user.id)
-        db.session.add(todoEntry)
-        # commit doesn't work for some reason
-        # db.session.commit()
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')

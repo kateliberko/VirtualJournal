@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
 from app.models import User, Journal, Event, Habit, Todo
@@ -8,27 +8,36 @@ from app.counter import Counter
 
 @app.route("/") 
 def home():
-  
+
     return render_template("home.html")
 
 @app.route("/mainpage") 
+@login_required
 def mainpage():
     todays_date= datetime.now().date()
     habits = current_user.habits
     habitlist = habits.split(",")
     count= Counter
-    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count)
+    
+    journalcheck= Journal.query.filter_by(user_id=current_user.id)
+    if(journalcheck.count() == 0):
+        journalcheck= False
+    
+    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck)
 
 @app.route("/calendar") 
+@login_required
 def calendar():
     return render_template("index.html")
 
 @app.route("/journal") 
+@login_required
 def journal():
     alljournals = Journal.query.filter_by(user_id=current_user.id) # only display logged in users info
     return render_template("journal.html", alljournals=alljournals)
 
 @app.route("/habittracker") 
+@login_required
 def habittracker():
     habits = current_user.habits
     habitlist = habits.split(",")
@@ -36,6 +45,7 @@ def habittracker():
     return render_template("habittracker.html", habits=habitlist, count=count)
 
 @app.route("/moodtracker") 
+@login_required
 def moodtracker():
     return render_template("moodtracker.html")
 
@@ -50,7 +60,7 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, password=hashed_password, habits= request.form.get("habitlist"))
+        user = User(username=form.username.data, password=hashed_password, habits= form.habits.data)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
@@ -79,6 +89,7 @@ def logout():
 
 
 @app.route("/account")
+@login_required
 def account():
     return render_template('mainpage.html')
 
@@ -110,3 +121,28 @@ def new_event():
         db.session.commit()
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')
+
+@app.route("/journal/<int:journal_id>")
+@login_required
+def viewjournal(journal_id):
+    journal = Journal.query.get_or_404(journal_id)
+    return render_template('single_journal.html',  journal=journal )
+
+
+@app.route("/journal/<int:journal_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_journal(journal_id):
+    journal = Journal.query.get_or_404(journal_id)
+    if journal.user_id != current_user.id: # make sure no other users can 'somehow' update other's journals
+        abort(403)
+    journalcontent= request.form.get("journal")
+    if journalcontent:
+        journal.content = journalcontent
+        db.session.commit()
+        flash('Your journal has been updated!', 'success')
+        if request.form.get("flag") == 'fromjournal':
+            return render_template('single_journal.html',  journal=journal )
+        else:
+            redirect(url_for('mainpage'))
+   
+    return redirect(url_for('mainpage'))

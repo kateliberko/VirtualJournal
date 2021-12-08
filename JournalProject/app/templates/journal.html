@@ -44,7 +44,7 @@
                     <br/>
                     {% for journal in alljournals %}
                         <li>
-                            <h3> {{ journal.date_posted.date() }} </h3>
+                            <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.date() }}</a> </h3>
                             <p>{{ journal.content }}</p>
                         </li><br/>
                     {% endfor %}
@@ -58,7 +58,7 @@
                     <br/>
                     {% for journal in alljournals %}
                         <li>
-                            <h3> {{ journal.date_posted.date() }}</h3>
+                            <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.date() }}</a></h3>
                             <p>{{ journal.content }}</p>
                         </li><br/>
                     {% endfor %}

@@ -11,6 +11,8 @@ class SignUpForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
+    habits = StringField('Habits',
+                           validators=[DataRequired(), Length(min=1, max=100)])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):

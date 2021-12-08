@@ -26,9 +26,31 @@ button {
 #header button {
   background-color:#92a1d1;
 }
+/* can't get the nav bar to be on the top for some reason */
 #container {
+  display: grid;
+  width: fixed;
+	height: fixed;
+	display: grid;
+  padding: 3px;
+  grid-template-areas: 
+  "nav"
+	"calendar";
+}
+
+#nav_bar {
+  grid-area: nav;
+  overflow: auto;
+  height: 100%;
+}
+
+.calendar {
+  justify-self: center;
+  grid-area: calendar;
+  overflow: auto;
   width: 770px;
 }
+
 #weekdays {
   width: 100%;
   display: flex;
@@ -121,5 +143,4 @@ button {
   width: 100vw;
   height: 100vh;
   position: absolute;
-  background-color: rgba(0,0,0,0.8);
 }

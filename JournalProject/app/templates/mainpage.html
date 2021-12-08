@@ -87,8 +87,27 @@
                                         <label class="for-checkbox-tools" for="tool-{{count.count2}}" id="tool-{{count.count2}}"></td>
                                 </tr>
                                 <br/> {{ count.increment1(count) }}{{  count.increment2(count) }}
+                            {% if habit.habit_done %}
+                                <style>
+                                    .checkbox-tools:not(:checked) + label{
+                                        background-color: var(rgb(217, 255, 240));
+                                    }
+                                    .checkbox-tools:checked + label{
+                                        background-color: #C4FFE1;
+                                    }
+                                </style>
+                            {% else %}
+                                <style>
+                                    .checkbox-tools:not(:checked) + label{
+                                        background-color: var(rgb(255, 192, 227));
+                                    }
+                                    .checkbox-tools:checked + label{
+                                        background-color: #F7BED9;
+                                    }
+                                </style>
+
+                            {% endif %}
                             {% endfor %}
-    <!-- this only works on inital page load for some reason.. maybe css error?? -->
                         </tbody>
                     </table>
                 </div>

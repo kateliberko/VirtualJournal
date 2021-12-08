@@ -1,9 +1,9 @@
+/* CSS Reset */
 html {
 	box-sizing: border-box;
   }
   *, *:before, *:after {
-	box-sizing: inherit;
-  }
+	box-sizing: border-box;  }
 
 * {
     margin: 0;
@@ -13,187 +13,93 @@ html {
     list-style: none;
 }
 
+/* General settings */
 body {
-	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-/* https://stackoverflow.com/questions/2460100/remove-the-complete-styling-of-an-html-button-submit */
-button {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-}
-
-textarea{
-	/* doesn't work for some reason! */
-	color: inherit;
-	border: none;
-	font: inherit;
-	background-color: #f085b900;
+	font-family: 'Arial Narrow Bol';
+	position: relative;
 }
 
 .item {
 	display: grid;
-	justify-content: center;
-	align-items: center;
 	font-size: 1.5em;
-  } 
- 
+} 
+
+/* Main Grid Elements */
+/* referenced this wonderful answer: https://stackoverflow.com/questions/46044589/dynamically-resize-columns-in-css-grid-layout-with-mouse */
 .container {
+	width: fixed;
+	height: fixed;
+	margin: 2%;
 	display: grid;
-  
-	grid-template-columns: repeat(32, 1fr);
-	grid-template-rows: repeat(8, 1fr);
-  }
-  
-  /* GRID ITEM PLACEMENT */
+    padding: 3px;
+    grid-gap: 10px;
+    
+    grid-template-areas: 
+    "day nav journal journal coil"
+	"day nav mood habit coil"
+}
+
 .day {
-	grid-column-start: 1;
-	grid-column-end: 10;
-	grid-row-start: 1;
-	grid-row-end: -1;
-	width: 380px;
-  }
-.nav_bar{
-	grid-column-start: 11;
-	grid-column-end: 12;
-	grid-row-start: 2;
-	grid-row-end: -1;
-	/* background-color: yellow; */
-	/* align-items: center; */
-  }
+	grid-area: day;
+    overflow: auto;
+    
+    min-width: 400px;
+    max-width: 80vw;
+}
+
+.nav_bar {
+	grid-area: nav;
+    overflow: auto;
+    height: 150vh;
+	width: 60px;
+}
 
 .journal{
-	grid-column-start: 13;
-	grid-column-end: -1;
-	grid-row-start: 1;
-	grid-row-end: 4;
-	/* background-color: tomato; */
-	padding: 0px;
+	grid-area: journal;
+    overflow: auto;
+    min-height: 350px;
+    max-height: 80vh;
 	background: url("images/journal_page_cropped.png") no-repeat;
-	background-size: 85%;
-	margin-top: 10px;
-	margin-left: 20px;
-  }
-  #journal{
-	  margin-top: 10px;
-  }
+	background-size: 100%;
+}
 
-.habit{
-	grid-column-start: 22;
-	grid-column-end: 31;
-	grid-row-start: 4;
-	grid-row-end: -1;
-  }
-  
-.mood{
-	display: flex;
-	grid-column-start: 13;
-	grid-column-end: 22;
-	grid-row-start: 4;
-	grid-row-end: -1;
-	padding-top: 0px;
-  }
-  .edge{
-	grid-column-start: 31;
-	grid-column-end: -1;
-	grid-row-start: 1;
-	grid-row-end: -1;
-  }
+.moodtracker {
+	grid-area: mood;
+    overflow: auto;
+    min-height: 200px;
+    max-height: 80vw;
+	min-width: 60px;
+    max-width: 80vw;
+}
 
-/* this is for mood selection */
-:checked+label a{
-	transform: scale(0.9);
-	/* text-shadow: rgb(0, 140, 255) 1px 0 ; */
-	/* -webkit-text-stroke: 40px rgb(0, 247, 255); */
-	text-shadow: -4px 0 rgb(0, 247, 255), 0 4px rgb(0, 247, 255), 4px 0 rgb(0, 247, 255), 0 -4px rgb(0, 247, 255);
-	z-index: -1;
+.habit {
+	grid-area: habit;
+    overflow: auto;
+    min-height: 200px;
+    max-height: 80vw;
+	min-width: 200px;
+}
+
+.coil {
+	grid-area: coil;
+    overflow: auto;
+	width: 60px;
 }
 
 table{
 	align-items: stretch;
 }
 
-/* CALENDAR */
-.day-col .title {
+/* TODO LIST */
+.title {
 	text-align: center;
 	font-family: serif;
+	font-size: 50px
 }
 
-.day-col{
-	width: inherit;
-	font-size: 45px;
-}
-
-.day-col .content {
-	position: relative;
-	height: 560px;
-	border-right: none;
+#content {
+	height: 93%;
 	background-color:rgb(252, 245, 255)
-}
-
-.event-item {
-	position: absolute;
-	width: calc(100% - 2px);
-	padding-left: 2px;
-	font-size: 11px;
-	overflow-x: auto;
-	background: rgba(240, 240, 255, 0.8);
-	cursor: pointer;
-}
-
-#new_event_button {
-	padding-right: 75%;
-	padding-left: 75%;
-	padding-bottom: 16%;
-	padding-top: 16%;
-	background-color: palevioletred;
-	color: white;
-	margin-bottom: 10%;
-	font-size: xx-large;
-}
-
-#add_event_form {
-	position: absolute;
-	top: 50px;
-	left: calc(50% - 250px);
-	right: calc(50% - 250px);
-	width: 35%;
-	height: auto;
-	background: #FFF3F2;
-	border: 2px solid #FC288E;
-	color: #F085B8;
-	padding: 2%;
-
-}
-
-#add_event_form label{
-	font-size: x-large;
-}
-
-#dayofweek, #starttime, #endtime, #name, #location, #date, #category, #type{
-	background-color: #FFF3F2;
-	border: 2px solid #F085B8;
-	color: #595959;
-	margin-bottom: 2%;
-	font-size: large;
-}
-
-/* can't get the label to show up as bigger for some reason */
-#name, #add_event_form:first-child{
-	font-size: xx-large;
-}
-
-#submit_form{
-	background-color: #FC288E;
-	color: #FFF3F2;
-	padding: 2%;
-	float: right;
-	font-size: x-large;
 }
 
 /* NAV BAR */
@@ -205,21 +111,29 @@ li {
     align-self: center;
 }
 
-#nav_bar{
-	align-self: flex-start;
+img {
+	width: 50px;
 }
 
-#settings{
-	font-size: 50%;
+
+/* MOOD TRACKER */
+#moods {
+	align-content: center;
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.mood table{
-	width: 50%;
+#emoji {
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 40px;
 }
 
 input[type="checkbox"][id^="cb"] {
 	display: none;
-
 }
 
 label {
@@ -245,10 +159,23 @@ label[for^="cb"] a{
 	font-size: 35px;
 }
 
-/* HABIT TRACKER */ 
+/* mood selection */
+:checked+label a{
+	transform: scale(0.9);
+	text-shadow: -4px 0 rgb(0, 247, 255), 0 4px rgb(0, 247, 255), 4px 0 rgb(0, 247, 255), 0 -4px rgb(0, 247, 255);
+	z-index: -1;
+}
 
+
+/* HABIT TRACKER */ 
 .habit table {
     border-collapse: collapse;
+	vertical-align: top;
+	font-size: 30px;
+}
+
+#table {
+	vertical-align: top;
 }
 
 td{
@@ -340,19 +267,25 @@ td{
 	padding-bottom: 10px;
 }
 
-
-/* HOMEPAGE */
-.homepage{
-	display: grid;
-	justify-content: center;
-	align-items: center;
+/* JOURNAL */
+#journal {
+	width: 95%; 
+	height: 90%;
+	margin-top: 2%; 
+	margin-right: 3%; 
+	float: right; 
+	font-size: 20px;
+	background: none;
+	line-height: 142%;
+	resize: vertical;
 }
 
-/* https://stackoverflow.com/questions/49387685/create-a-vertical-line-that-overlays-all-html-content-and-moves-across-the-page/49387816 */
 
-#vline{
-	width: 100%;
-	border: 1.5px solid red;
-	bottom: 0px;
-	z-index: 1000000
+@media only screen and (max-width: 600px) {
+	.title {
+		text-align: center;
+		font-family: serif;
+		font-size: 30px
+	}
 }
+

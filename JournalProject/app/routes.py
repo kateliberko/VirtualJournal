@@ -18,12 +18,12 @@ def mainpage():
     habits = current_user.habits
     habitlist = habits.split(",")
     count= Counter
-    
+    todolist= Todo.query.all()
     journalcheck= Journal.query.filter_by(user_id=current_user.id)
     if(journalcheck.count() == 0):
         journalcheck= False
     
-    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck)
+    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck, todolist=todolist)
 
 @app.route("/calendar") 
 @login_required
@@ -146,3 +146,14 @@ def update_journal(journal_id):
             redirect(url_for('mainpage'))
    
     return redirect(url_for('mainpage'))
+
+@app.route("/add_todo", methods=['GET', 'POST'])
+@login_required
+def add_todo():
+    todo = request.form.get("todo")
+    if todo: # ensures no empty todo entries
+        todoEntry = Todo(task=todo, user_id=current_user.id)
+        db.session.add(todoEntry)
+        db.session.commit()
+        return redirect(url_for('mainpage'))
+    return render_template('mainpage.html')

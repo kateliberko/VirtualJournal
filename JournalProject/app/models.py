@@ -29,11 +29,13 @@ class Journal(db.Model):
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
+    task = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Todo('{self.content}')"
+        return f"Todo('{self.date_posted}', '{self.task}')"
+
 
 
 class Event(db.Model):
@@ -61,3 +63,4 @@ class Habit(db.Model):
     
     def __repr__(self):
         return f"Habit('{self.id}'')"
+

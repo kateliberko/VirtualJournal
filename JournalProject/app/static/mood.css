@@ -1,83 +1,57 @@
 body {
-	font-family: questrial;
+    /* need to choose a better font */
+	font-family:Helvetica;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 .container{
     display: grid;
-  
-	grid-template-columns: repeat(32, 1fr);
-	grid-template-rows: repeat(12, 1fr);
+    width: fixed;
+	height: fixed;
+	margin: 2%;
+	display: grid;
+    padding: 3px;
+    grid-gap: 10px;
+    grid-template-areas: 
+    "edit blank title"
+	"habits habits habits"
 }
 
 h1 {
-    grid-column-start: 26;
-    grid-column-end: 32;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    padding-right: 3%;
+    grid-area: title;
+    overflow: auto;
+    height: 40px;
+    text-align: right;
+    padding-right: 5%;
 }
 
-#month {
-    grid-column-start: 4;
-    grid-column-end: 8;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    padding: 4%;
+#week {
+    justify-self: center;
+    grid-area: habits;
+    overflow: auto;
+    min-height: 200px;
+	min-width: 60px;
+    max-width: 80vw;
 }
 
-#year {
-    grid-column-start: 8;
-    grid-column-end: 12;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    padding: 4%;
-}
-
-#submit_form {
-    grid-column-start: 12;
-    grid-column-end: 16;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
-#month, #year, #submit_form {
-    color: #FC288E;
-}
-
-#week1 {
-    grid-column-start: 4;
-    grid-column-end: 14;
-    grid-row-start: 3;
-    grid-row-end: 7;
-}
-
-#week2 {
-    grid-column-start: 20;
-    grid-column-end: 30;
-    grid-row-start: 3;
-    grid-row-end: 7;
-}
-
-#week3 {
-    grid-column-start: 4;
-    grid-column-end: 14;
-    grid-row-start: 7;
-    grid-row-end: 11;
-}
-
-#week4 {
-    grid-column-start: 20;
-    grid-column-end: 30;
-    grid-row-start: 7;
-    grid-row-end: 11;
-}
-
-#week1 h2, #week2 h2, #week3 h2, #week4 h2 {
+h2 {
     color: #FC288E;
 }
 
 td, th { 
     padding: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px;
+    width: 70px; */
 }
 
 table {
@@ -85,3 +59,32 @@ table {
     border-collapse: collapse;
 }
 
+.mood-box {
+    width: 60px;
+    padding-top: 12px;
+    height: 200px;
+    box-sizing: border-box;
+    background-color:rgb(255, 192, 227);
+    /* margin: 2px; */
+    box-shadow: 0px 0px 3px #CBD4C2;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#backButton, #nextButton {
+    float: right;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 20%;
+
+    background-color: rgb(197, 227, 255);
+    margin: 3px;
+}
+
+#backButton:hover, #nextButton:hover {
+    background-color: rgb(159, 203, 245);
+}
+
+/* need to work on responsiveness */

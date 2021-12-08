@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from app import db, login_manager
 from flask_login import UserMixin
 
@@ -17,10 +17,9 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}')"
 
-
 class Journal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
+    date_posted = db.Column(db.Date, nullable=False, default= date.today())
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -29,14 +28,12 @@ class Journal(db.Model):
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
+    date_posted = db.Column(db.Date, nullable=False, default=date.today())
     task = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f"Todo('{self.date_posted}', '{self.task}')"
-
-
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -58,9 +55,17 @@ class Habit(db.Model):
     habit_name = db.Column(db.String(50), unique=True, nullable=False)
     habit_done = db.Column(db.Boolean, default=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
+    date = db.Column(db.Date, nullable=False, default=date.today())
 
     
     def __repr__(self):
         return f"Habit('{self.id}'')"
 
+class Moods(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date= db.Column(db.Date, nullable=False, default= date.today())
+    moodlist = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Moods('{self.id}')"

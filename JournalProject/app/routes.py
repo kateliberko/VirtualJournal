@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
 from app.models import User, Journal, Event, Habit, Todo
-from datetime import datetime
+from datetime import date
 from flask_login import login_user, current_user, logout_user, login_required
 from app.counter import Counter
 
@@ -14,14 +14,12 @@ def home():
 @app.route("/mainpage") 
 @login_required
 def mainpage():
-    todays_date= datetime.now().date()
+    todays_date= date.today()
     habits = current_user.habits
     habitlist = habits.split(",")
     count= Counter
     todolist= Todo.query.all()
-    journalcheck= Journal.query.filter_by(user_id=current_user.id)
-    if(journalcheck.count() == 0):
-        journalcheck= False
+    journalcheck= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
     
     return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck, todolist=todolist)
 

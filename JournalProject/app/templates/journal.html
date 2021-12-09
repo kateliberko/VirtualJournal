@@ -45,7 +45,7 @@
                     {% for journal in alljournals %}
                         <li>
                             <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted }}</a> </h3>
-                            <p>{{ journal.content }}</p>
+                            <p>{{ journal.content[0:60] }} . . . </p>
                         </li><br/>
                     {% endfor %}
                 </ul>

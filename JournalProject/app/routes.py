@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
 from app.models import User, Journal, Event, Habit, Todo, Moods
-from datetime import date, timedelta
+from datetime import date, time, timedelta
 from flask_login import login_user, current_user, logout_user, login_required
 from app.counter import Counter
 
@@ -47,10 +47,16 @@ def habittracker():
 @app.route("/moodtracker") 
 @login_required
 def moodtracker():
-    moods = Moods.query.filter_by(user_id=current_user.id)
     todays_date= date.today()
-    lastweek= todays_date - timedelta(days=7)
-    return render_template("moodtracker.html", moods = moods, todays_date= todays_date, lastweek=lastweek)
+    lastweek = todays_date - timedelta(days=7)
+    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
+    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
+    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
+    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
+    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
+    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
+    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
+    return render_template("moodtracker.html", mood1=mood1, todays_date=todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
 
 @app.route("/info") 
 def info():
@@ -168,7 +174,6 @@ def add_moods():
     
     checkedmoods = request.form.getlist('mood')
     checkedmoods = ' '.join([str(elem) for elem in checkedmoods])
-    print(checkedmoods)
     mooditem = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
     if checkedmoods:
         if mooditem:
@@ -181,3 +186,36 @@ def add_moods():
             db.session.commit()
         return redirect(url_for('mainpage'))
     return redirect(url_for('mainpage'))
+
+    
+
+@app.route("/nextmoodtracker", methods=['GET', 'POST'])
+@login_required
+def nextmoodtracker(): 
+    spot = request.form.get("daytag")
+    todays_date = date.fromisoformat(spot) - timedelta(days=7)
+    lastweek = todays_date - timedelta(days=7)
+    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
+    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
+    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
+    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
+    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
+    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
+    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
+    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+    
+@app.route("/prevmoodtracker", methods=['GET', 'POST'])
+@login_required
+def prevmoodtracker():
+    spot = request.form.get("daytag")
+    todays_date = date.fromisoformat(spot) + timedelta(days=14)
+    lastweek = todays_date + timedelta(days=7)
+    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
+    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
+    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
+    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
+    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
+    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
+    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
+    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+    

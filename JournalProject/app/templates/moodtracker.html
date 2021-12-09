@@ -24,8 +24,15 @@
             <div id="week">
                 <!-- replace this eventually -->
                 <h2>{{ todays_date.strftime("%B %d") }} - {{ lastweek.strftime("%B %d") }}</h2>
-                <button id="nextButton">></button>
-                <button id="backButton"><</button>
+                <form action= "/nextmoodtracker" method="POST" id="nextButton" >
+                    <input type="submit" value=">">
+                    <input type="hidden" name="daytag" value="{{ todays_date }}">
+                </form>
+                <form action= "/prevmoodtracker" method="POST" id="backButton" >
+                    <input type="submit" value="<">
+                    <input type="hidden" name="daytag" value="{{ todays_date }}">
+                </form>
+            
                 <table>
                     <thead>
                         <tr>
@@ -40,12 +47,41 @@
                     </thead><br/>
                     <tbody>
                         <tr>
-                            {% for i in range(7) %}
-                            <!-- need to add count thing, left out to avoid merge conflicts -->
-                            <td> 
-                                <div class="mood-box"></div>
+                            <td>
+                                 <div class="mood-box">
+                                    {{ mood1.moodlist }}
+                                </div> 
                             </td>
-                            {% endfor %}
+                            <td>
+                                <div class="mood-box">
+                                   {{ mood2.moodlist }}
+                               </div> 
+                           </td>
+                           <td>
+                                <div class="mood-box">
+                                    {{ mood3.moodlist }}
+                                </div> 
+                            </td>
+                            <td>
+                                <div class="mood-box">
+                                    {{ mood4.moodlist }}
+                               </div> 
+                           </td>
+                            <td>
+                                <div class="mood-box">
+                                    {{ mood5.moodlist }}
+                                </div> 
+                            </td>
+                            <td>
+                                <div class="mood-box">
+                                    {{ mood6.moodlist }}
+                                </div> 
+                            </td>
+                            <td>
+                                <div class="mood-box">
+                                    {{ mood7.moodlist }}
+                                </div> 
+                            </td>
                         </tr>
                     </tbody>
                 </table>

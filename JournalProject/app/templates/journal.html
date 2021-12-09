@@ -42,7 +42,7 @@
                 <ul>
                     <br/>
                     <br/>
-                    {% for journal in alljournals %}
+                    {% for journal in alljournals|reverse %}
                         <li>
                             <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
                             <p>{{ journal.content[0:60] }} . . . </p>
@@ -56,7 +56,7 @@
                 <ul>
                     <br/>
                     <br/>
-                    {% for journal in alljournals %}
+                    {% for journal in alljournals|reverse %}
                         <li>
                             <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.strftime("%B %d")  }}</a></h3>
                             <p>{{ journal.content[0:60] }} . . . </p>

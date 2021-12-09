@@ -25,8 +25,14 @@
             <div id="week">
                 <!-- replace this eventually -->
                 <h2>{{ todays_date.strftime("%B %d") }} - {{ lastweek.strftime("%B %d") }}</h2>
-                <button id="nextButton">></button>
-                <button id="backButton"><</button>
+                <form action= "/" method="POST" id="nextButton" >
+                    <input type="submit" value=">">
+                    <input type="hidden" name="daytag" value="{{ todays_date }}">
+                </form>
+                <form action= "/" method="POST" id="backButton" >
+                    <input type="submit" value="<">
+                    <input type="hidden" name="daytag" value="{{ todays_date }}">
+                </form>
                 <table>
                     <thead>
                         <tr>

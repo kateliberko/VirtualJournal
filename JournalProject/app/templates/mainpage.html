@@ -99,7 +99,8 @@
             
             <div class="moodtracker">
                 <!-- https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 -->
-                <form action="/add_moods" method="POST">
+                <label for="moodtracker"> Your Moods selected and saved so far today {{ moods.moodlist }}.. select more and save!</label>
+                <form action="/add_moods" id="moodtracker" method="POST">
                     <div id="moods">
                         <div><input type="checkbox" name="mood" id="cb1" value ='😅'>
                             <label for="cb1"><a id="emoji">😅</a></label>
@@ -207,7 +208,7 @@
                             <label for="cb35"><a id="emoji">☺️</a></label>
                         </div>
                     </div>
-                    <input type="submit" value= "submit moods">
+                    <input type="submit" value= "save moods">
                 </form>
             </div>
             <div class="coil">  

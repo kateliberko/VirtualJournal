@@ -19,9 +19,9 @@ def mainpage():
     habitlist = habits.split(",")
     count= Counter
     todolist= Todo.query.all()
-    journalcheck= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
+    journal= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
     moods = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck, todolist=todolist, moods=moods)
+    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods)
 
 @app.route("/calendar") 
 @login_required

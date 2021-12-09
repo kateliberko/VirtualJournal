@@ -10,7 +10,7 @@
      
   </head>
 
-  <body>
+  <body onload="dayofWeek();"> 
         <div class="container">
             <div class="day">
                 <div class="title" id="dayheader"> </div>
@@ -38,14 +38,14 @@
             <div class="journal">
                 {% if journal %}
                     <form action="{{ '/journal/' + journal.id|string + '/update' }}" method="POST" style="width: 100%; height: 70%;">
-                        <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ todays_date.strftime("%B %d") }}</label><br>
+                        <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ todays_date }}</label><br>
                         <textarea id="journal" name="journal">{{ journal.content }}</textarea><br>
                         <input type="image" src="static\images\pen_icon.png" width="10%" style="margin-left: 80%;" alt="Submit">
                         <input type="hidden" name="flag" value="frommain">
                     </form>
                 {% else %}
                     <form action="/journal/new" method="POST" style="width: 100%; height: 70%;">
-                        <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ todays_date.strftime("%B %d") }}</label><br>
+                        <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ todays_date }}</label><br>
                         <textarea id="journal" placeholder="Journal Here" name="journal"></textarea><br>
                         <input type="image" src="static\images\pen_icon.png" width="10%" style="margin-left: 80%;" alt="Submit">
                     </form>

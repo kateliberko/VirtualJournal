@@ -23,7 +23,7 @@
             <h1> Mood Tracker </h1>
             <div id="week">
                 <!-- replace this eventually -->
-                <h2>{{ todays_date.strftime("%B %d") }} - {{ lastweek.strftime("%B %d") }}</h2>
+                <h2>{{ lastweek.strftime("%B %d") }} - {{ todays_date.strftime("%B %d") }}</h2>
                 <form action= "/nextmoodtracker" method="POST" id="nextButton" >
                     <input type="submit" value=">">
                     <input type="hidden" name="daytag" value="{{ todays_date }}">
@@ -36,13 +36,22 @@
                 <table>
                     <thead>
                         <tr>
-                                <th id="day0" scope="col"> </th>
-                                <th id="day1" scope="col"> </th>
-                                <th id="day2" scope="col"> </th>
-                                <th id="day3" scope="col"> </th>
-                                <th id="day4" scope="col"> </th>
-                                <th id="day5" scope="col"> </th>
-                                <th id="day6" scope="col"> </th>
+                            <th scope="col"> SUN </th>
+                            <th scope="col"> MON </th>
+                            <th scope="col"> TUES</th>
+                            <th scope="col"> WED</th>
+                            <th scope="col"> THUR</th>
+                            <th scope="col"> FRI</th>
+                            <th scope="col"> SAT </th>
+                        </tr>
+                        <tr>
+                            <th id="day0" scope="col"> </th>
+                            <th id="day1" scope="col"> </th>
+                            <th id="day2" scope="col"> </th>
+                            <th id="day3" scope="col"> </th>
+                            <th id="day4" scope="col"> </th>
+                            <th id="day5" scope="col"> </th>
+                            <th id="day6" scope="col"> </th>
                         </tr>
                     </thead><br/>
                     <tbody>

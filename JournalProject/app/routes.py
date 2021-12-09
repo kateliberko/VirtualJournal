@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
-from app.models import User, Journal, Event, Habit, Todo
+from app.models import User, Journal, Event, Habit, Todo, Moods
 from datetime import date
 from flask_login import login_user, current_user, logout_user, login_required
 from app.counter import Counter
@@ -20,8 +20,9 @@ def mainpage():
     count= Counter
     todolist= Todo.query.all()
     journalcheck= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
+    moods = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
     
-    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck, todolist=todolist)
+    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck, todolist=todolist, moods=moods)
 
 @app.route("/calendar") 
 @login_required
@@ -155,3 +156,24 @@ def add_todo():
         db.session.commit()
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')
+
+@app.route("/add_moods", methods=['GET', 'POST'])
+@login_required
+def add_moods():
+    todays_date = date.today()
+    
+    checkedmoods = request.form.getlist('mood')
+    checkedmoods = ' '.join([str(elem) for elem in checkedmoods])
+    print(checkedmoods)
+    mooditem = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
+    if checkedmoods:
+        if mooditem:
+            mooditem.moodlist = checkedmoods
+            db.session.commit()
+            return redirect(url_for('mainpage'))    
+        else:
+            mooditem = Moods(moodlist=checkedmoods, user_id=current_user.id)    
+            db.session.add(mooditem)
+            db.session.commit()
+        return redirect(url_for('mainpage'))
+    return redirect(url_for('mainpage'))

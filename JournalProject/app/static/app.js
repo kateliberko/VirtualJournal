@@ -117,40 +117,38 @@ function addNewEvent() { // get form results and pass them to be formatted and p
 }
 
 function dayofWeek(){
-    var days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+    var days = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT'];
     var d = new Date();
     var dayName = days[d.getDay()];
-    var selectDiv = document.getElementById('dayheader');
+    // var selectDiv = document.getElementById('dayheader');
     var todaycal = document.getElementById('day0');
     
-    if (selectDiv){
-        selectDiv.innerHTML = dayName;
-    }
-    if (todaycal){
+    // if (selectDiv){
+    //     selectDiv.innerHTML = dayName;
+    // }
         todaycal.innerHTML= dayName;
-        var num = nextDay(d.getDay());
+        var num = prevDay(d.getDay());
         
-        document.getElementById('day1').innerHTML = days[num[0]];
+        document.getElementById('day1').innerHTML = days[num[5]];
 
-        document.getElementById('day2').innerHTML = days[num[1]];
+        document.getElementById('day2').innerHTML = days[num[4]];
 
-        document.getElementById('day3').innerHTML = days[num[2]];
+        document.getElementById('day3').innerHTML = days[num[3]];
 
-        document.getElementById('day4').innerHTML = days[num[3]];
+        document.getElementById('day4').innerHTML = days[num[2]];
 
-        document.getElementById('day5').innerHTML = days[num[4]];
+        document.getElementById('day5').innerHTML = days[num[1]];
 
-        document.getElementById('day6').innerHTML = days[num[5]];
-    }
+        document.getElementById('day6').innerHTML = days[num[0]];
     
     
 }
-function nextDay(num){
+function prevDay(num){
     if( num ==0){
         return[ 1, 2, 3, 4, 5, 6]
     }
     if( num ==1){
-        return[  2, 3, 4, 5, 6, 0]
+        return[ 2, 3, 4, 5, 6, 0]
     }
     if( num ==2){
         return[ 3, 4, 5, 6, 1, 2]

@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
 from app.models import User, Journal, Event, Habit, Todo, Moods
-from datetime import date
+from datetime import date, timedelta
 from flask_login import login_user, current_user, logout_user, login_required
 from app.counter import Counter
 
@@ -21,7 +21,6 @@ def mainpage():
     todolist= Todo.query.all()
     journalcheck= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
     moods = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    
     return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journalcheck, todolist=todolist, moods=moods)
 
 @app.route("/calendar") 
@@ -41,12 +40,17 @@ def habittracker():
     habits = current_user.habits
     habitlist = habits.split(",")
     count= Counter
-    return render_template("habittracker.html", habits=habitlist, count=count)
+    todays_date= date.today()
+    lastweek= todays_date - timedelta(days=7)
+    return render_template("habittracker.html", habits=habitlist, count=count, todays_date=todays_date, lastweek=lastweek)
 
 @app.route("/moodtracker") 
 @login_required
 def moodtracker():
-    return render_template("moodtracker.html")
+    moods = Moods.query.filter_by(user_id=current_user.id)
+    todays_date= date.today()
+    lastweek= todays_date - timedelta(days=7)
+    return render_template("moodtracker.html", moods = moods, todays_date= todays_date, lastweek=lastweek)
 
 @app.route("/info") 
 def info():

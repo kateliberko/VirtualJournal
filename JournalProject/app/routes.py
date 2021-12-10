@@ -58,12 +58,12 @@ def journal():
 @app.route("/habittracker") 
 @login_required
 def habittracker():
-    habits = current_user.habits
-    habitlist = habits.split(",")
+    # habits = current_user.habits
+    # habitlist = habits.split(",")
     count= Counter
     todays_date= date.today()
     lastweek= todays_date - timedelta(days=7)
-    return render_template("habittracker.html", habits=habitlist, count=count, todays_date=todays_date, lastweek=lastweek)
+    return render_template("habittracker.html", count=count, todays_date=todays_date, lastweek=lastweek)
 
 @app.route("/moodtracker") 
 @login_required

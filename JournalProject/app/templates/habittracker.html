@@ -13,14 +13,13 @@
             <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png " width="3%"></a>
             <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png " width="3%"></a>
             <a class="nav-link" href="/info"><img src="static\images\information_icon.png " width="3%"></a>
-            <a class="nav-link" href="/account"><img src="static\images\account_icon.png " width="3%"></a>
             <a class="nav-link" href="/"><img src="static\images\logout_icon.png " width="3%"></a>
         </div>
     </head>
 
     <body onload="dayofWeek();">
         <div class="container">
-            <a id="habit_button" href="/account">Edit Habits</a>
+            <a id="habit_button" href="/habitcreate">Edit Habits</a>
             <h1> Habit Tracker </h1>            
             <div id="week">
                 <!-- replace this eventually -->
@@ -48,17 +47,17 @@
                     </thead><br/>
                     <tbody>
                         <!-- we need to work through how to keep track of which habit exists when -->
-                        {% for habit in habits %}
+                        <!-- {% for habit in habits %} -->
                         <tr>
-                            <td scope="row" id="habit"> {{ habit }} </td>
-                            {% for i in range(7) %}
+                            <td scope="row" id="habit">  </td>
+                            <!-- {% for i in range(7) %} -->
                             <!-- need to fix this count thing -->
                             <td id="input-{{count.count2}}"> 
                                 <div class="habit-box"></div>
                             </td>
-                            {% endfor %}
+                            <!-- {% endfor %} -->
                         </tr>
-                        {% endfor %}
+                        <!-- {% endfor %} -->
                     </tbody>
                 </table>
             </div>

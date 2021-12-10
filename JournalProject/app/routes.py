@@ -9,7 +9,7 @@ from app.counter import Counter
 @app.route("/") 
 def home():
 
-    return render_template("home.html")
+    return render_template("calendar.html")
 
 @app.route("/mainpage") 
 @login_required
@@ -26,7 +26,7 @@ def mainpage():
 @app.route("/calendar") 
 @login_required
 def calendar():
-    return render_template("index.html")
+    return render_template("calendar.html")
 
 @app.route("/journal") 
 @login_required
@@ -223,3 +223,25 @@ def prevmoodtracker():
     mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
     return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
     
+
+@app.route("/newEvent", methods=['GET', 'POST'])
+@login_required
+def new_event():
+    event = request.form.get("eventTitleInput")
+    date = request.form.get("date")
+    if event: # ensures no empty events
+        newEvent = Event(event_name=event, date=date, user_id=current_user.id)
+        db.session.add(newEvent)
+        db.session.commit()
+        return redirect(url_for('calendar'))
+    return render_template('calendar.html')
+    
+app.route("/deleteEvent/<int:event_id>", methods=['POST'])
+@login_required
+def delete_event(event_id):
+    event = Event.query.get_or_404(event_id)
+    if event.user_id != current_user.id:
+        abort(403)
+    db.session.delete(event)
+    db.session.commit()
+    return redirect(url_for('calendar'))

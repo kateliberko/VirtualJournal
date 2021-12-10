@@ -1,85 +1,57 @@
+<!-- followed this tutorial for the basis of the app: https://www.youtube.com/watch?v=m9OSBJaQTlM -->
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Weekly View</title>
-	<link rel="stylesheet" type="text/css" href="static\weeklyCalendar.css">
-	<div>
-		<a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
-		<a class="nav-link" href="/journal"><img src="static\images\journal_icon.png " width="3%"></a>
-		<a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png " width="3%"></a>
-		<a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png " width="3%"></a>
-		<a class="nav-link" href="/info"><img src="static\images\information_icon.png " width="3%"></a>
-		<a class="nav-link" href="/account"><img src="static\images\account_icon.png " width="3%"></a>
-		<a class="nav-link" href="/"><img src="static\images\logout_icon.png " width="3%"></a>
-	</div>
-</head>
-<body onload="dayofWeek();">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar!</title>
+    <link rel="stylesheet" href="static\style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="nav_bar">
+        <a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
+        <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png " width="3%"></a>
+        <a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png " width="3%"></a>
+        <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png " width="3%"></a>
+        <a class="nav-link" href="/info"><img src="static\images\information_icon.png " width="3%"></a>
+        <a class="nav-link" href="/account"><img src="static\images\account_icon.png " width="3%"></a>
+        <a class="nav-link" href="/"><img src="static\images\logout_icon.png " width="3%"></a>
+      </div>
+      <div class="calendar">
+        <div id="header">
+            <div id="monthDisplay"></div>
+            <div>
+            <button id="backButton">Back</button>
+            <button id="nextButton">Next</button>
+            </div>
+        </div>
+        <div id="weekdays">
+            <div>Sunday</div>
+            <div>Monday</div>
+            <div>Tuesday</div>
+            <div>Wednesday</div>
+            <div>Thursday</div>
+            <div>Friday</div>
+            <div>Saturday</div>
+        </div>
+        <div id="calendar"></div>
+      </div>
+    </div>
+    <div id="newEventModal">
+      <h2>New Event</h2>
+      <input id="eventTitleInput" placeholder="Event Title" />
+      <button id="saveButton">Save</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+    <div id="deleteEventModal">
+      <h2>Event</h2>
+      <p id="eventText"></p>
+      <button id="deleteButton">Delete</button>
+      <button id="closeButton">Close</button>
+    </div>
+    <div id="modalBackDrop"></div>
 
-	<h1>
-		Weekly View
-		<button id="new_event_button" type="button" onclick='toggleForm()'> + Add New Event</button>
-	</h1>
-
-	<div id="week" >
-		<div class="day-col">
-			<div class="title" id="day0"> </div>
-			<div class="content"></div>
-		</div>
-		<div class="day-col">
-			<div class="title" id="day1"> </div>
-			<div class="content"></div>
-		</div>
-		<div class="day-col">
-			<div class="title" id="day2">Tuesday</div>
-			<div class="content"></div>
-		</div>
-		<div class="day-col">
-			<div class="title" id="day3">Wednesday</div>
-			<div class="content"></div>
-		</div>
-		<div class="day-col">
-			<div class="title" id="day4">Thursday</div>
-			<div class="content"></div>
-		</div>
-		<div class="day-col">
-			<div class="title" id="day5">Friday</div>
-			<div class="content"></div>
-		</div>
-		<div class="day-col">
-			<div class="title" id="day6">Saturday</div>
-			<div class="content"></div>
-		</div>
-	</div>
-
-	<div id="add_event_form" style="display:none">
-		<label for="name">Name of event:</label>
-		<input type="text" id="name" name="name"><br/>
-		<label for="location">Location:</label>
-		<input type="text" id="location" name="location"><br/>
-		
-		<label for="dayofweek">Day of Week:</label>
-		<select name="dayofweek" id="dayofweek">
-			<option value="sunday">Sunday</option>
-			<option value="monday">Monday</option>
-			<option value="tuesday">Tuesday</option>
-			<option value="wednesday">Wednesday</option>
-			<option value="thursday">Thursday</option>
-			<option value="friday">Friday</option>
-			<option value="saturday">Saturday</option>
-		</select><br/>
-
-		<label for="starttime">Start Time:</label>
-		<select name="starttime" id="starttime">	  
-		</select><br/>
-		
-		<label for="endtime">End Time:</label>
-		<select name="endtime" id="endtime">	
-		</select><br/>
-
-		<button id="submit" type="button" onclick='addNewEvent(), toggleForm()'> Add Event to Calendar</button>
-
-	</div>
-
-</body>
-<script type="text/javascript" src="static\app.js"> </script>
+    <script src="static\script.js"></script>
+  </body>
 </html>

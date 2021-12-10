@@ -39,11 +39,6 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_name = db.Column(db.String(50), unique=True, nullable=False)
     date = db.Column(db.String(20), nullable=False)
-    start_time = db.Column(db.String(20), nullable=False)
-    end_time = db.Column(db.String(20), nullable=False)
-    category = db.Column(db.String(20), unique=True, nullable=False)
-    event_type = db.Column(db.String(20), unique=True, nullable=False)
-    location = db.Column(db.String(50), unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     

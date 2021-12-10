@@ -65,7 +65,7 @@
                         <tbody>
                             {% for habit in habits %}
                                 <tr>
-                                    <td scope="row" id="habitname">{{ habit }}</td>
+                                    <td scope="row" id="habitname">{{ habit.habit_name }}</td>
                                     <td><input class="checkbox-tools" type="radio" name="tools{{count.count1}}" id="tool-{{count.count2}}" checked>
                                         <label class="for-checkbox-tools" for="tool-{{count.count2}}" id="tool-{{count.count2}}" ></td> {{ count.increment2(count) }}
                                     <td><input class="checkbox-tools" type="radio" name="tools{{count.count1}}" id="tool-{{count.count2}}" checked>

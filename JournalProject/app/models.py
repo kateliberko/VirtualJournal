@@ -12,7 +12,6 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    habits = db.Column(db.String(300), nullable=False)
 
     def __repr__(self):
         return f"User('{self.username}')"
@@ -37,7 +36,7 @@ class Todo(db.Model):
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    event_name = db.Column(db.String(50), unique=True, nullable=False)
+    event_name = db.Column(db.String(50), unique=False, nullable=False)
     date = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -47,12 +46,11 @@ class Event(db.Model):
 
 class Habit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    habit_name = db.Column(db.String(50), unique=True, nullable=False)
+    habit_name = db.Column(db.String(50), unique=False, nullable=False)
     habit_done = db.Column(db.Boolean, default=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date = db.Column(db.Date, nullable=False, default=date.today())
 
-    
     def __repr__(self):
         return f"Habit('{self.id}'')"
 

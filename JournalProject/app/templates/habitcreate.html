@@ -24,7 +24,7 @@
             <form action="/mainpage" method="POST">
                 <div class="input_fields_wrap">
                     <button class="add_field_button"> + Habit +</button></br>
-                    <input type="text" name="mytext[]" placeholder="Enter Habit" required>
+                    <input type="text" name="myhabit" placeholder="Enter Habit" required>
                 </div>
                 <button type="submit">Submit</button>
             </form>
@@ -42,7 +42,7 @@
             e.preventDefault();
                 if(x < max_fields){ //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div><input placeholder="Enter Habit" type="text" name="mytext[]" required><button class="remove_field" type="button">x</button></div>'); //add input box
+                    $(wrapper).append('<div><input placeholder="Enter Habit" type="text" name="myhabit" required><button class="remove_field" type="button">x</button></div>'); //add input box
                 }
             });
 

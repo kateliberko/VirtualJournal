@@ -10,23 +10,43 @@ from app.counter import Counter
 def home():
     return render_template("home.html")
 
-@app.route("/mainpage") 
+@app.route("/mainpage", methods=['GET', 'POST']) 
 @login_required
 def mainpage():
     todays_date= date.today()
-    habits = current_user.habits
-    habitlist = habits.split(",")
     count= Counter
     todolist= Todo.query.filter_by(user_id=current_user.id)
     journal= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
     moods = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods)
+    habit = Habit.query.filter_by(user_id = current_user.id).first()
+    
+    if habit is not None: 
+        
+        habits = Habit.query.filter_by(user_id = current_user.id)
+        return render_template("mainpage.html", todays_date=todays_date, habits=habits, count=count, journal=journal, todolist=todolist, moods=moods)
+     
+    if habit is None: # if habits don't exist(first time login) we must create them
+        habitform = request.form.getlist("myhabit")
+    
+        if len(habitform)!=0:
+            for habit in habitform:
+                habitLog = Habit(habit_name= habit, user_id=current_user.id)
+                db.session.add(habitLog)
+                db.session.commit()
+            
+            habitlist = Habit.query.filter_by(user_id = current_user.id)
+            return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods)
+   
+        return render_template("habitcreate.html")
+    return render_template("mainpage.html", todays_date=todays_date, habits=habit, count=count, journal=journal, todolist=todolist, moods=moods)
+
+ 
+    
 
 @app.route("/calendar") 
 @login_required
 def calendar():
     return render_template("calendar.html")
-
 @app.route("/journal") 
 @login_required
 def journal():
@@ -72,7 +92,7 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, password=hashed_password, habits= form.habits.data)
+        user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
@@ -100,11 +120,18 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route("/account")
+@app.route("/habitcreate")
 @login_required
 def account():
-    return render_template('account.html')
+    return render_template('habitcreate.html')
 
+# @app.route("/new_habit<string:habit>", methods=['GET', 'POST'])
+# @login_required
+# def new_habit(habit):
+#         habitLog = Habit(habit_name= habit, user_id=current_user.id)
+#         db.session.add(habitLog)
+#         db.session.commit()
+#         return redirect(url_for('mainpage'))
 
 @app.route("/journal/new", methods=['GET', 'POST'])
 @login_required

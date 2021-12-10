@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="static\journal.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="\static\turn_min.js"></script>
         <div>
             <a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
             <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png " width="3%"></a>
@@ -37,34 +39,58 @@
                 {% endif %}
             {% endwith %}
             <!-- need to figure out how to get this to show up correctly -->
-            <h1>Journal Entries </h1>
-            <div id="page1">
-                <ul>
-                    <br/>
-                    <br/>
-                    {% for journal in alljournals|reverse %}
-                        <li>
-                            <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
-                            <p>{{ journal.content[0:60] }} . . . </p>
-                        </li><br/>
-                    {% endfor %}
-                </ul>
-                <img src>
+            <div id="journal">
+                <div id="page-1"><button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button></div>
+                <div id="page-2"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
+                <div id="page-3"><button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button></div>
+                <div id="page-4"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
+                <div id="page-5"><button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button></div>
+                <div id="page-6"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
             </div>
-            <img id="center" src="static\images\journal_center.png">
-            <div id="page2">
-                <ul>
-                    <br/>
-                    <br/>
-                    {% for journal in alljournals|reverse %}
-                        <li>
-                            <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.strftime("%B %d")  }}</a></h3>
-                            <p>{{ journal.content[0:60] }} . . . </p>
-                        </li><br/>
-                    {% endfor %}
-                </ul>
-                <img src>
-            </div>
+                <!-- <div id="page">
+                    <ul>
+                        <br/>
+                        <br/>
+                        {% for journal in alljournals|reverse %}
+                            <li>
+                                <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
+                                <p>{{ journal.content[0:60] }} . . . </p>
+                            </li><br/>
+                        {% endfor %}
+                    </ul>
+                    <img src>
+                </div>
+                <img id="center" src="static\images\journal_center.png">
+            </div> -->
         </div>
+
+
+        <script type="text/javascript">
+
+
+
+            $(window).ready(function() {
+                $('#journal').turn({
+                                    display: 'double',
+                                    acceleration: true,
+                                    gradients: !$.isTouch,
+                                    elevation:50,
+                                    duration: 1400,
+                                    when: {
+                                        turned: function(e, page) {
+                                            /*console.log('Current view: ', $(this).turn('view'));*/
+                                        }
+                                    }
+                                });
+            });
+            
+            $(window).bind('keydown', function(e){
+
+                if (e.keyCode==37)
+                    $('#journal').turn('previous');
+                else if (e.keyCode==39)
+                    $('#journal').turn('next');   
+            });
+        </script>
     </body>
 </html>

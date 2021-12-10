@@ -10,4 +10,12 @@ class Counter:
         self.count2 += 1
         return ''
 
+    def reset1(self):
+        self.count1 = 1
+        return ''
+
+    def reset2(self):
+        self.count2 = 1
+        return ''
+
 

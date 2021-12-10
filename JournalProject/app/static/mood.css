@@ -1,6 +1,7 @@
 body {
     /* need to choose a better font */
-	font-family:Helvetica;
+	font-family: serif;
+    background-color: rgb(255, 234, 238);
 }
 
 button, input[type="submit"], input[type="reset"] {
@@ -22,7 +23,7 @@ button, input[type="submit"], input[type="reset"] {
     padding: 3px;
     grid-gap: 10px;
     grid-template-areas: 
-    "edit blank title"
+    "title blank blank"
 	"habits habits habits"
 }
 

@@ -5,6 +5,7 @@ from app.models import User, Journal, Event, Habit, Todo, Moods
 from datetime import date, time, timedelta
 from flask_login import login_user, current_user, logout_user, login_required
 from app.counter import Counter
+import math
 
 @app.route("/") 
 def home():
@@ -50,8 +51,9 @@ def calendar():
 @app.route("/journal") 
 @login_required
 def journal():
+    count= Counter
     alljournals = Journal.query.filter_by(user_id=current_user.id) # only display logged in users info
-    return render_template("journal.html", alljournals=alljournals)
+    return render_template("journal.html", alljournals=alljournals, count=count)
 
 @app.route("/habittracker") 
 @login_required

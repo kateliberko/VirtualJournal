@@ -19,7 +19,10 @@
                         <input type="text" id="todo" onKeyPress="return checkSubmit(event)" placeholder="write your to-do's here!" name="todo"><br>
                     </form>
                     {% for todo in todolist %}
-                        {{ todo.task }} </br>
+                    <div>
+                        <label for="task1">{{ todo.task }} </br></label>
+                        <input type="checkbox" name="task" id="task1">
+                    </div>
                     {% endfor %}
                 </div>
                
@@ -93,6 +96,7 @@
 
                             {% endif %}
                             {% endfor %}
+                            {{ count.reset1(count) }}{{ count.reset2(count) }}
                         </tbody>
                     </table>
                 </div>

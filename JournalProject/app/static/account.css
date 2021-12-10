@@ -1,0 +1,61 @@
+body {
+    font-family: serif;
+    background-color: rgb(255, 234, 238);
+}
+
+button, input[type="submit"]{
+    background: rgb(255, 199, 225);
+    color: rgb(204, 64, 129);
+    border: none;
+    padding: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    font-size: x-large;
+    border-radius: 2px;
+}
+
+.remove_field {
+    font-family: sans-serif;
+    font-size: x=large;
+    padding: 0px;
+    padding-right: 4px;
+    padding-left: 4px;
+    margin-left: 4px;
+}
+
+input[type="text"]{
+    background: rgb(255, 251, 252);
+    color: gray;
+    border: none;
+    padding: 4px;
+    margin: 5px;
+    margin-left: 0px;
+    font: inherit;
+    outline: inherit;
+    font-size: xx-large;
+}
+
+.habit_form {
+    display: grid;
+    width: fixed;
+	height: fixed;
+	margin: 2%;
+	display: grid;
+    padding: 3px;
+    grid-gap: 10px;
+    grid-template-areas: 
+    "blank form blank"
+}
+
+form {
+    grid-area: form;
+    overflow: auto;
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

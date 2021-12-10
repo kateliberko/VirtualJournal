@@ -62,6 +62,10 @@ def moodtracker():
 def info():
     return render_template("info.html")
 
+@app.route("/test") 
+def test():
+    return render_template("turn_test.html")
+
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
@@ -100,7 +104,7 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template('mainpage.html')
+    return render_template('account.html')
 
 
 @app.route("/journal/new", methods=['GET', 'POST'])

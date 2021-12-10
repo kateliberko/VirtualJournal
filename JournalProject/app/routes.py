@@ -8,8 +8,7 @@ from app.counter import Counter
 
 @app.route("/") 
 def home():
-
-    return render_template("calendar.html")
+    return render_template("home.html")
 
 @app.route("/mainpage") 
 @login_required
@@ -118,22 +117,6 @@ def new_journal():
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')
 
-@app.route("/event/new", methods=['GET', 'POST'])
-@login_required
-def new_event():
-    event = request.form.get("name")
-    date = request.form.get("date")
-    starttime = request.form.get("starttime")
-    endtime = request.form.get("endtime")
-    category = request.form.get("category")
-    type = request.form.get("type")
-    location = request.form.get("location")
-    if event: # ensures no empty events
-        newEvent = Event(event_name=event, date=date, start_time=starttime, end_time=endtime, category=category, event_type=type, location=location, user_id=current_user.id)
-        db.session.add(newEvent)
-        db.session.commit()
-        return redirect(url_for('mainpage'))
-    return render_template('mainpage.html')
 
 @app.route("/journal/<int:journal_id>")
 @login_required

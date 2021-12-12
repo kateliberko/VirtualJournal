@@ -168,6 +168,25 @@ def updatehabit():
     db.session.commit()
     return redirect(url_for('mainpage'))
 
+@app.route("/prevhabittracker", methods=['GET', 'POST'])
+@login_required
+def prevhabittracker():
+    spot = request.form.get("daytag")
+    todays_date = date.fromisoformat(spot) - timedelta(days=7) # moving backward one week
+    lastweek = todays_date - timedelta(days=7)
+    habits = Habit.query.filter_by(user_id=current_user.id)
+    return render_template("habittracker.html", habits=habits, todays_date= todays_date, lastweek=lastweek)
+
+@app.route("/nexthabittracker", methods=['GET', 'POST'])
+@login_required
+def prevnexttracker():
+    spot = request.form.get("daytag")
+    todays_date = date.fromisoformat(spot) + timedelta(days=7) # moving backward one week
+    lastweek = todays_date - timedelta(days=7)
+    habits = Habit.query.filter_by(user_id=current_user.id)
+    return render_template("habittracker.html", habits=habits, todays_date= todays_date, lastweek=lastweek)
+
+
 
 
 # MOOD

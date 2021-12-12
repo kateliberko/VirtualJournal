@@ -29,10 +29,9 @@ def mainpage():
         newcheck = Habit.query.filter_by(user_id = current_user.id).first()
         if newcheck is not None: # user has previous habits
             # must make new habits with existing habit names but with todays date
-            mostrecenthabits = Habit.query.filter_by(user_id = current_user.id).order_by(Habit.id.desc()).first()
-            print(mostrecenthabits)
-            habits = Habit.query.filter_by(user_id = current_user.id, date = mostrecenthabits.date)
-            for habit in habits:
+            mostrecenthabits = Habit.query.filter_by(user_id = current_user.id).order_by(Habit.id.desc()).first() #finds most recent creation date
+            habits = Habit.query.filter_by(user_id = current_user.id, date = mostrecenthabits.date) #grabs habits from most recent creation date
+            for habit in habits: # creates new habits with same name, but new date
                     habitLog = Habit(habit_name= habit.habit_name, user_id=current_user.id)
                     db.session.add(habitLog)
                     db.session.commit()

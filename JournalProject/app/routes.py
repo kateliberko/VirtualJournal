@@ -209,6 +209,7 @@ def nexthabittracker():
 @login_required
 def moodtracker():
     todays_date= date.today()
+    todaysactualdate= date.today()
     lastweek = todays_date - timedelta(days=7)
     mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first() # grabbing moodlist for each day in the week
     mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
@@ -217,7 +218,7 @@ def moodtracker():
     mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
     mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
     mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
-    return render_template("moodtracker.html", mood1=mood1, todays_date=todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+    return render_template("moodtracker.html",todaysactualdate=todaysactualdate, mood1=mood1, todays_date=todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
 
 @app.route("/add_moods", methods=['GET', 'POST'])
 @login_required
@@ -241,6 +242,7 @@ def add_moods():
 @app.route("/prevmoodtracker", methods=['GET', 'POST'])
 @login_required
 def prevmoodtracker():
+    todaysactualdate= date.today()
     spot = request.form.get("daytag")
     todays_date = date.fromisoformat(spot) - timedelta(days=7) # moving backward one week
     lastweek = todays_date - timedelta(days=7)
@@ -251,11 +253,12 @@ def prevmoodtracker():
     mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
     mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
     mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
-    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+    return render_template("moodtracker.html", todaysactualdate=todaysactualdate, mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
 
 @app.route("/nextmoodtracker", methods=['GET', 'POST'])
 @login_required
 def nextmoodtracker(): 
+    todaysactualdate= date.today()
     spot = request.form.get("daytag")
     todays_date = date.fromisoformat(spot) + timedelta(days=7) # moving forward one week
     lastweek = todays_date - timedelta(days=7)
@@ -266,7 +269,7 @@ def nextmoodtracker():
     mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
     mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
     mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
-    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+    return render_template("moodtracker.html", todaysactualdate=todaysactualdate, mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
     
     
 # INFO

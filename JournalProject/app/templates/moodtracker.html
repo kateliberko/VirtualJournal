@@ -41,7 +41,12 @@
                             <th id="day3" scope="col"> </th>
                             <th id="day2" scope="col"> </th>
                             <th id="day1" scope="col"> </th>
-                            <th id="day0" scope="col"> </th>  <!-- Make today 'glow' or stand out -->
+                            {% if todays_date == todaysactualdate %}
+                                <th  scope="col"><h4 id="day0"> </h4>TODAY</th>
+                            {% else %}
+                                <th id="day0" scope="col"> </th>
+                            {% endif %}
+                            
                         </tr>
                     </thead><br/>
                     <tbody>

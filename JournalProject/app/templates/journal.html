@@ -28,16 +28,7 @@
 
     <body>
         <div class="container">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                    {{ message }}
-                    </div>
-                {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <!-- need to figure out how to get this to show up correctly -->
+            
             <div id="journal">
                 <div id="page-1"><button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button></div>
                 <div id="page-2"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>

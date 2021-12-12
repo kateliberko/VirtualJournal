@@ -175,7 +175,6 @@ def update_journal(journal_id):
     if journalcontent:
         journal.content = journalcontent
         db.session.commit()
-        flash('Your journal has been updated!', 'success')
         if request.form.get("flag") == 'fromjournal':
             return render_template('single_journal.html',  journal=journal )
         else:
@@ -220,7 +219,7 @@ def add_moods():
 @login_required
 def nextmoodtracker(): 
     spot = request.form.get("daytag")
-    todays_date = date.fromisoformat(spot) - timedelta(days=7)
+    todays_date = date.fromisoformat(spot) + timedelta(days=7)
     lastweek = todays_date - timedelta(days=7)
     mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
     mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
@@ -235,8 +234,8 @@ def nextmoodtracker():
 @login_required
 def prevmoodtracker():
     spot = request.form.get("daytag")
-    todays_date = date.fromisoformat(spot) + timedelta(days=14)
-    lastweek = todays_date + timedelta(days=7)
+    todays_date = date.fromisoformat(spot) - timedelta(days=7)
+    lastweek = todays_date - timedelta(days=7)
     mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
     mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
     mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()

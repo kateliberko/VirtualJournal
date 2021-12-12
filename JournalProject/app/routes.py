@@ -127,13 +127,24 @@ def logout():
 def account():
     return render_template('habitcreate.html')
 
-# @app.route("/new_habit<string:habit>", methods=['GET', 'POST'])
-# @login_required
-# def new_habit(habit):
-#         habitLog = Habit(habit_name= habit, user_id=current_user.id)
-#         db.session.add(habitLog)
-#         db.session.commit()
-#         return redirect(url_for('mainpage'))
+@app.route("/habit/update", methods=['GET', 'POST'])
+@login_required
+def updatehabit():
+    habits = Habit.query.filter_by(user_id = current_user.id)
+    habit0 = request.form.get("habit0")
+    habit1 = request.form.get("habit1")
+    print(habit0 + "this is both" + habit1)
+    if habit0 == 'True':
+        habits[0].habit_done = True
+    if habit0 == 'False':
+        habits[0].habit_done = False
+    if habit1 == 'True':
+        habits[1].habit_done = True
+    if habit1 == 'False':
+        habits[1].habit_done = False
+    db.session.commit()
+ 
+    return redirect(url_for('mainpage'))
 
 @app.route("/journal/new", methods=['GET', 'POST'])
 @login_required

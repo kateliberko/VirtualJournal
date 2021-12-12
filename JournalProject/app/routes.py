@@ -143,19 +143,30 @@ def new_journal():
 @app.route("/habittracker") 
 @login_required
 def habittracker():
-    count= Counter
     todays_date= date.today()
     lastweek= todays_date - timedelta(days=7)
-    habits = Habit.query.filter_by(user_id=current_user.id) # THIS NEEDS TO BE FIXED.. OOF
-    habit1 = Habit.query.filter_by(user_id=current_user.id, date=todays_date)
-    habit2 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1))
-    habit3 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2))
-    habit4 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3))
-    habit5 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4))
-    habit6 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5))
-    habit7 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6))
-    return render_template("habittracker.html", count=count, todays_date=todays_date, lastweek=lastweek, habits=habits, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit7=habit7)
-
+    habit0 = Habit.query.filter_by(user_id=current_user.id, date=todays_date)
+    if habit0.first() is None:
+        habit0= 'Null'
+    habit1 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1))
+    if habit1.first() is None:
+        habit1= 'Null'
+    habit2 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2))
+    if habit2.first() is None:
+        habit2= 'Null'
+    habit3 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3))
+    if habit3.first() is None:
+        habit3= 'Null'
+    habit4 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4))
+    if habit4.first() is None:
+        habit4= 'Null'
+    habit5 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5))
+    if habit5.first() is None:
+        habit5= 'Null'
+    habit6 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6))
+    if habit6.first() is None:
+        habit6= 'Null'
+    return render_template("habittracker.html", todays_date=todays_date, lastweek=lastweek, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit0=habit0)
 @app.route("/habitdone/update", methods=['GET', 'POST'])
 @login_required
 def updatehabitdone():
@@ -180,8 +191,28 @@ def prevhabittracker():
     spot = request.form.get("daytag")
     todays_date = date.fromisoformat(spot) - timedelta(days=7) # moving backward one week
     lastweek = todays_date - timedelta(days=7)
-    habits = Habit.query.filter_by(user_id=current_user.id)
-    return render_template("habittracker.html", habits=habits, todays_date= todays_date, lastweek=lastweek)
+    habit0 = Habit.query.filter_by(user_id=current_user.id, date=todays_date)
+    if habit0.first() is None:
+        habit0= 'Null'
+    habit1 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1))
+    if habit1.first() is None:
+        habit1= 'Null'
+    habit2 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2))
+    if habit2.first() is None:
+        habit2= 'Null'
+    habit3 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3))
+    if habit3.first() is None:
+        habit3= 'Null'
+    habit4 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4))
+    if habit4.first() is None:
+        habit4= 'Null'
+    habit5 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5))
+    if habit5.first() is None:
+        habit5= 'Null'
+    habit6 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6))
+    if habit6.first() is None:
+        habit6= 'Null'
+    return render_template("habittracker.html", todays_date=todays_date, lastweek=lastweek, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit0=habit0)
 
 @app.route("/nexthabittracker", methods=['GET', 'POST'])
 @login_required
@@ -189,8 +220,28 @@ def nexthabittracker():
     spot = request.form.get("daytag")
     todays_date = date.fromisoformat(spot) + timedelta(days=7) # moving backward one week
     lastweek = todays_date - timedelta(days=7)
-    habits = Habit.query.filter_by(user_id=current_user.id)
-    return render_template("habittracker.html", habits=habits, todays_date= todays_date, lastweek=lastweek)
+    habit0 = Habit.query.filter_by(user_id=current_user.id, date=todays_date)
+    if habit0.first() is None:
+        habit0= 'Null'
+    habit1 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1))
+    if habit1.first() is None:
+        habit1= 'Null'
+    habit2 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2))
+    if habit2.first() is None:
+        habit2= 'Null'
+    habit3 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3))
+    if habit3.first() is None:
+        habit3= 'Null'
+    habit4 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4))
+    if habit4.first() is None:
+        habit4= 'Null'
+    habit5 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5))
+    if habit5.first() is None:
+        habit5= 'Null'
+    habit6 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6))
+    if habit6.first() is None:
+        habit6= 'Null'
+    return render_template("habittracker.html", todays_date=todays_date, lastweek=lastweek, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit0=habit0)
 
 # @app.route("/habit/update", methods=['GET', 'POST'])
 # @login_required

@@ -17,7 +17,7 @@
         </div>
     </head>
 
-    <body onload="dayofWeek();">
+    <body >
         <div class="container">
             <a id="habit_button" href="/habitcreate">Edit Habits</a>
             <h1> Habit Tracker </h1>            
@@ -31,36 +31,231 @@
                     <input type="submit" value="<">
                     <input type="hidden" name="daytag" value="{{ todays_date }}">
                 </form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col" style="text-align: left;">Habit</th>
-                                <th id="day6" scope="col"> </th>
-                                <th id="day5" scope="col"> </th>
-                                <th id="day4" scope="col"> </th>
-                                <th id="day3" scope="col"> </th>
-                                <th id="day2" scope="col"> </th>
-                                <th id="day1" scope="col"> </th>
-                                <th id="day0" scope="col"> </th>
-                        </tr>
-                    </thead><br/>
-                    <tbody>
-                        <!-- we need to work through how to keep track of which habit exists when -->
-                        {% for habit in habits %}
+                {% if habit0 != 'Null' %}
+                    <table >
+                        <thead>
                             <tr>
-                                <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
-                                <td > </td>
-                                <td > </td>
-                                <td > </td>
-                                <td > </td>
-                                <td > </td>
-                                <td > </td>
-                                <td > </td> <!-- TODAYS DATE HABITS-->
-                                
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th id="day0" scope="col">{{ habit0[0].date.strftime("%a")|upper }}   </th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit0 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit0t"></td>
+                                        <style>
+                                            #habit0t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit0f"></td>
+                                        <style>
+                                            #habit0f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if habit1 != 'Null' %}
+                    <table >
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th scope="col"> {{ habit1[0].date.strftime("%a")|upper  }} </th>
+                            </tr>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit1 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit1t"></td>
+                                        <style>
+                                            #habit1t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit1f"></td>
+                                        <style>
+                                            #habit1f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if habit2 != 'Null' %}
+                    <table >
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th  scope="col"> {{ habit2[0].date.strftime("%a")|upper  }} </th>
+                            </tr>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit2 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit2t"></td>
+                                        <style>
+                                            #habit2t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit2f"></td>
+                                        <style>
+                                            #habit2f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if habit3 != 'Null' %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th  scope="col"> {{ habit3[0].date.strftime("%a")|upper }}</th>
+                            </tr>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit3 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit3t"></td>
+                                        <style>
+                                            #habit3t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit3f"></td>
+                                        <style>
+                                            #habit3f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if habit4 != 'Null' %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th  scope="col"> {{ habit4[0].date.strftime("%a")|upper }}</th>
+                            </tr>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit4 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit4t"></td>
+                                        <style>
+                                            #habit4t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit4f"></td>
+                                        <style>
+                                            #habit4f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if habit5 != 'Null' %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th  scope="col"> {{ habit5[0].date.strftime("%a")|upper }}</th>
+                            </tr>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit5 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit5t"></td>
+                                        <style>
+                                            #habit5t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit5f"></td>
+                                        <style>
+                                            #habit5f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if habit6 != 'Null' %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: left;">Habit</th>
+                                <th  scope="col"> {{ habit6[0].date.strftime("%a")|upper }}</th>
+                            </tr>
+                        </thead><br/>
+                        <tbody>
+                            {% for habit in habit6 %}
+                                <tr>
+                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
+                                    {% if habit.habit_done == True %}
+                                        <td id ="habit6t"></td>
+                                        <style>
+                                            #habit6t{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habit.habit_done == False %}
+                                        <td id ="habit6f"></td>
+                                        <style>
+                                            #habit6f{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
             </div>
         </div>
     </body>

@@ -22,8 +22,8 @@
                     <div class="todo">
                         <form action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="POST">
                             <div id="todo-element">
-                                <label for="{{todo.id}}" class="strikethrough"> {{todo.task}}</label>
                                 <input type="checkbox" id="{{todo.id}}" name="{{todo.id}}" value="{{todo.id}}">
+                                <label for="{{todo.id}}" class="strikethrough"> {{todo.task}}</label>
                                 <input type="submit" value="x">
                             </div>
                         </form> 
@@ -279,5 +279,18 @@
    
     
   </body>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script>
+        $(document).ready(function() {
+        // https://pretagteam.com/question/how-to-change-color-of-my-div-if-checkbox-is-checked
+            $('input[type=checkbox]').on('change', function changeBg() {
+                var div = $(this).closest('#todo-element');
+                $(this).is(":checked") ? div.addClass("done") : div.removeClass("done");
+            })
+        });
+  </script>
   <script type="text/javascript" src="static\app.js"> </script>
 </html>

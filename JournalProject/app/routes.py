@@ -172,6 +172,7 @@ def habittracker():
     if habit6.first() is None:
         habit6= 'Null'
     return render_template("habittracker.html", todays_date=todays_date, lastweek=lastweek, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit0=habit0)
+
 @app.route("/habitdone/update", methods=['GET', 'POST'])
 @login_required
 def updatehabitdone():
@@ -248,14 +249,25 @@ def nexthabittracker():
         habit6= 'Null'
     return render_template("habittracker.html", todays_date=todays_date, lastweek=lastweek, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit0=habit0)
 
-# @app.route("/habit/update", methods=['GET', 'POST'])
-# @login_required
-# def updatehabit():
-#     todays_date= date.today()
-#     habits = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
+@app.route("/habit_update", methods=['GET', 'POST'])
+@login_required
+def updatehabit():
+    todays_date= date.today()
+    habits = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
+    habitform = request.form.getlist("myhabit")
+        
+    if len(habitform)!=0: # check that user has filled out form
+        for each in habits: # delete all old habits
+            db.session.delete(each)
+            db.session.commit()
+        for habit in habitform: # create all new habits
+            habitLog = Habit(habit_name= habit, user_id=current_user.id)
+            db.session.add(habitLog)
+            db.session.commit()
+        return redirect(url_for('habittracker'))
     
-#     db.session.commit()
-#     return render_template("habitcreate.html", habits=habits)
+    return render_template("habitedit.html", habits=habits)
+    
 
 
 

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static\account.css">
+        <div>
+            <a class="nav-link" href="/mainpage"><img src="static\images\home.png " width="3%"></a>
+            <a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png " width="3%"></a>
+            <a class="nav-link" href="/journal"><img src="static\images\journal_icon.png " width="3%"></a>
+            <a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png " width="3%"></a>
+            <a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png " width="3%"></a>
+            <a class="nav-link" href="/"><img src="static\images\logout_icon.png " width="3%"></a>
+        </div>
+    </head>
+
+    <body>
+        <!-- https://www.codermen.com/how-to-add-and-remove-input-field-on-button-click-javascript/ -->
+        <div class="habit_form">
+            <form action="/habit_update" method="POST">
+                <div class="input_fields_wrap">
+                    <button class="add_field_button"> + Habit +</button></br>
+                    {% if habits[0] %}
+                        {% for habit in habits %}
+                            <input type="text" name="myhabit" value='{{habit.habit_name}}' required></br>
+                        {% endfor%}
+                    {% else %}
+                        <input type="text" name="myhabit" placeholder="Enter Habit" required></br>
+                    {% endif %}
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+            var max_fields      = 10; //maximum input boxes allowed
+            var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+            var add_button      = $(".add_field_button"); //Add button ID
+
+            var x = 1; //initlal text box count
+            $(add_button).click(function(e){ //on add input button click
+            e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div><input placeholder="Enter Habit" type="text" name="myhabit" required><button class="remove_field" type="button">x</button></div>'); //add input box
+                }
+            });
+
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+                })
+            });
+        </script>
+    </body>
+</html>

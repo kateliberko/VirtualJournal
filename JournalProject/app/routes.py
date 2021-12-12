@@ -271,7 +271,6 @@ def updatehabit():
 
 
 
-
 # MOOD
 @app.route("/moodtracker") 
 @login_required

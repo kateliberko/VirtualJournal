@@ -156,9 +156,9 @@ def habittracker():
     habit7 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6))
     return render_template("habittracker.html", count=count, todays_date=todays_date, lastweek=lastweek, habits=habits, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit7=habit7)
 
-@app.route("/habit/update", methods=['GET', 'POST'])
+@app.route("/habitdone/update", methods=['GET', 'POST'])
 @login_required
-def updatehabit():
+def updatehabitdone():
     todays_date= date.today()
     habits = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
     habit0 = request.form.get("habit0")
@@ -191,6 +191,15 @@ def nexthabittracker():
     lastweek = todays_date - timedelta(days=7)
     habits = Habit.query.filter_by(user_id=current_user.id)
     return render_template("habittracker.html", habits=habits, todays_date= todays_date, lastweek=lastweek)
+
+# @app.route("/habit/update", methods=['GET', 'POST'])
+# @login_required
+# def updatehabit():
+#     todays_date= date.today()
+#     habits = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
+    
+#     db.session.commit()
+#     return render_template("habitcreate.html", habits=habits)
 
 
 

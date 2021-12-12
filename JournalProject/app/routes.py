@@ -179,7 +179,7 @@ def prevhabittracker():
 
 @app.route("/nexthabittracker", methods=['GET', 'POST'])
 @login_required
-def prevnexttracker():
+def nexthabittracker():
     spot = request.form.get("daytag")
     todays_date = date.fromisoformat(spot) + timedelta(days=7) # moving backward one week
     lastweek = todays_date - timedelta(days=7)

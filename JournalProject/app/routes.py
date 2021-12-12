@@ -41,55 +41,12 @@ def mainpage():
         return render_template("habitcreate.html")
     return render_template("mainpage.html", todays_date=todays_date, habits=habit, count=count, journal=journal, todolist=todolist, moods=moods)
 
- 
-    
 
-@app.route("/calendar") 
-@login_required
-def calendar():
-    return render_template("calendar.html")
-@app.route("/journal") 
-@login_required
-def journal():
-    count= Counter
-    alljournals = Journal.query.filter_by(user_id=current_user.id) # only display logged in users info
-    return render_template("journal.html", alljournals=alljournals, count=count)
 
-@app.route("/habittracker") 
-@login_required
-def habittracker():
-    # habits = current_user.habits
-    # habitlist = habits.split(",")
-    count= Counter
-    todays_date= date.today()
-    lastweek= todays_date - timedelta(days=7)
-    return render_template("habittracker.html", count=count, todays_date=todays_date, lastweek=lastweek)
-
-@app.route("/moodtracker") 
-@login_required
-def moodtracker():
-    todays_date= date.today()
-    lastweek = todays_date - timedelta(days=7)
-    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
-    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
-    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
-    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
-    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
-    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
-    return render_template("moodtracker.html", mood1=mood1, todays_date=todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
-
-@app.route("/info") 
-def info():
-    return render_template("info.html")
-
-@app.route("/test") 
-def test():
-    return render_template("turn_test.html")
-
+# SIGNUP
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated: # will automatically login you in if you didn't log out last time
         return redirect(url_for('mainpage'))
     form = SignUpForm()
     if form.validate_on_submit():
@@ -101,9 +58,10 @@ def signup():
     return render_template('signup.html', title='Sign Up', form=form)
 
 
+# LOGIN
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated:  # will automatically login you in if you didn't log out last time
         return redirect(url_for('mainpage'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -116,54 +74,35 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+# LOGOUT
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
 
-@app.route("/habitcreate")
+    
+# CALENDAR
+@app.route("/calendar") 
 @login_required
-def account():
-    return render_template('habitcreate.html')
+def calendar():
+    return render_template("calendar.html")
 
-@app.route("/habit/update", methods=['GET', 'POST'])
+
+
+# JOURNAL
+@app.route("/journal") # display all current users' journals
 @login_required
-def updatehabit():
-    habits = Habit.query.filter_by(user_id = current_user.id)
-    habit0 = request.form.get("habit0")
-    habit1 = request.form.get("habit1")
-    print(habit0 + "this is both" + habit1)
-    if habit0 == 'True':
-        habits[0].habit_done = True
-    if habit0 == 'False':
-        habits[0].habit_done = False
-    if habit1 == 'True':
-        habits[1].habit_done = True
-    if habit1 == 'False':
-        habits[1].habit_done = False
-    db.session.commit()
- 
-    return redirect(url_for('mainpage'))
+def journal():
+    count= Counter
+    alljournals = Journal.query.filter_by(user_id=current_user.id) 
+    return render_template("journal.html", alljournals=alljournals, count=count)
 
-@app.route("/journal/new", methods=['GET', 'POST'])
-@login_required
-def new_journal():
-    journal = request.form.get("journal")
-    if journal: # ensures no empty journal entries
-        journalLog = Journal(content=journal, user_id=current_user.id)
-        db.session.add(journalLog)
-        db.session.commit()
-        return redirect(url_for('mainpage'))
-    return render_template('mainpage.html')
-
-
-@app.route("/journal/<int:journal_id>")
+@app.route("/journal/<int:journal_id>") # view a single journal with the given id
 @login_required
 def viewjournal(journal_id):
     journal = Journal.query.get_or_404(journal_id)
     return render_template('single_journal.html',  journal=journal )
-
 
 @app.route("/journal/<int:journal_id>/update", methods=['GET', 'POST'])
 @login_required
@@ -173,15 +112,142 @@ def update_journal(journal_id):
         abort(403)
     journalcontent= request.form.get("journal")
     if journalcontent:
-        journal.content = journalcontent
+        journal.content = journalcontent # updates journal content to newly submitted content
         db.session.commit()
-        if request.form.get("flag") == 'fromjournal':
+        if request.form.get("flag") == 'fromjournal': # checks to see which page the journal was submitted on, so it can return to proper page
             return render_template('single_journal.html',  journal=journal )
         else:
             redirect(url_for('mainpage'))
    
     return redirect(url_for('mainpage'))
 
+@app.route("/journal/new", methods=['GET', 'POST'])
+@login_required
+def new_journal():
+    journal = request.form.get("journal")
+    if journal: # ensures no empty journal entries
+        journalLog = Journal(content=journal, user_id=current_user.id) # create new journal entry for todays date containing inputed content
+        db.session.add(journalLog)
+        db.session.commit()
+        return redirect(url_for('mainpage'))
+    return render_template('mainpage.html')
+
+
+
+# HABIT
+@app.route("/habittracker") 
+@login_required
+def habittracker():
+    count= Counter
+    todays_date= date.today()
+    lastweek= todays_date - timedelta(days=7)
+    habits = Habit.query.filter_by(user_id=current_user.id) # THIS NEEDS TO BE FIXED.. OOF
+    habit1 = Habit.query.filter_by(user_id=current_user.id, date=todays_date)
+    habit2 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1))
+    habit3 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2))
+    habit4 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3))
+    habit5 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4))
+    habit6 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5))
+    habit7 = Habit.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6))
+    return render_template("habittracker.html", count=count, todays_date=todays_date, lastweek=lastweek, habits=habits, habit1=habit1, habit2=habit2, habit3=habit3, habit4=habit4, habit5=habit5, habit6=habit6, habit7=habit7)
+
+@app.route("/habit/update", methods=['GET', 'POST'])
+@login_required
+def updatehabit():
+    habits = Habit.query.filter_by(user_id = current_user.id)
+    habit0 = request.form.get("habit0")
+    habit1 = request.form.get("habit1")
+    if habit0 == 'True':    # makes sure to update habits according to what was selected
+        habits[0].habit_done = True
+    if habit0 == 'False':
+        habits[0].habit_done = False
+    if habit1 == 'True':
+        habits[1].habit_done = True
+    if habit1 == 'False':
+        habits[1].habit_done = False
+    db.session.commit()
+    return redirect(url_for('mainpage'))
+
+
+
+# MOOD
+@app.route("/moodtracker") 
+@login_required
+def moodtracker():
+    todays_date= date.today()
+    lastweek = todays_date - timedelta(days=7)
+    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first() # grabbing moodlist for each day in the week
+    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
+    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
+    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
+    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
+    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
+    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
+    return render_template("moodtracker.html", mood1=mood1, todays_date=todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+
+@app.route("/add_moods", methods=['GET', 'POST'])
+@login_required
+def add_moods():
+    todays_date = date.today()
+    checkedmoods = request.form.getlist('mood')
+    checkedmoods = ' '.join([str(elem) for elem in checkedmoods]) # makes the seperate emojis one mood list
+    mooditem = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
+    if checkedmoods: # ensures moods were entered
+        if mooditem: # if a moodlist exists for this date, update it
+            mooditem.moodlist = mooditem.moodlist + checkedmoods # keeps running list of selected moods (does not accoutn for duplicates)
+            db.session.commit()
+            return redirect(url_for('mainpage'))    
+        else: # moodlist does not exist for this date, create one
+            mooditem = Moods(moodlist=checkedmoods, user_id=current_user.id)    
+            db.session.add(mooditem)
+            db.session.commit()
+        return redirect(url_for('mainpage'))
+    return redirect(url_for('mainpage'))
+
+@app.route("/prevmoodtracker", methods=['GET', 'POST'])
+@login_required
+def prevmoodtracker():
+    spot = request.form.get("daytag")
+    todays_date = date.fromisoformat(spot) - timedelta(days=7) # moving backward one week
+    lastweek = todays_date - timedelta(days=7)
+    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first() # grabbing moods from different days
+    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
+    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
+    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
+    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
+    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
+    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
+    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+
+@app.route("/nextmoodtracker", methods=['GET', 'POST'])
+@login_required
+def nextmoodtracker(): 
+    spot = request.form.get("daytag")
+    todays_date = date.fromisoformat(spot) + timedelta(days=7) # moving forward one week
+    lastweek = todays_date - timedelta(days=7)
+    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first() # grabbing moods from different days
+    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
+    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
+    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
+    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
+    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
+    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
+    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
+    
+    
+# INFO
+@app.route("/info") 
+def info():
+    return render_template("info.html")
+
+
+@app.route("/test") 
+def test():
+    return render_template("turn_test.html")
+
+
+
+# todo LIST
 @app.route("/add_todo", methods=['GET', 'POST'])
 @login_required
 def add_todo():
@@ -193,77 +259,29 @@ def add_todo():
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')
 
-@app.route("/add_moods", methods=['GET', 'POST'])
-@login_required
-def add_moods():
-    todays_date = date.today()
-    
-    checkedmoods = request.form.getlist('mood')
-    checkedmoods = ' '.join([str(elem) for elem in checkedmoods])
-    mooditem = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    if checkedmoods:
-        if mooditem:
-            mooditem.moodlist = checkedmoods
-            db.session.commit()
-            return redirect(url_for('mainpage'))    
-        else:
-            mooditem = Moods(moodlist=checkedmoods, user_id=current_user.id)    
-            db.session.add(mooditem)
-            db.session.commit()
-        return redirect(url_for('mainpage'))
-    return redirect(url_for('mainpage'))
 
     
 
-@app.route("/nextmoodtracker", methods=['GET', 'POST'])
-@login_required
-def nextmoodtracker(): 
-    spot = request.form.get("daytag")
-    todays_date = date.fromisoformat(spot) + timedelta(days=7)
-    lastweek = todays_date - timedelta(days=7)
-    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
-    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
-    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
-    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
-    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
-    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
-    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
-    
-@app.route("/prevmoodtracker", methods=['GET', 'POST'])
-@login_required
-def prevmoodtracker():
-    spot = request.form.get("daytag")
-    todays_date = date.fromisoformat(spot) - timedelta(days=7)
-    lastweek = todays_date - timedelta(days=7)
-    mood1 = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    mood2 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=1)).first()
-    mood3 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=2)).first()
-    mood4 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=3)).first()
-    mood5 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=4)).first()
-    mood6 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=5)).first()
-    mood7 = Moods.query.filter_by(user_id=current_user.id, date=todays_date-timedelta(days=6)).first()
-    return render_template("moodtracker.html", mood1=mood1, todays_date= todays_date, lastweek=lastweek, mood2=mood2, mood3=mood3, mood4=mood4, mood5=mood5, mood6=mood6, mood7=mood7)
-    
 
-@app.route("/newEvent", methods=['GET', 'POST'])
-@login_required
-def new_event():
-    event = request.form.get("eventTitleInput")
-    date = request.form.get("date")
-    if event: # ensures no empty events
-        newEvent = Event(event_name=event, date=date, user_id=current_user.id)
-        db.session.add(newEvent)
-        db.session.commit()
-        return redirect(url_for('calendar'))
-    return render_template('calendar.html')
+
+# @app.route("/newEvent", methods=['GET', 'POST'])
+# @login_required
+# def new_event():
+#     event = request.form.get("eventTitleInput")
+#     date = request.form.get("date")
+#     if event: # ensures no empty events
+#         newEvent = Event(event_name=event, date=date, user_id=current_user.id)
+#         db.session.add(newEvent)
+#         db.session.commit()
+#         return redirect(url_for('calendar'))
+#     return render_template('calendar.html')
     
-app.route("/deleteEvent/<int:event_id>", methods=['POST'])
-@login_required
-def delete_event(event_id):
-    event = Event.query.get_or_404(event_id)
-    if event.user_id != current_user.id:
-        abort(403)
-    db.session.delete(event)
-    db.session.commit()
-    return redirect(url_for('calendar'))
+# app.route("/deleteEvent/<int:event_id>", methods=['POST'])
+# @login_required
+# def delete_event(event_id):
+#     event = Event.query.get_or_404(event_id)
+#     if event.user_id != current_user.id:
+#         abort(403)
+#     db.session.delete(event)
+#     db.session.commit()
+#     return redirect(url_for('calendar'))

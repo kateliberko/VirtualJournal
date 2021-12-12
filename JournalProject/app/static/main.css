@@ -165,6 +165,8 @@ input[type=checkbox]:checked + label.strikethrough{
 #todo-element>input[type="checkbox"] {
 	grid-area: box;
 	width: 25px;
+	height: 25px;
+	align-self: center;
 }
 
 #todo-element>input[type="submit"] {

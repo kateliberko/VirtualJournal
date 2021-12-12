@@ -19,27 +19,32 @@ def mainpage():
     todolist= Todo.query.filter_by(user_id=current_user.id)
     journal= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
     moods = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
-    habit = Habit.query.filter_by(user_id = current_user.id).first()
+    habit = Habit.query.filter_by(user_id = current_user.id, date = todays_date).first()
     
-    if habit is not None: 
-        
-        habits = Habit.query.filter_by(user_id = current_user.id)
+    if habit is not None: # habits exist for this user today
+        habits = Habit.query.filter_by(user_id = current_user.id, date = todays_date)
         return render_template("mainpage.html", todays_date=todays_date, habits=habits, count=count, journal=journal, todolist=todolist, moods=moods)
      
-    if habit is None: # if habits don't exist(first time login) we must create them
-        habitform = request.form.getlist("myhabit")
+    if habit is None: # if habits don't exist for this user today
+        # newcheck = Habit.query.filter_by(user_id = current_user.id).first()
+        # if newcheck is not None: # user has previous habits
+        #     # must make new habits with existing habit names but with todays date
+        #     print("here for error purposes")
+        
+        # else: # first time user, must create new habits from habit form
+            habitform = request.form.getlist("myhabit")
+        
+            if len(habitform)!=0:
+                for habit in habitform:
+                    habitLog = Habit(habit_name= habit, user_id=current_user.id)
+                    db.session.add(habitLog)
+                    db.session.commit()
+                
+                habitlist = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
+                return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods)
     
-        if len(habitform)!=0:
-            for habit in habitform:
-                habitLog = Habit(habit_name= habit, user_id=current_user.id)
-                db.session.add(habitLog)
-                db.session.commit()
-            
-            habitlist = Habit.query.filter_by(user_id = current_user.id)
-            return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods)
-   
-        return render_template("habitcreate.html")
-    return render_template("mainpage.html", todays_date=todays_date, habits=habit, count=count, journal=journal, todolist=todolist, moods=moods)
+    return render_template("habitcreate.html")
+    # return render_template("mainpage.html", todays_date=todays_date, habits=habit, count=count, journal=journal, todolist=todolist, moods=moods)
 
 
 
@@ -154,7 +159,8 @@ def habittracker():
 @app.route("/habit/update", methods=['GET', 'POST'])
 @login_required
 def updatehabit():
-    habits = Habit.query.filter_by(user_id = current_user.id)
+    todays_date= date.today()
+    habits = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
     habit0 = request.form.get("habit0")
     habit1 = request.form.get("habit1")
     if habit0 == 'True':    # makes sure to update habits according to what was selected
@@ -278,6 +284,16 @@ def add_todo():
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')
 
+@app.route("/delete_todo/<int:todo_id>", methods=['GET', 'POST'])
+@login_required
+def delete_todo(todo_id):
+    todo = Todo.query.get_or_404(todo_id)
+    if todo.user_id != current_user.id:
+        abort(403)
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for('mainpage'))
+    # return render_template('mainpage.html')
 
     
 

@@ -14,15 +14,19 @@
         <div class="container">
             <div class="day">
                 <div class="title" id="dayheader"> </div>
-                <div id="content" style="font-size: small;">  
+                <div id="content" style="font-size: medium;">  
                     <form action="/add_todo" method="POST">
                         <input type="text" id="todo" onKeyPress="return checkSubmit(event)" placeholder="write your to-do's here!" name="todo"><br>
                     </form>
                     {% for todo in todolist %}
-                    <div>
-                        <label for="task1">{{ todo.task }} </br></label>
-                        <input type="checkbox" name="task" id="task1">
+                    <div class="todo">
+                        <form action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="POST">
+                            <input type="checkbox" id="{{todo.id}}" name="{{todo.id}}" value="{{todo.id}}"> <!-- NOT SHOWING UP?-->
+                            <label for="{{todo.id}}"> {{todo.task}}</label>
+                            <input type="submit" value="delete todo"><br>
+                        </form> 
                     </div>
+                    </br>
                     {% endfor %}
                 </div>
                

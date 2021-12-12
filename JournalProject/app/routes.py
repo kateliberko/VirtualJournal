@@ -26,15 +26,21 @@ def mainpage():
         return render_template("mainpage.html", todays_date=todays_date, habits=habits, count=count, journal=journal, todolist=todolist, moods=moods)
      
     if habit is None: # if habits don't exist for this user today
-        # newcheck = Habit.query.filter_by(user_id = current_user.id).first()
-        # if newcheck is not None: # user has previous habits
-        #     # must make new habits with existing habit names but with todays date
-        #     print("here for error purposes")
-        
-        # else: # first time user, must create new habits from habit form
+        newcheck = Habit.query.filter_by(user_id = current_user.id).first()
+        if newcheck is not None: # user has previous habits
+            # must make new habits with existing habit names but with todays date
+            mostrecenthabits = Habit.query.filter_by(user_id = current_user.id).order_by(Habit.id.desc()).first()
+            print(mostrecenthabits)
+            habits = Habit.query.filter_by(user_id = current_user.id, date = mostrecenthabits.date)
+            for habit in habits:
+                    habitLog = Habit(habit_name= habit.habit_name, user_id=current_user.id)
+                    db.session.add(habitLog)
+                    db.session.commit()
+            habitlist = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
+        else: # first time user, must create new habits from habit form
             habitform = request.form.getlist("myhabit")
         
-            if len(habitform)!=0:
+            if len(habitform)!=0: # check that user has filled out form
                 for habit in habitform:
                     habitLog = Habit(habit_name= habit, user_id=current_user.id)
                     db.session.add(habitLog)

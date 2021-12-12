@@ -117,9 +117,55 @@ table{
 	font-size: 50px
 }
 
+#todo {
+	padding: 10px;
+	width: 100%;
+	background: rgb(253, 229, 248);
+	margin-bottom: 20px;
+}
+
+/* https://stackoverflow.com/questions/30975459/add-strikethrough-to-checked-checkbox */
+input[type=checkbox]:checked + label.strikethrough{
+	text-decoration: line-through;
+	color:rgb(150, 150, 150);
+  }
+
 #content {
 	height: 93%;
 	background-color:rgb(252, 245, 255)
+}
+
+#todo-element {
+	border-bottom: 2px dashed rgb(255, 192, 227);
+	width: 98%;
+	display: grid;
+	margin: -8px;
+	padding: 5px;
+	margin-left: 3px;
+	align-content: center;
+    grid-template-areas: 
+    "text box delete"
+}
+
+#todo-element>label {
+	grid-area: text;
+	padding-left: 30px;
+	padding-top: 5px;
+	margin-bottom: 5px;
+	width: 220px;
+}
+
+#todo-element>input[type="checkbox"] {
+	grid-area: box;
+	width: 25px;
+}
+
+#todo-element>input[type="submit"] {
+	grid-area: delete;
+	width: 25px;
+	height: 25px;
+	margin: 5px;
+	background: rgb(255, 192, 227);
 }
 
 /* NAV BAR */
@@ -216,10 +262,10 @@ td{
 
 
 /* https://codepen.io/ig_design/pen/dLNKgM */
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked),
-[type="radio"]:checked,
-[type="radio"]:not(:checked){
+.checkbox-tools[type="checkbox"]:checked,
+.checkbox-tools[type="checkbox"]:not(:checked),
+.checkbox-tools[type="radio"]:checked,
+.checkbox-tools[type="radio"]:not(:checked){
 	position: absolute;
 	left: -9999px;
 	width: 0;

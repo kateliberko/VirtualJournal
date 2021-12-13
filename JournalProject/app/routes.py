@@ -370,18 +370,14 @@ def delete_todo(todo_id):
     if todo.user_id != current_user.id:
             abort(403)
     if request.form.get('delete'):
-        print("thinks I clicked delete...")
         db.session.delete(todo)
         db.session.commit()
         return redirect(url_for('mainpage'))
     if request.form.get(str(todo_id)):
-        print("TODO HAS FALSE VALUE")
         todo.checked = True
         db.session.commit()
         return redirect(url_for('mainpage'))
     if todo.checked==True:
-            print("TODO HAS TRUE VALUE")
             todo.checked = False
             db.session.commit()
-    print("THIS FALILEDDD")
     return redirect(url_for('mainpage'))

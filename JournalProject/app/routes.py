@@ -103,15 +103,16 @@ def calendar():
 @app.route("/journal") # display all current users' journals
 @login_required
 def journal():
-    count= Counter
+    user = current_user.username
     alljournals = Journal.query.filter_by(user_id=current_user.id) 
-    return render_template("journal.html", alljournals=alljournals, count=count)
+    return render_template("journal.html", alljournals=alljournals, user= user)
 
 @app.route("/journal/<int:journal_id>") # view a single journal with the given id
 @login_required
 def viewjournal(journal_id):
+    todays_date= date.today()
     journal = Journal.query.get_or_404(journal_id)
-    return render_template('single_journal.html',  journal=journal )
+    return render_template('single_journal.html',  journal=journal, todays_date=todays_date )
 
 @app.route("/journal/<int:journal_id>/update", methods=['GET', 'POST'])
 @login_required

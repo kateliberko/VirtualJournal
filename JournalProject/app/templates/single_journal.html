@@ -8,29 +8,17 @@
         <link rel="stylesheet" href="..\static\single_journal.css">
         <div>
             <a class="nav-link" href="/mainpage"><img src="\static\images\home.png " width="3%"></a>
+            <a class="nav-link" href="/journal"><img src="\static\images\journal_icon.png " width="3%"></a>
             <a class="nav-link" href="/habittracker"><img src="\static\images\habittracker_icon.png " width="3%"></a>
             <a class="nav-link" href="/moodtracker"><img src="\static\images\moodtracker_icon.png " width="3%"></a>
             <a class="nav-link" href="/info"><img src="\static\images\information_icon.png " width="3%"></a>
             <a class="nav-link" href="/"><img src="\static\images\logout_icon.png " width="3%"></a>
         </div>
-        
-        {% if title %}
-            <title>Virtual Journal - {{ title }}</title>
-        {% else %}
-            <title>Virtual Journal</title>
-        {% endif %}
+        <title>Virtual Journal - {{ title }}</title>
     </head>
+
     <body>
         <div class="container">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                    {{ message }}
-                    </div>
-                {% endfor %}
-                {% endif %}
-            {% endwith %}
             
             {% if journal.date_posted == todays_date %}
                 <form action="{{ '/journal/' + journal.id|string + '/update' }}" method="POST" style="width: 100%; height: 70%;">

@@ -1,11 +1,9 @@
 from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from app.forms import SignUpForm, LoginForm
-from app.models import User, Journal, Event, Habit, Todo, Moods
-from datetime import date, time, timedelta
+from app.models import User, Journal, Habit, Todo, Moods
+from datetime import date, timedelta
 from flask_login import login_user, current_user, logout_user, login_required
-from app.counter import Counter
-import math
 
 @app.route("/") 
 def home():
@@ -15,7 +13,6 @@ def home():
 @login_required
 def mainpage():
     todays_date= date.today()
-    count= Counter
     todolist= Todo.query.filter_by(user_id=current_user.id)
     journal= Journal.query.filter_by(user_id=current_user.id, date_posted=todays_date).first() # will only ever be one journal
     moods = Moods.query.filter_by(user_id=current_user.id, date=todays_date).first()
@@ -23,7 +20,7 @@ def mainpage():
     
     if habit is not None: # habits exist for this user today
         habits = Habit.query.filter_by(user_id = current_user.id, date = todays_date)
-        return render_template("mainpage.html", todays_date=todays_date, habits=habits, count=count, journal=journal, todolist=todolist, moods=moods, title="Home")
+        return render_template("mainpage.html", todays_date=todays_date, habits=habits, journal=journal, todolist=todolist, moods=moods, title="Home")
      
     if habit is None: # if habits don't exist for this user today
         newcheck = Habit.query.filter_by(user_id = current_user.id).first()
@@ -46,7 +43,7 @@ def mainpage():
                     db.session.commit()
                 
                 habitlist = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
-                return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods, title="Home")
+                return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, journal=journal, todolist=todolist, moods=moods, title="Home")
     
     return render_template("habitcreate.html", title="Create Habits")
 
@@ -88,7 +85,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
 
 
 # JOURNAL
@@ -133,7 +129,6 @@ def new_journal():
         db.session.commit()
         return redirect(url_for('mainpage'))
     return render_template('mainpage.html')
-
 
 
 # HABIT
@@ -280,7 +275,6 @@ def updatehabit():
     
 
 
-
 # MOOD
 @app.route("/moodtracker") 
 @login_required
@@ -353,12 +347,6 @@ def nextmoodtracker():
 @app.route("/info") 
 def info():
     return render_template("info.html", title="Information")
-
-
-@app.route("/test") 
-def test():
-    return render_template("turn_test.html")
-
 
 
 # todo LIST

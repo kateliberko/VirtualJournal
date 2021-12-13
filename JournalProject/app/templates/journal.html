@@ -32,7 +32,7 @@
                         <div id="page-1">
                             <div style="float: left; margin-left: 8%; margin-top: 5%">
                                 <h3 style="font-weight: normal;"><a href="{{ '/journal/' + journal.id|string }}" style="text-decoration: none;">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
-                                <p>{{ journal.content }} </p>
+                                <p style="font-weight: normal; margin-right: 4%;">{{ journal.content }} </p>
                             </div>
                             <button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button>
                         </div>

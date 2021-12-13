@@ -274,7 +274,7 @@
             
             <div class="moodtracker"> <!-- Mood Table-->
                 <!-- https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 -->
-                <label for="moodtracker"> Moods so far today: ..{{ moods.moodlist }}.. select more and save!</label>
+                <label for="moodtracker"> Moods so far today: {{moods.moodlist}} select more and save!</label>
                 <form action="/add_moods" id="moodtracker" method="POST">
                     <div id="moods">
                         <div><input type="checkbox" name="mood" id="cb1" value ='😅'>

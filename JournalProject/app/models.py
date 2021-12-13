@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date
 from app import db, login_manager
 from flask_login import UserMixin
 
@@ -35,15 +35,6 @@ class Todo(db.Model):
     def __repr__(self):
         return f"Todo('{self.date_posted}', '{self.task}')"
 
-class Event(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    event_name = db.Column(db.String(50), unique=False, nullable=False)
-    date = db.Column(db.String(20), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    
-    def __repr__(self):
-        return f"Event('{self.id}'')"
 
 class Habit(db.Model):
     id = db.Column(db.Integer, primary_key=True)

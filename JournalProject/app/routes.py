@@ -110,8 +110,9 @@ def journal():
 @app.route("/journal/<int:journal_id>") # view a single journal with the given id
 @login_required
 def viewjournal(journal_id):
+    todays_date= date.today()
     journal = Journal.query.get_or_404(journal_id)
-    return render_template('single_journal.html',  journal=journal )
+    return render_template('single_journal.html',  journal=journal, todays_date=todays_date )
 
 @app.route("/journal/<int:journal_id>/update", methods=['GET', 'POST'])
 @login_required

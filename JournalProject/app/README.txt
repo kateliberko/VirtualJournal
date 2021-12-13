@@ -22,4 +22,4 @@ https://stackoverflow.com/questions/30975459/add-strikethrough-to-checked-checkb
 https://codepen.io/ig_design/pen/dLNKgM
 https://www.codermen.com/how-to-add-and-remove-input-field-on-button-click-javascript/
 http://www.turnjs.com/
-
+https://www.w3schools.com/js/js_ajax_intro.asp

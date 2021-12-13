@@ -6,20 +6,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="static\login.css">
-        {% if title %}
-            <title>Virtual Journal - {{ title }}</title>
-        {% else %}
-            <title>Virtual Journal</title>
-        {% endif %}
-        
-        <div>
-            {%  if get_flashed_messages() %}
-                {% for mesg in get_flashed_messages() %}
-                    <h3>{{ mesg }}</h3>
-                {% endfor %}
-            {% endif %}
-        </div>
+        <title>Virtual Journal - {{ title }}</title>
 </head>
+
 <body>
     <div class="container">
         <div class="content-section">

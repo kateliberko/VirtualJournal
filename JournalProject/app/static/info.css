@@ -1,0 +1,29 @@
+body {
+    font-family: serif;
+    background-color: rgb(255, 234, 238);
+}
+
+.container {
+    margin: 3%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+td {
+    margin: 3%;
+    padding: 3%;
+    width: 200px;
+}
+
+th {
+    text-align: left;
+    padding-left: 3%;
+}
+
+table {
+    margin-top: 5%;
+}
+
+h2 {
+    font-weight: normal;
+}

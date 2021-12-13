@@ -300,6 +300,8 @@ td{
 	-webkit-transition: all 350ms linear;
 	transition: all 350ms linear; 
 }
+
+/* NECESSARY CSS styles for habittracker functionality */
 .checkbox-tools:not(:checked) + label#tool-2 {
 	background-color: var(rgb(255, 192, 227));
 }

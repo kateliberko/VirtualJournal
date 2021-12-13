@@ -49,7 +49,6 @@ def mainpage():
                 return render_template("mainpage.html", todays_date=todays_date, habits=habitlist, count=count, journal=journal, todolist=todolist, moods=moods)
     
     return render_template("habitcreate.html")
-    # return render_template("mainpage.html", todays_date=todays_date, habits=habit, count=count, journal=journal, todolist=todolist, moods=moods)
 
 
 

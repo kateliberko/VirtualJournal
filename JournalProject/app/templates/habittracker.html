@@ -21,7 +21,7 @@
             <a id="habit_button" href="/habit_update">Edit Habits</a>
             <h1> Habit Tracker </h1>            
             <div id="week">
-                <h2>{{ lastweek.strftime("%B %d") }} - {{ todays_date.strftime("%B %d") }}</h2>
+                <h2>{{ lastweek.strftime("%B %d") }} - {{ todays_date.strftime("%B %d") }}</h2> <!-- get date to format we like -->
                 <form action= "/nexthabittracker" method="POST" id="nextButton" >
                     <input type="submit" value=">">
                     <input type="hidden" name="daytag" value="{{ todays_date }}">
@@ -31,7 +31,7 @@
                     <input type="hidden" name="daytag" value="{{ todays_date }}">
                 </form>
                 <div class="days">
-                    {% if habit0 != 'Null' %}
+                    {% if habit0 != 'Null' %}  <!-- Habits exist for day 0(today) -->
                         <table class="sun">
                             <thead>
                                 <tr>
@@ -41,16 +41,19 @@
                             </thead><br/>
                             <tbody>
                                 {% for habit in habit0 %}
+                                <!-- Grab each habit that existed this date -->
                                     <tr>
                                         <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
                                         {% if habit.habit_done == True %}
+                                        <!-- If habit is true, be the color green -->
                                             <td id ="habit0t"></td>
                                             <style>
-                                                #habit0t{
+                                                #habit0t{ 
                                                     background-color: #C4FFE1;
                                                 }
                                             </style>
                                         {% elif habit.habit_done == False %}
+                                         <!-- If habit is false, be the color red -->
                                             <td id ="habit0f"></td>
                                             <style>
                                                 #habit0f{
@@ -64,7 +67,7 @@
                             </tbody>
                         </table>
                     {% endif %}
-                    {% if habit1 != 'Null' %}
+                    {% if habit1 != 'Null' %} <!-- Habits exist for day 1(yesterday) -->
                         <table class="mon">
                             <thead>
                                 <tr>
@@ -96,7 +99,7 @@
                             </tbody>
                         </table>
                     {% endif %}
-                    {% if habit2 != 'Null' %}
+                    {% if habit2 != 'Null' %} <!-- Habits exist for day 2(two days ago) -->
                         <table class="tue">
                             <thead>
                                 <tr>
@@ -128,7 +131,7 @@
                             </tbody>
                         </table>
                     {% endif %}
-                    {% if habit3 != 'Null' %}
+                    {% if habit3 != 'Null' %} <!-- Habits exist for day 3(three days ago) -->
                         <table class="wed">
                             <thead>
                                 <tr>
@@ -160,7 +163,7 @@
                             </tbody>
                         </table>
                     {% endif %}
-                    {% if habit4 != 'Null' %}
+                    {% if habit4 != 'Null' %} <!-- Habits exist for day 4(four days ago) -->
                         <table class="thu">
                             <thead>
                                 <tr>
@@ -192,7 +195,7 @@
                             </tbody>
                         </table>
                     {% endif %}
-                    {% if habit5 != 'Null' %}
+                    {% if habit5 != 'Null' %} <!-- Habits exist for day 5(five days ago) -->
                         <table class="fri">
                             <thead>
                                 <tr>
@@ -224,7 +227,7 @@
                             </tbody>
                         </table>
                     {% endif %}
-                    {% if habit6 != 'Null' %}
+                    {% if habit6 != 'Null' %} <!-- Habits exist for day 6(six days ago) -->
                         <table class="sat">
                             <thead>
                                 <tr>

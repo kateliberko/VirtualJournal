@@ -53,6 +53,10 @@ td, th {
     font-weight: normal;
 }
 
+td {
+    font-size: xx-large;
+}
+
 table {
     letter-spacing: 1px;
     border-collapse: collapse;

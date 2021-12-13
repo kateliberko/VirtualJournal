@@ -62,7 +62,39 @@
             <br/>
             <h3>What's the recommended amount of exercise per week?</h3>
             <p>
-                The <a href="https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/exercise/faq-20057916">Mayo Clinic</a> recommends adults get a minimu of 150 minutes of moderate exercise a week, or 75 minutes of rigorous excersize. For optimum health, aim more towards 300 minutes a week spread out over multiple days. It is important to remember that even a little bit of exercise goes a long way. Start small and you will slowly experience the benefits. 
+                The <a href="https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/exercise/faq-20057916">Mayo Clinic</a> recommends adults get a minimu of . . .
+                <div id="demo">
+                    <button id="ajax_button" type="button" onclick="loadDoc()"> take a guess and click to find out </button>
+                </div>
+                <script>
+                    function loadDoc() {
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.onload = function() {
+                        document.getElementById("demo").innerHTML =
+                        this.responseText;
+                    }
+                    xhttp.open("GET", "static/ajax_info.txt");
+                    xhttp.send();
+                    }
+                </script>
+            </p>
+            <br/>
+            <h3>What are the benefits of journaling?</h3>
+            <p>
+                <div id="demo2">
+                    <button id="ajax_button" type="button" onclick="loadDoc2()"> click to read more </button>
+                </div>
+                <script>
+                    function loadDoc2() {
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.onload = function() {
+                        document.getElementById("demo2").innerHTML =
+                        this.responseText;
+                    }
+                    xhttp.open("GET", "static/ajax_info2.txt");
+                    xhttp.send();
+                    }
+                </script>
             </p>
         </div>
     </body>

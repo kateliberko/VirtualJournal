@@ -22,14 +22,14 @@
             <form action="/habit_update" method="POST">
                 <div class="input_fields_wrap">
                     <button class="add_field_button"> + Habit +</button></br>
-                    {% if habits[0] %}
-                        {% for habit in habits %}
+                    {% if habits[0] %} <!-- if habit[0] is true, this means there are existing habits to load-->
+                        {% for habit in habits %} <!-- load existing habits-->
                             <div>
                                 <input type="text" name="myhabit" value='{{habit.habit_name}}' required>
                                 <button class="remove_field" type="button">x</button></br>
                             </div>
                         {% endfor%}
-                    {% else %}
+                    {% else %} <!-- create empty input field-->
                         <input type="text" name="myhabit" placeholder="Enter Habit" required></br>
                     {% endif %}
                 </div>

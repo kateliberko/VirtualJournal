@@ -1,0 +1,23 @@
+body {
+    font-family: serif;
+    font-size:xx-large;
+}
+
+.container {
+    margin: 8%;
+    margin-top: 2%;
+    background: url("images/journal_page_cropped1.png") no-repeat;
+    height: 600px;
+}
+
+form {
+    align-content: center;
+    padding-left: 10%;
+}
+
+textarea {
+    margin-top: 5%;
+    background: none;
+    border: none;
+    font-size: xx-large;
+}

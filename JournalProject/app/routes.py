@@ -368,34 +368,20 @@ def add_todo():
 def delete_todo(todo_id):
     todo = Todo.query.get_or_404(todo_id)
     if todo.user_id != current_user.id:
-        abort(403)
-    db.session.delete(todo)
-    db.session.commit()
+            abort(403)
+    if request.form.get('delete'):
+        print("thinks I clicked delete...")
+        db.session.delete(todo)
+        db.session.commit()
+        return redirect(url_for('mainpage'))
+    if request.form.get(str(todo_id)):
+        print("TODO HAS FALSE VALUE")
+        todo.checked = True
+        db.session.commit()
+        return redirect(url_for('mainpage'))
+    if todo.checked==True:
+            print("TODO HAS TRUE VALUE")
+            todo.checked = False
+            db.session.commit()
+    print("THIS FALILEDDD")
     return redirect(url_for('mainpage'))
-    # return render_template('mainpage.html')
-
-    
-
-
-
-# @app.route("/newEvent", methods=['GET', 'POST'])
-# @login_required
-# def new_event():
-#     event = request.form.get("eventTitleInput")
-#     date = request.form.get("date")
-#     if event: # ensures no empty events
-#         newEvent = Event(event_name=event, date=date, user_id=current_user.id)
-#         db.session.add(newEvent)
-#         db.session.commit()
-#         return redirect(url_for('calendar'))
-#     return render_template('calendar.html')
-    
-# app.route("/deleteEvent/<int:event_id>", methods=['POST'])
-# @login_required
-# def delete_event(event_id):
-#     event = Event.query.get_or_404(event_id)
-#     if event.user_id != current_user.id:
-#         abort(403)
-#     db.session.delete(event)
-#     db.session.commit()
-#     return redirect(url_for('calendar'))

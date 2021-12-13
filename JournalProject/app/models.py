@@ -30,6 +30,7 @@ class Todo(db.Model):
     date_posted = db.Column(db.Date, nullable=False, default=date.today())
     task = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    checked = db.Column(db.Boolean, default=False, nullable=False)
 
     def __repr__(self):
         return f"Todo('{self.date_posted}', '{self.task}')"

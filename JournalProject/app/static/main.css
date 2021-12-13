@@ -128,7 +128,6 @@ table{
 input[type=checkbox]:checked + label.strikethrough{
 	text-decoration: line-through;
 	color:rgb(150, 150, 150);
-	background: none;
   }
 
 #content {

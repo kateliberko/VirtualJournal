@@ -233,6 +233,16 @@ label[for^="cb"] a{
 	font-size: 35px;
 }
 
+.mood-save {
+	font-size: large;
+	padding: 2%;
+	margin-top: 5%;
+	margin-left: 43%;
+	background-color: rgb(221, 128, 128);
+	color: white;
+	border-radius: 3%;
+}
+
 /* mood selection */
 :checked+label a{
 	transform: scale(0.9);
@@ -246,6 +256,16 @@ label[for^="cb"] a{
     border-collapse: collapse;
 	vertical-align: top;
 	font-size: 30px;
+}
+
+.habit-save {
+	font-size: large;
+	padding: 2%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background-color: #C31B6B;
+	color: white;
+	border-radius: 3%;
 }
 
 th {

@@ -265,8 +265,7 @@
                                         
                                     {% endif %}
                                 {% endif %}
-                                
-                                <input type='submit' value="HABIT SAVE">
+                                <input type='submit' class="habit-save" value="save">
                             </form>
                         </tbody>
                     </table>
@@ -275,7 +274,7 @@
             
             <div class="moodtracker">
                 <!-- https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 -->
-                <label for="moodtracker"> Your Moods selected and saved so far today {{ moods.moodlist }}.. select more and save!</label>
+                <label for="moodtracker"> The moods selected and saved so far today are: ..{{ moods.moodlist }}.. select more and save!</label>
                 <form action="/add_moods" id="moodtracker" method="POST">
                     <div id="moods">
                         <div><input type="checkbox" name="mood" id="cb1" value ='😅'>
@@ -384,7 +383,7 @@
                             <label for="cb35"><a id="emoji">☺️</a></label>
                         </div>
                     </div>
-                    <input type="submit" value= "save moods">
+                    <input type="submit" class="mood-save" value= "save">
                 </form>
             </div>
             <div class="coil">  

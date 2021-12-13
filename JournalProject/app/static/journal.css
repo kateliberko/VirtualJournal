@@ -29,16 +29,27 @@ body {
     font-size: large;
     padding-bottom: 50%;
     padding-top: 50%;
+    height: 100%;
 }
 
-#page-1, #page-3, #page-5{
+#page-1{
     background: url("images/journal_page_cropped2.png");
 } 
 
-#page-2, #page-4, #page-6 {
+#page-2{
     background: url("images/journal_page_cropped1.png");
 }
 
 ul {
     list-style: none;
+}
+
+.title-page {
+    margin: 10%;
+    margin-left: 40%;
+    margin-top: 45%;
+    text-align: center;
+    font-size: xx-large;
+    color: palevioletred;
+    background: rgb(255, 206, 243);
 }

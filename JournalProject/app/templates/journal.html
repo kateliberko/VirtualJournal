@@ -28,19 +28,23 @@
         <div class="container">
             <div id="journal">
                 <div id="page-1">
-                    {{user}}'s Journal      
-              <button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button></div>
+                    <div>
+                        <p class="title-page" style="float: left;"> {{user}}'s Journal</p>
+                        <button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right;">></button>
+                    </div>
+                </div>
+                <div id="page-2"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
                 {% for journal in alljournals|reverse %}
-                        
-                        <div id="page-1"><li>
-                            <h3><a href="{{ '/journal/' + journal.id|string }}">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
-                            <p>{{ journal.content }} . . . </p>
-                        </li><br/>
-                        <button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
-                        <div id="page-1"><button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button></div>
-                        
+                        <div id="page-1">
+                            <div style="float: left; margin-left: 8%; margin-top: 5%">
+                                <h3 style="font-weight: normal;"><a href="{{ '/journal/' + journal.id|string }}" style="text-decoration: none;">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
+                                <p>{{ journal.content }} </p>
+                            </div>
+                            <button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button>
+                        </div>
+                        <div id="page-2">
+                            <button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
                 {% endfor %}
-                <div id="page-1"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
             </div>
         </div>
 

@@ -25,7 +25,10 @@
                     <button class="add_field_button"> + Habit +</button></br>
                     {% if habits[0] %}
                         {% for habit in habits %}
-                            <input type="text" name="myhabit" value='{{habit.habit_name}}' required><button class="remove_field" type="button">x</button></br>
+                            <div>
+                                <input type="text" name="myhabit" value='{{habit.habit_name}}' required>
+                                <button class="remove_field" type="button">x</button></br>
+                            </div>
                         {% endfor%}
                     {% else %}
                         <input type="text" name="myhabit" placeholder="Enter Habit" required></br>

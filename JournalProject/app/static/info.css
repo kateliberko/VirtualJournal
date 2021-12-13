@@ -20,10 +20,40 @@ th {
     padding-left: 3%;
 }
 
+
+/* https://css-tricks.com/table-borders-inside/ */
 table {
+    padding: 5%;
     margin-top: 5%;
+    border-collapse: collapse;
+}
+
+table td {
+    border: 3px dashed rgb(255, 192, 227);
+}
+table tr:first-child td {
+    border-top: 0;
+}
+table tr td:first-child {
+    border-left: 0;
+}
+table tr:last-child td {
+    border-bottom: 0;
+}
+table tr td:last-child {
+    border-right: 0;
+}
+
+table th {
+    padding-bottom: 3%;
+    border-bottom: 3px dashed rgb(255, 192, 227);
 }
 
 h2 {
     font-weight: normal;
+}
+
+h3 {
+    font-weight: normal;
+    font-size: xx-large;
 }

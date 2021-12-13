@@ -13,15 +13,15 @@
         <div class="container">
             <div class="day">
                 <div class="title" id="dayheader"> </div>
-                <div id="content" style="font-size: medium;">  
+                <div id="content" style="font-size: medium;">   <!-- Todo List-->
                     <form action="/add_todo" method="POST">
                         <input type="text" id="todo" onKeyPress="return checkSubmit(event)" placeholder="write your to-do's here!" name="todo"><br>
                     </form>
-                    {% for todo in todolist %}
+                    {% for todo in todolist %}  <!-- populates todo list with existing todos-->
                     <div class="todo">
                         <form action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="POST">
                             <div id="todo-element">
-                                {% if todo.checked  == True %}
+                                {% if todo.checked  == True %}  <!-- makes sure todo is checked properly according to db -->
                                     <input type="checkbox" alt="submit" id="{{todo.id}}" name="{{todo.id}}" value="{{todo.id}}"  onChange="this.form.submit()" checked>
                                     <label for="{{todo.id}}" class="strikethrough"> {{todo.task}}</label>
                                     <input type="submit" name="delete" value="x" >                                    
@@ -38,7 +38,7 @@
                 </div>
                
             </div>
-            <div class="nav_bar">
+            <div class="nav_bar">  <!-- Navigation bar -->
                 <ul id ="nav_bar" style="position:static;">
                     <li class="nav-item"><a class="nav-link" href="/journal"><img src="static\images\journal_icon.png"></a></li>
                     <li class="nav-item"><a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png"></a></li>
@@ -47,15 +47,15 @@
                     <li id="settings"><a class="nav-item nav-link" href="{{ url_for('logout') }}"><img src="static\images\logout_icon.png"></a></li>
                 </ul>
             </div>
-            <div class="journal">
-                {% if journal %}
+            <div class="journal">  <!-- Journal-->
+                {% if journal %}  <!-- if journal exists for today, load it-->
                     <form action="{{ '/journal/' + journal.id|string + '/update' }}" method="POST" style="width: 100%; height: 70%;">
                         <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ todays_date }}</label><br>
                         <textarea id="journal" name="journal">{{ journal.content }}</textarea><br>
                         <input type="image" src="static\images\pen_icon.png" width="10%" style="margin-left: 80%;" alt="Submit">
                         <input type="hidden" name="flag" value="frommain">
                     </form>
-                {% else %}
+                {% else %}  <!-- load empty journal -->
                     <form action="/journal/new" method="POST" style="width: 100%; height: 70%;">
                         <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ todays_date }}</label><br>
                         <textarea id="journal" placeholder="Journal Here" name="journal"></textarea><br>
@@ -65,7 +65,7 @@
             </div>
             <div class="habit">
                 <div id="table">
-                    <table>
+                    <table>  <!-- Habit Table -->
                         <thead>
                             <tr>
                                 <th scope="col" id="habitheader">Habit</th>
@@ -75,9 +75,9 @@
                         </thead><br/>
                         <tbody>
                             <form action="/habitdone/update" method="POST">
-                                {% if habits[0] %}
-                                    {% if habits[0].habit_done == True %}
-                                        <tr>
+                                {% if habits[0] %}  <!-- each habit needs specific checkboxes for coloring/db purposes-->
+                                    {% if habits[0].habit_done == True %}  <!-- if habit done, keep it checked, make it green -->
+                                        <tr> 
                                             <td scope="row" id="habitname">{{ habits[0].habit_name }}</td>
                                             <td><input class="checkbox-tools" type="radio" name="habit0" id="tool-1" value="True" checked>
                                                 <label class="for-checkbox-tools" for="tool-1" id="tool-1" ></td> 
@@ -85,7 +85,7 @@
                                                 <label class="for-checkbox-tools" for="tool-2" id="tool-2"></td>
                                         </tr>
                                     
-                                        <style>
+                                        <style> 
                                             .checkbox-tools:not(:checked) + label#tool-1{
                                                 background-color: var(rgb(217, 255, 240));
                                             }
@@ -93,7 +93,7 @@
                                                 background-color: #C4FFE1;
                                             }
                                         </style>
-                                    {% elif habits[0].habit_done == False %}
+                                    {% elif habits[0].habit_done == False %}  <!-- if habit  not done, unchecked, make it red -->
                                         <tr>
                                             <td scope="row" id="habitname">{{ habits[0].habit_name }}</td>
                                             <td><input class="checkbox-tools" type="radio" name="habit0" id="tool-1" value="True" >
@@ -266,15 +266,15 @@
                                     {% endif %}
                                 {% endif %}
                                 <input type='submit' class="habit-save" value="save">
-                            </form>
+                            </form>  
                         </tbody>
-                    </table>
+                    </table> <!-- END OF HABITS-->
                 </div>
             </div>
             
-            <div class="moodtracker">
+            <div class="moodtracker"> <!-- Mood Table-->
                 <!-- https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 -->
-                <label for="moodtracker"> The moods selected and saved so far today are: ..{{ moods.moodlist }}.. select more and save!</label>
+                <label for="moodtracker"> Moods so far today: ..{{ moods.moodlist }}.. select more and save!</label>
                 <form action="/add_moods" id="moodtracker" method="POST">
                     <div id="moods">
                         <div><input type="checkbox" name="mood" id="cb1" value ='😅'>

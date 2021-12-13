@@ -1,7 +1,6 @@
 body {
     /* need to choose a better font */
     font-family: serif;
-    background-color: rgb(255, 234, 238);
 }
 
 .container{
@@ -67,9 +66,6 @@ h2 {
 
 td, th { 
     padding: 10px;
-    /* padding-top: 10px;
-    padding-bottom: 10px;
-    width: 70px; */
 }
 
 table {
@@ -96,15 +92,65 @@ table {
     padding-left: 2%;
     padding-right: 2%;
     border-radius: 20%;
-    background-color: rgb(159, 203, 245);
+    background-color: rgb(255, 199, 225);    
     color: white;
-    box-shadow: 0px 0px 2px gray;
     margin: 3px;
 }
 
 #backButton:hover, #nextButton:hover {
-    background-color:#92a1d1;
+    background-color:rgb(255, 172, 211);
 
 }
 
-/* need to work on responsiveness */
+.days {
+	width: fixed;
+	height: fixed;
+	margin-top: 10%;
+	display: grid;
+    grid-gap: 30px;
+    
+    grid-template-areas: 
+    "sun mon tue wed thu fri sat"
+}
+
+.sun {
+    grid-area: sun;
+    overflow: auto;
+    width: 100px;
+}
+
+.mon {
+    grid-area: mon;
+    overflow: auto;
+    width: 100px;
+}
+
+.tue {
+    grid-area: tue;
+    overflow: auto;
+    width: 100px;
+}
+
+.wed {
+    grid-area: tue;
+    overflow: auto;
+    width: 100px;
+}
+
+.thu {
+    grid-area: thu;
+    overflow: auto;
+    width: 100px;
+}
+
+.fri {
+    grid-area: fri;
+    overflow: auto;
+    width: 100px;
+}
+
+.sat {
+    grid-area: sat;
+    overflow: auto;
+    width: 100px;
+}

@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="static\main.css">
+    <link rel="stylesheet" href="static\main.css">
      
   </head>
 
@@ -41,13 +40,11 @@
             </div>
             <div class="nav_bar">
                 <ul id ="nav_bar" style="position:static;">
-                    <li class="nav-item"><a class="nav-link" href="/calendar"><img src="static\images\calendar_icon.png"></a></li>
                     <li class="nav-item"><a class="nav-link" href="/journal"><img src="static\images\journal_icon.png"></a></li>
                     <li class="nav-item"><a class="nav-link" href="/habittracker"><img src="static\images\habittracker_icon.png"></a></li>
                     <li class="nav-item"><a class="nav-link" href="/moodtracker"><img src="static\images\moodtracker_icon.png"></a></li>
                     <li class="nav-item"><a class="nav-link" href="/info"><img src="static\images\information_icon.png"></a></li>
                     <li id="settings"><a class="nav-item nav-link" href="{{ url_for('logout') }}"><img src="static\images\logout_icon.png"></a></li>
-                    <li id="settings"><a class="nav-item nav-link" href="{{ url_for('test') }}"><img src="static\images\logout_icon.png"></a></li>
                 </ul>
             </div>
             <div class="journal">
@@ -394,11 +391,7 @@
                 <img src="static\images\journaledge.png " width="60%" style="align-self: flex-end;">
                 <img src="static\images\journaledge.png " width="60%" style="align-self: flex-end; margin-top: -39%;">
             </div>
-        </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-   
-    
+        </div>  
   </body>
   <script type="text/javascript" src="static\app.js"> </script>
 </html>

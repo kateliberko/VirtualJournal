@@ -180,6 +180,9 @@ def updatehabitdone():
     habits = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
     habit0 = request.form.get("habit0")
     habit1 = request.form.get("habit1")
+    habit2 = request.form.get("habit2")
+    habit3 = request.form.get("habit3")
+    habit4 = request.form.get("habit4")
     if habit0 == 'True':    # makes sure to update habits according to what was selected
         habits[0].habit_done = True
     if habit0 == 'False':
@@ -188,6 +191,18 @@ def updatehabitdone():
         habits[1].habit_done = True
     if habit1 == 'False':
         habits[1].habit_done = False
+    if habit2 == 'True':
+        habits[2].habit_done = True
+    if habit2 == 'False':
+        habits[2].habit_done = False
+    if habit3 == 'True':
+        habits[3].habit_done = True
+    if habit3 == 'False':
+        habits[3].habit_done = False
+    if habit3 == 'True':
+        habits[4].habit_done = True
+    if habit4 == 'False':
+        habits[4].habit_done = False
     db.session.commit()
     return redirect(url_for('mainpage'))
 

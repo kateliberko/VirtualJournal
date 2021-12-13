@@ -25,7 +25,8 @@
                                 {% if todo.checked  == True %}
                                     <input type="checkbox" alt="submit" id="{{todo.id}}" name="{{todo.id}}" value="{{todo.id}}"  onChange="this.form.submit()" checked>
                                     <label for="{{todo.id}}" class="strikethrough"> {{todo.task}}</label>
-                                    <input type="submit" name="delete" value="x" >                                    {% else%}
+                                    <input type="submit" name="delete" value="x" >                                    
+                                {% else %}
                                     <input type="checkbox" alt="submit" id="{{todo.id}}" name="{{todo.id}}" value="{{todo.id}}"  onChange="this.form.submit()">
                                     <label for="{{todo.id}}" class="strikethrough"> {{todo.task}}</label>
                                     <input type="submit" name="delete" value="x" >
@@ -153,6 +154,121 @@
                                         
                                     {% endif %}
                                 {% endif %}
+                                {% if habits[2] %}
+                                    {% if habits[2].habit_done == True %}
+                                        <tr>
+                                            <td scope="row" id="habitname">{{ habits[2].habit_name }}</td>
+                                            <td><input class="checkbox-tools" type="radio" name="habit2" id="tool-5" value="True" checked>
+                                                <label class="for-checkbox-tools" for="tool-5" id="tool-5" ></td> 
+                                            <td><input class="checkbox-tools" type="radio" name="habit2" id="tool-6" value="False" >
+                                                <label class="for-checkbox-tools" for="tool-6" id="tool-6"></td>
+                                        </tr>
+                                    
+                                        <style>
+                                            .checkbox-tools:not(:checked) + label#tool-5{
+                                                background-color: var(rgb(217, 255, 240));
+                                            }
+                                            .checkbox-tools:checked + label#tool-5{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habits[2].habit_done == False %}
+                                        <tr>
+                                            <td scope="row" id="habitname">{{ habits[2].habit_name }}</td>
+                                            <td><input class="checkbox-tools" type="radio" name="habit2" id="tool-5" value="True" >
+                                                <label class="for-checkbox-tools" for="tool-5" id="tool-5" ></td> 
+                                            <td><input class="checkbox-tools" type="radio" name="habit2" id="tool-6" value="False" checked>
+                                                <label class="for-checkbox-tools" for="tool-6" id="tool-6"></td>
+                                        </tr>
+                                    
+                                        <style>
+                                            .checkbox-tools:not(:checked) + label#tool-6 {
+                                                background-color: var(rgb(255, 192, 227));
+                                            }
+                                            .checkbox-tools:checked + label#tool-6{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                        
+                                    {% endif %}
+                                {% endif %}
+                                {% if habits[3] %}
+                                    {% if habits[3].habit_done == True %}
+                                        <tr>
+                                            <td scope="row" id="habitname">{{ habits[3].habit_name }}</td>
+                                            <td><input class="checkbox-tools" type="radio" name="habit3" id="tool-7" value="True" checked>
+                                                <label class="for-checkbox-tools" for="tool-7" id="tool-7" ></td> 
+                                            <td><input class="checkbox-tools" type="radio" name="habit3" id="tool-8" value="False" >
+                                                <label class="for-checkbox-tools" for="tool-8" id="tool-8"></td>
+                                        </tr>
+                                    
+                                        <style>
+                                            .checkbox-tools:not(:checked) + label#tool-7{
+                                                background-color: var(rgb(217, 255, 240));
+                                            }
+                                            .checkbox-tools:checked + label#tool-7{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habits[3].habit_done == False %}
+                                        <tr>
+                                            <td scope="row" id="habitname">{{ habits[3].habit_name }}</td>
+                                            <td><input class="checkbox-tools" type="radio" name="habit3" id="tool-7" value="True" >
+                                                <label class="for-checkbox-tools" for="tool-7" id="tool-7" ></td> 
+                                            <td><input class="checkbox-tools" type="radio" name="habit3" id="tool-8" value="False" checked>
+                                                <label class="for-checkbox-tools" for="tool-8" id="tool-8"></td>
+                                        </tr>
+                                    
+                                        <style>
+                                            .checkbox-tools:not(:checked) + label#tool-8 {
+                                                background-color: var(rgb(255, 192, 227));
+                                            }
+                                            .checkbox-tools:checked + label#tool-8{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                        
+                                    {% endif %}
+                                {% endif %}
+                                {% if habits[4] %}
+                                    {% if habits[4].habit_done == True %}
+                                        <tr>
+                                            <td scope="row" id="habitname">{{ habits[4].habit_name }}</td>
+                                            <td><input class="checkbox-tools" type="radio" name="habit4" id="tool-9" value="True" checked>
+                                                <label class="for-checkbox-tools" for="tool-9" id="tool-9" ></td> 
+                                            <td><input class="checkbox-tools" type="radio" name="habit4" id="tool-10" value="False" >
+                                                <label class="for-checkbox-tools" for="tool-10" id="tool-10"></td>
+                                        </tr>
+                                    
+                                        <style>
+                                            .checkbox-tools:not(:checked) + label#tool-9{
+                                                background-color: var(rgb(217, 255, 240));
+                                            }
+                                            .checkbox-tools:checked + label#tool-9{
+                                                background-color: #C4FFE1;
+                                            }
+                                        </style>
+                                    {% elif habits[4].habit_done == False %}
+                                        <tr>
+                                            <td scope="row" id="habitname">{{ habits[4].habit_name }}</td>
+                                            <td><input class="checkbox-tools" type="radio" name="habit4" id="tool-9" value="True" >
+                                                <label class="for-checkbox-tools" for="tool-9" id="tool-9" ></td> 
+                                            <td><input class="checkbox-tools" type="radio" name="habit4" id="tool-10" value="False" checked>
+                                                <label class="for-checkbox-tools" for="tool-10" id="tool-10"></td>
+                                        </tr>
+                                    
+                                        <style>
+                                            .checkbox-tools:not(:checked) + label#tool-10 {
+                                                background-color: var(rgb(255, 192, 227));
+                                            }
+                                            .checkbox-tools:checked + label#tool-10{
+                                                background-color: #F7BED9;
+                                            }
+                                        </style>
+                                        
+                                    {% endif %}
+                                {% endif %}
+                                
                                 <input type='submit' value="HABIT SAVE">
                             </form>
                         </tbody>

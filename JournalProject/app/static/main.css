@@ -338,6 +338,32 @@ td{
 	background-color: #C4FFE1;
 }
 
+.checkbox-tools:not(:checked) + label#tool-8 {
+	background-color: var(rgb(255, 192, 227));
+}
+.checkbox-tools:checked + label#tool-8{
+	background-color: #F7BED9;
+}
+.checkbox-tools:not(:checked) + label#tool-7{
+	background-color: var(rgb(217, 255, 240));
+}
+.checkbox-tools:checked + label#tool-7{
+	background-color: #C4FFE1;
+}
+
+.checkbox-tools:not(:checked) + label#tool-10 {
+	background-color: var(rgb(255, 192, 227));
+}
+.checkbox-tools:checked + label#tool-10{
+	background-color: #F7BED9;
+}
+.checkbox-tools:not(:checked) + label#tool-9{
+	background-color: var(rgb(217, 255, 240));
+}
+.checkbox-tools:checked + label#tool-9{
+	background-color: #C4FFE1;
+}
+
 .checkbox-tools:checked + label .uil,
 .checkbox-tools:not(:checked) + label .uil{
 	font-size: 24px;

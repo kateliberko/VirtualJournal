@@ -192,70 +192,8 @@
                         </tbody>
                     </table>
                 {% endif %}
-                {% if habit5 != 'Null' %}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col" style="text-align: left;">Habit</th>
-                                <th  scope="col"> {{ habit5[0].date.strftime("%a")|upper }}</th>
-                            </tr>
-                        </thead><br/>
-                        <tbody>
-                            {% for habit in habit5 %}
-                                <tr>
-                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
-                                    {% if habit.habit_done == True %}
-                                        <td id ="habit5t"></td>
-                                        <style>
-                                            #habit5t{
-                                                background-color: #C4FFE1;
-                                            }
-                                        </style>
-                                    {% elif habit.habit_done == False %}
-                                        <td id ="habit5f"></td>
-                                        <style>
-                                            #habit5f{
-                                                background-color: #F7BED9;
-                                            }
-                                        </style>
-                                    {% endif %}
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% endif %}
-                {% if habit6 != 'Null' %}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col" style="text-align: left;">Habit</th>
-                                <th  scope="col"> {{ habit6[0].date.strftime("%a")|upper }}</th>
-                            </tr>
-                        </thead><br/>
-                        <tbody>
-                            {% for habit in habit6 %}
-                                <tr>
-                                    <td scope="row" id="habit"> {{ habit.habit_name }}  </td>
-                                    {% if habit.habit_done == True %}
-                                        <td id ="habit6t"></td>
-                                        <style>
-                                            #habit6t{
-                                                background-color: #C4FFE1;
-                                            }
-                                        </style>
-                                    {% elif habit.habit_done == False %}
-                                        <td id ="habit6f"></td>
-                                        <style>
-                                            #habit6f{
-                                                background-color: #F7BED9;
-                                            }
-                                        </style>
-                                    {% endif %}
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% endif %}
+                
+                
             </div>
         </div>
     </body>

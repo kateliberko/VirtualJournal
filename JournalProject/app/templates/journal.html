@@ -28,15 +28,18 @@
                     </div>
                 </div>
                 <div id="page-2"><button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
-                {% for journal in alljournals %}  <!-- each journal populates its own page. reverse order so today is first-->
+                {% for journal in alljournals|reverse %}  <!-- each journal populates its own page. reverse order so today is first-->
                         <div id="page-1">
                             <div style="float: left; margin-left: 8%; margin-top: 5%">
                                 <h3 style="font-weight: normal;"><a href="{{ '/journal/' + journal.id|string }}" style="text-decoration: none;">{{ journal.date_posted.strftime("%B %d")  }}</a> </h3>
-                                <p style="font-weight: normal; margin-right: 4%;">{{ journal.content }} </p>
+                                <p style="font-weight: normal; margin-right: 4%;">{{ journal.content[0:1800] }} </p>
                             </div>
                             <button id="journal_btn" onclick="$('#journal').turn('next')" style="float:right">></button>
                         </div>
                         <div id="page-2">
+                            {% if journal.content|length > 1800 %}
+                                <p style="font-weight: normal; margin-right: 4%; margin-top: 5%; margin-left: 5%;">[continued] . . . {{ journal.content[1800:-1] }} </p>
+                            {% endif %}
                             <button id="journal_btn" onclick="$('#journal').turn('previous')" style="float:left"><</button></div>
                 {% endfor %}
             </div>

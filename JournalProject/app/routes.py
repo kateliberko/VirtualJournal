@@ -188,7 +188,7 @@ def updatehabitdone():
         habits[3].habit_done = True
     if habit3 == 'False':
         habits[3].habit_done = False
-    if habit3 == 'True':
+    if habit4 == 'True':
         habits[4].habit_done = True
     if habit4 == 'False':
         habits[4].habit_done = False

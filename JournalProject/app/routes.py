@@ -33,6 +33,7 @@ def mainpage():
                     db.session.add(habitLog)
                     db.session.commit()
             habitlist = Habit.query.filter_by(user_id = current_user.id, date=todays_date)
+            return render_template("mainpage.html", todays_date=todays_date, habitlist=habitlist, journal=journal, todolist=todolist, moods=moods, title="Home")
         else: # first time user, must create new habits from habit form
             habitform = request.form.getlist("myhabit")
         

@@ -22,13 +22,13 @@
             
             {% if journal.date_posted == todays_date %} <!-- users can only edit todays journal-->
                 <form action="{{ '/journal/' + journal.id|string + '/update' }}" method="POST" style="width: 100%; height: 70%;">
-                    <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ journal.date_posted }}</label><br>
+                    <label for="journal" style="padding-left: 2%; font-size: 25px;">{{ journal.date_posted.strftime("%D") }}</label><br>
                     <textarea id="journal" name="journal" cols="55" rows="7" style="padding-left: 2%; font-size: 20px;">{{ journal.content }}</textarea><br>
                     <input class="submit" type="image" src="\static\images\pen_icon.png" width="10%" style="margin-left: 60%;" alt="Submit">
                     <input type="hidden" name="flag" value="fromjournal">
                 </form>
             {% else %}  <!-- they can just view their journal if its not from todays date -->
-                <h4 style="padding-left: 2%; font-size: 25px;">{{ journal.date_posted }}</h4><br>
+                <h4 style="padding-left: 2%; font-size: 25px;">{{ journal.date_posted.strftime("%D") }}</h4><br>
                 <p style="padding-left: 2%; font-size: 20px; width: 900px;">{{ journal.content }}</p><br>
             {% endif %}
         </div>

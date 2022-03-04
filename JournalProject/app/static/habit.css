@@ -55,7 +55,7 @@ input[type="submit"]{
     overflow: auto;
     min-height: 200px;
 	min-width: 60px;
-    max-width: 80vw;
+    /* max-width: 80vw; */
 }
 
 h2 {
